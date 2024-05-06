@@ -81,11 +81,11 @@ export default function LoginPage() {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                 {/* // ADD BACK IN WHEN SOCIAL AUTH IS IMPLEMENTED */}
-                    <div className="grid grid-cols-2 gap-6">
-                        <Button variant="outline"  onClick={()=>loginWithGithubAuth()}>
+                    <div className="grid grid-cols-1 gap-6">
+                        {/* <Button variant="outline"  onClick={()=>loginWithGithubAuth()}>
                             <Icons.gitHub className="mr-2 h-4 w-4" />
                             Github
-                        </Button>
+                        </Button> */}
                         <Button variant="outline" onClick={()=>loginWithGoogleAuth()}>
                             <Icons.google className="mr-2 h-4 w-4" />
                             Google
