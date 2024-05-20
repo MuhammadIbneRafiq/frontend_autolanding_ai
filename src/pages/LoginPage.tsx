@@ -20,7 +20,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icons } from "@/components/ui/icons";
 // Supabase Auth 
-import { loginWithGoogleAuth, loginWithGithubAuth } from "./SupabaseAuth";
+import { loginWithGoogleAuth } from "./SupabaseAuth";
 
 const formSchema = z.object({
     email: z.string().min(1, "Email is required").email("Invalid email"),

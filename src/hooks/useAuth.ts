@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { UserData } from "@/types/UserData";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
@@ -21,6 +20,7 @@ export const useAuth = () => {
 
     useEffect(() => {
         async function fetchUser() {
+            // jswt token is not working hence i put false, turn setloading into true
             setLoading(true);
             const accessToken = localStorage.getItem("accessToken");
             if (!accessToken) {
@@ -29,8 +29,11 @@ export const useAuth = () => {
                 setLoading(false);
                 return;
             }
+            
+            console.log("accessToken: found or what?", accessToken); // This is the new line for logging
 
             const decoded = jwtDecode(accessToken || "");
+            console.log('access token decoded', decoded)
 
             if (!decoded.exp || decoded.exp * 1000 < Date.now()) {
                 console.log("Access Token has expired");

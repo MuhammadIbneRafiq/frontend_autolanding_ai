@@ -1,4 +1,4 @@
-# AI Freelancing Platform
+﻿# AI Freelancing Platform
 
 ## Introduction
 
@@ -17,6 +17,13 @@ Follow these steps to it set up on your local development environment.
 ### Frontend Setup
 
 ```bash
+# setup env varialbe
+export "SUPABASE_KEY=[paste supabase api key here]" > .env
+export "SUPABASE_URL=[paste supabase URL here]" >> .env
+export GROQ_API_KEY= 'paste groq api key here.'
+
+
+
 # Open a new terminal and navigate to the frontend directory
 cd ai-freelance-platform
 
