@@ -14,6 +14,7 @@ export function formatForGPT(chatHistory: Message[] | undefined) {
     }
 
     const formattedHistory = chatHistory.map((message) => {
+        console.log(message)
         return {
             role: message.from,
             content: message.message,
