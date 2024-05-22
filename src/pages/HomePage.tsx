@@ -1,9 +1,20 @@
-import ChatInterface from "@/components/ChatInterface";
+import Mainbar from "@/components/homePageComponents/mainbar/Mainbar";
+import Sidebar from "@/components/homePageComponents/sidebar/Sidebar";
+import React from "react";
 
-export default function HomePage() {
-    return (
-        <div className="h-full max-h-[98%]">
-            <ChatInterface />
+const HomePage = () => {
+  return (
+    <div className="">
+      <div className="grid grid-cols-5 ">
+        <div className="col-span-1 ">
+          <Sidebar />
         </div>
-    );
-}
+        <div className="col-span-4">
+          <Mainbar />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
