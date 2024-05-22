@@ -1,6 +1,5 @@
 import Mainbar from "@/components/homePageComponents/mainbar/Mainbar";
 import Sidebar from "@/components/homePageComponents/sidebar/Sidebar";
-import React from "react";
 
 const HomePage = () => {
   return (

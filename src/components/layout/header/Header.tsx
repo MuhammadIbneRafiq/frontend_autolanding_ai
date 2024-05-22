@@ -1,6 +1,5 @@
 import LightOrDarkMode from "@/utils/mode/lightOrDarkMode";
 import { useLocation } from "react-router-dom";
-import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { SquarePen } from "lucide-react";
 
 const Sidebar = () => {
