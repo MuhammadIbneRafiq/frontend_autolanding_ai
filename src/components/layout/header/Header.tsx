@@ -9,8 +9,8 @@ const Header = () => {
   console.log(location.pathname);
 
   return (
-    <div>
-      <div className={`border-b`}>
+    <div className="sticky top-0  ">
+      <div className={`border-b `}>
         <div className="flex justify-between items-center h-16">
           <div>
             <Link to="/">
