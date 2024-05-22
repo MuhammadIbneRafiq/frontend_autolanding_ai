@@ -86,3 +86,131 @@ body {
 #root {
     height: calc(100% - 4rem);
 }
+
+/* User Profiles Css */
+
+
+ ::-webkit-scrollbar {
+    width: 4px;
+    height: 0px;
+    border-radius: 100px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: auto;
+    border-radius: 100px;
+  
+  } 
+  .freelancer_profiles {
+ display: flex;
+ align-items: center;
+ overflow-x: auto;
+
+  }
+  .my_text h1{
+    font-weight: 700;
+    position: absolute;
+    letter-spacing: 0.6px;
+    top: 72px;
+    font-size: 43px;
+    line-height: 50px;
+    left: 50%;
+  }
+  
+  
+@media screen and (max-width: 439px) {
+  .my_text h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+  .freelancer_profiles .freelancer_list {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 10px ;
+  }
+  
+  .freelancer_profiles ul {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+ /* Define a keyframe animation to move list items from right to left */
+@keyframes moveRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply the animation to list items */
+.freelancer_profiles ul li {
+  flex-shrink: 0;
+  animation: moveRightToLeft 50s linear infinite; /* Adjust timing as needed */
+}
+
+  
+  .freelancer_profiles .freelancer_list ul li:last-child {
+    margin-right: 0;
+  }
+  
+  .freelancer_profiles .card {
+    background-color: var(--card-foreground);
+    max-width: 220px;
+    border: 1px solid rgb(49, 47, 47);
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .freelancer_profiles .card .image {
+    max-width: 220px;
+    height: 120px;
+  }
+  .freelancer_profiles .card .image img {
+    width: 100%;
+    height: 120px;
+  }
+  .freelancer_profiles ul li .card h3{
+    color: rgb(179, 173, 173);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .freelancer_profiles ul li .card p{
+    color: rgb(131, 125, 125);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  @keyframes moveLeftToRight {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+ 
+  .keywords {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+   
+     }
+  .keywords ul{
+    animation: moveLeftToRight 50s linear infinite; /* Adjust timing as needed */
+
+  }
+  .keywords ul li button{
+    color: rgb(131, 125, 125);
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgb(49, 47, 47);
+
+  }
