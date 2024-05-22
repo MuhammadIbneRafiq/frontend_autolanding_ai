@@ -4,7 +4,7 @@ import { SendHorizontal } from "lucide-react";
 const Mainbar = () => {
   const mode = useSelector((state: any) => state.darkOrLightMode.mode);
   return (
-    <div className="border" style={{ height: "calc(100vh - 100px)" }}>
+    <div className="border" style={{ height: "calc(100vh - 75px)" }}>
       <div className="p-4 h-full">
         <div className="flex justify-center flex-col h-full">
           <div className="h-full w-full flex justify-center flex-col items-center">

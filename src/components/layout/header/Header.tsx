@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className={`${location.pathname === "/" ? "" : "border-b"} `}>
+      <div className={`border-b`}>
         <div className="flex justify-between items-center h-16">
           <div>
             <Link to="/">

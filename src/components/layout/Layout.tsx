@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className="container mx-auto px-4">
+    <div className="px-10">
       <Header />
       <main>
         <Outlet />
