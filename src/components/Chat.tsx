@@ -13,6 +13,13 @@ import user1 from '../assets/user1.jpg';
 import user2 from '../assets/user4.jpg';
 import user3 from '../assets/user4.jpg';
 import user4 from '../assets/user6.jpg';
+// import { title } from "process";
+
+interface CardProps {
+    title: string;
+    description: string;
+    image: string;
+  }
 
 interface ChatProps {
   loading: boolean;
@@ -34,7 +41,7 @@ export default function Chat({ loading }: ChatProps) {
   }, [conversation.chatHistory]); // Trigger whenever chat history changes
 
 
-  const truncateDescription = (description) => {
+  const truncateDescription = (description: string) => {
     const words = description.split(" ");
     if (words.length > 6) {
       return words.slice(0, 10).join(" ") + "...";
@@ -43,15 +50,15 @@ export default function Chat({ loading }: ChatProps) {
     }
   };
   // Card to display the niche of freelancers profiles
-  const Card = ({ title, description,image }) => (
+  const Card: React.FC<CardProps> = ({ title, description, image }) => (
     <div className="card bg-dark m-1 rounded pt-2 px-2">
-        <div className="image">
-        <img src={image} alt=""  className=" mb-3" />
-        </div>
+      <div className="image">
+        <img src={image} alt="" className="mb-3" />
+      </div>
       <h3 className="mt-3">{title}</h3>
-      <p className=" mt-2">{truncateDescription(description)}</p>
+      <p className="mt-2">{truncateDescription(description)}</p>
     </div>
-  )
+  );
   const freelancers = [
     { title: "Sam", description: "designer exploring minimalist text-based interfaces and much more.",image:user1 },
     { title: "Charlie", description: "ai hacker and musician exploring the frontiers of technology and ..." ,image:user2 },
