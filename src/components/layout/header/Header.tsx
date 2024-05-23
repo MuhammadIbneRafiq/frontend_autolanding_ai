@@ -2,12 +2,9 @@ import LightOrDarkMode from "@/utils/mode/lightOrDarkMode";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { UserRound } from "lucide-react";
 
 const Header = () => {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
   const mode = useSelector((state: any) => state.darkOrLightMode.mode);
   console.log(location.pathname);
 
