@@ -1,17 +1,9 @@
-import Mainbar from "@/components/homePageComponents/mainbar/Mainbar";
-import Sidebar from "@/components/homePageComponents/sidebar/Sidebar";
+import Home from "@/components/homePageComponents/Home";
 
 const HomePage = () => {
   return (
-    <div className="">
-      <div className="grid grid-cols-5 ">
-        <div className="col-span-1 ">
-          <Sidebar />
-        </div>
-        <div className="col-span-4">
-          <Mainbar />
-        </div>
-      </div>
+    <div>
+      <Home />
     </div>
   );
 };

@@ -2,9 +2,12 @@ import LightOrDarkMode from "@/utils/mode/lightOrDarkMode";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { UserRound } from "lucide-react";
 
 const Header = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
   const mode = useSelector((state: any) => state.darkOrLightMode.mode);
   console.log(location.pathname);
 
@@ -33,7 +36,7 @@ const Header = () => {
               </svg>
             </Link>
           </div>
-          <div className="flex gap-5 ">
+          <div className="flex gap-5 items-center">
             <div className="pt-1">
               <LightOrDarkMode />
             </div>
@@ -52,6 +55,25 @@ const Header = () => {
               >
                 Sign In
               </Link>
+            </div>
+            {/* when logined */}
+            <div>
+              <Link
+                to="/create-profile"
+                className="text-sm text-black dark:text-white font-semibold"
+              >
+                Create Profile
+              </Link>
+            </div>
+            <div>
+              <p className="text-sm text-black dark:text-white font-semibold">
+                Hey, John@gmail.com
+              </p>
+            </div>
+            <div>
+              <button className="text-sm text-black dark:text-white font-semibold">
+                Logout
+              </button>
             </div>
           </div>
         </div>
