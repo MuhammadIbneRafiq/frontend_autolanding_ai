@@ -6,7 +6,7 @@ const SignupPage = () => {
       <Header />
       <div className="  w-full h-[calc(100vh-75px)] flex justify-center items-center">
         <div className="rounded-lg border  p-6 shadow-sm h-fit max-w-[400px] w-full">
-          <div className="flex flex-col gap-2 rounded-lg pb-3">
+          <div className="flex   justify-between  gap-2 rounded-lg pb-3">
             <button className="text-sm font-semibold bg-gray-100 py-2.5 px-5 border">
               Buyer
             </button>
