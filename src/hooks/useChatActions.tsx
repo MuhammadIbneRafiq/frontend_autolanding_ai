@@ -39,9 +39,9 @@ export const useChatActions = () => {
         messageToSend: string,
         from: SentFrom
     ) => {
-        if (!user) {
-            throw new Error("User is not authenticated");
-        }
+        // if (!user) {
+        //     throw new Error("User is not authenticated");
+        // }
 
         // TODO: Summarize the message request
 

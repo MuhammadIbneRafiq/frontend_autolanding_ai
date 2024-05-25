@@ -1,20 +1,20 @@
 import { Message } from "@/types/Message";
 import axios from "axios";
-import { formatForGPT } from "@/lib/utils";
+// import { formatForGPT } from "@/lib/utils";
 
 export const useGPT = () => {
     async function generateAIResponse(
-        chatHistory: Message[],
-        conversationId: string
+        message: string,
+        sessionId: string
     ) {
-        const formattedMessages = formatForGPT(chatHistory);
+        console.log(message)
 
-        
+        console.log('this is the print to see what its going wrong')
         const response = await axios.post(
-            `https://ai-freelance-be.onrender.com/chat/${conversationId}`,
+            `http://localhost:3000/chat/${sessionId}`,
             {
-                conversationId: conversationId,
-                chatHistory: formattedMessages,
+                sessionId: sessionId,
+                message: message,
                 from: "assistant",
             },
             {
@@ -26,8 +26,10 @@ export const useGPT = () => {
             }
         );
 
-        const responseAI = response.data as Message;
+        console.log('this 2nd wrong', response)
 
+        const responseAI = response.data as Message;
+        console.log(responseAI)
         return responseAI;
     }
 
