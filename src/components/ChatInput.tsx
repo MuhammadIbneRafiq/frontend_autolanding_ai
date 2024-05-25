@@ -71,16 +71,6 @@ export const ChatInput = ( { /* loading, */ setLoading }: ChatInputProps ) => {
                 // console.log("Chat history being sent:", latestChatHistory);
 
                             // Use a single hardcoded message from mockConversation
-                const hardcodedChatHistory = [
-                    {
-                        message_id: "f2635e43-d2df-432e-be74-d756424ee853",
-                        message: "Hello, I'm looking for a freelancer to edit a video of a company retreat",
-                        sent_at: "2021-08-01T19:00:00.000Z",
-                        conversation_id: "3ad4adea-0894-4ffb-aca6-03dd3c57a112",
-                        from: "user",
-                        user_id: "899f1f93-bab3-41e9-8468-38d7dfaa2b44",
-                    }
-                ];
 
                 // Extract the conversation ID from the hardcoded message
                 const sessionid = 'langchain-test-session';

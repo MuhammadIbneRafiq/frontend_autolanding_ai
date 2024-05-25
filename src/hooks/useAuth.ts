@@ -20,7 +20,6 @@ export const useAuth = () => {
 
   useEffect(() => {
     async function fetchUser() {
-      // jswt token is not working hence i put false, turn setloading into true
       setLoading(true);
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
@@ -31,11 +30,9 @@ export const useAuth = () => {
           return;
         }
         
-        console.log("accessToken: found or what?", accessToken); // This is the new line for logging
         setLoading(false);
 
       const decoded = jwtDecode(accessToken || "");
-      console.log("access token decoded", decoded);
 
       if (!decoded.exp || decoded.exp * 1000 < Date.now()) {
         console.log("Access Token has expired");

@@ -1,10 +1,10 @@
 import { Card } from "./ui/card";
 import Chat from "./Chat";
 import { ChatInput } from "./ChatInput";
-import { ConversationList } from "./ConversationList";
+// import { ConversationList } from "./ConversationList";
 import { Edit } from "lucide-react";
-import { ProjectList } from "./ProjectList";
-import { Separator } from "./ui/separator";
+// import { ProjectList } from "./ProjectList";
+// import { Separator } from "./ui/separator";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -24,11 +24,11 @@ export default function ChatInterface() {
                             className="cursor-pointer "
                         />
                     </div>
-                    <Separator />
+                    {/* <Separator />
                     <ConversationList />
                     <h2 className="font-semibold text-lg">Projects</h2>
-                    <Separator />
-                    <ProjectList />
+                    <Separator /> */}
+                    {/* <ProjectList /> */}
                 </div>
             </Card>
             <Card className="w-full rounded-none h-full">

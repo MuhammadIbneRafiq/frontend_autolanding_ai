@@ -3,12 +3,12 @@ import { useEffect, useRef } from "react";
 
 import { Loader } from "lucide-react";
 import { Logo } from "./Logo";
-import { ProjectStatus } from "@/types/Project";
+// import { ProjectStatus } from "@/types/Project";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
-import { useProject } from "@/hooks/useProject";
+// import { useProject } from "@/hooks/useProject";
 import user1 from '../assets/user1.jpg';
 import user2 from '../assets/user4.jpg';
 import user3 from '../assets/user4.jpg';
@@ -29,7 +29,7 @@ export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
 
   const conversation = useChat({ id: path?.pathname.split("/")[2] });
-  const { project } = useProject({ id: path?.pathname.split("/")[2] });
+  // const { project } = useProject({ id: path?.pathname.split("/")[2] });
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -129,7 +129,7 @@ export default function Chat({ loading }: ChatProps) {
                 </div>
               </motion.div>
             </div>
-          ) : path.pathname.split("/")[1] === "project" && project ? (
+          ) : path.pathname.split("/")[1] ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -138,21 +138,21 @@ export default function Chat({ loading }: ChatProps) {
             >
               <div className="h-full">
                 <div className="flex flex-col items-center h-full max-h-[150px] justify-center">
-                  <h1 className="text-xl font-extrabold lg:text-5xl text-center">
+                  {/* <h1 className="text-xl font-extrabold lg:text-5xl text-center">
                     {project?.title ?? "No title found."}
-                  </h1>
-                  <h2 className="pb-2 text-xl font-semibold tracking-tight first:mt-0 text-center">
+                  </h1> */}
+                  {/* <h2 className="pb-2 text-xl font-semibold tracking-tight first:mt-0 text-center">
                     {new Date(project?.created_at ?? "").toDateString()}
-                  </h2>
+                  </h2> */}
                 </div>
 
                 <div className="w-full text-center h-full max-h-[250px] justify-center flex flex-col">
                   <h2 className="text-md lg:text-lg font-semibold tracking-tight first:mt-0 text-center">
                     Description
                   </h2>
-                  <p className="text-center text-sm md:text-lg max-w-[800px] self-center">
+                  {/* <p className="text-center text-sm md:text-lg max-w-[800px] self-center">
                     {project?.description ?? "No description found."}
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className="w-full flex text-center justify-around items-center">
@@ -161,23 +161,23 @@ export default function Chat({ loading }: ChatProps) {
                       Status
                     </h2>
                     <p className="text-center text-sm md:text-lg">
-                      {
+                      {/* {
                         ProjectStatus[
                           //@ts-expect-error ignore this error
                           project?.status ?? "not_started"
                         ]
-                      }
+                      } */}
                     </p>
                   </div>
                   <div className="max-w-[100px] md:max-w-[200px]">
                     <h2 className=" text-md lg:text-xl font-semibold tracking-tight first:mt-0 text-center">
                       Attachments
                     </h2>
-                    <p className="text-center text-sm md:text-lg">
+                    {/* <p className="text-center text-sm md:text-lg">
                       {project?.attachments_link?.length == 0
                         ? "No attachments found."
                         : project?.attachments_link}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
 

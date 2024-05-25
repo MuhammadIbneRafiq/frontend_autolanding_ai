@@ -4,16 +4,13 @@ import axios from "axios";
 
 export const useGPT = () => {
     async function generateAIResponse(
-        message: string,
+        message: Message,
         sessionId: string
     ) {
-        console.log(message)
-
-        console.log('this is the print to see what its going wrong')
         const response = await axios.post(
-            `http://localhost:3000/chat/${sessionId}`,
+            `http://localhost:3001/chat/${sessionId}`,
             {
-                sessionId: sessionId,
+                // sessionId: sessionId,
                 message: message,
                 from: "assistant",
             },
@@ -25,8 +22,6 @@ export const useGPT = () => {
                 },
             }
         );
-
-        console.log('this 2nd wrong', response)
 
         const responseAI = response.data as Message;
         console.log(responseAI)
