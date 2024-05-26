@@ -8,8 +8,9 @@ export const useGPT = () => {
         conversationId: string
     ) {
         const formattedMessages = formatForGPT(chatHistory);
-
         
+        console.log('INPUT is chat the formatted message', formatForGPT)
+        console.log('INPUT is the chathistoyr,', chatHistory)
 
         const response = await axios.post(
             `http://localhost:3000/chat/${conversationId}`,
@@ -28,6 +29,8 @@ export const useGPT = () => {
         );
 
         const responseAI = response.data as Message;
+
+        console.log('final return thingy', responseAI)
 
         return responseAI;
     }

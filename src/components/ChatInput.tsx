@@ -61,39 +61,32 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
         try {
             // if this is a new chat, send the message and navigate to the chat
             if (location.pathname === "/") {
-                const response = await sendMessageNewChat(message, "user");              // comes from useChatACTIONS 
+                const response = await sendMessageNewChat(message, "user");
 
-                console.log('useChat /newchat works:', response)    // this response is the groq api responding w llm chain!
-                
-                const latestChatHistory = await getChatMessages( 
-                    // 'ce0429d9-210f-48e6-aa43-81b221fef544'                 // useChat, getChatMessages gets Messages[]
-                    response.conversation_id                            // groq only replies message, doesnt have conv id
+                const latestChatHistory = await getChatMessages(
+                    response.conversation_id
                 );
 
                 // Send the message to GPT
-                console.log("shows getChatMessages works", latestChatHistory);    // array of 8 with all messages of the convo id
-
-                console.log('response theke messagetosend', response.message)
+                // console.log("Chat history being sent:", latestChatHistory);
                 await generateAIResponse(
                     latestChatHistory as Message[],
                     response.conversation_id
-                    // 'ce0429d9-210f-48e6-aa43-81b221fef544' 
                 );
 
                 // Refetch the chat messages
-                await refetchConversationsList();
-                await refetchChatMessages();    // one using the id, its /undefined, if i fix this, hopefully its navigates to the page i want
 
-                console.log('im here and why are they navigating to there?')
-                // navigate('/chat/a7e43fed-f788-4da7-a33d-65702aa281aa')
+
+
+                const a = await refetchConversationsList();
+                const b = await refetchChatMessages();
+                await refetchConversationsList();
+                await refetchChatMessages();
+
+                console.log('HERES THE refetch convo probs', a, b)
                 navigate(`/chat/${response.conversation_id}`);
             } else {
                 // if this is an existing chat, send the message
-
-                console.log(
-                    'i need to go here'
-                )
-
                 setMessage("");
                 const conversationId = location.pathname.split("/")[2];
                 await sendMessageExistingChat(message, conversationId, "user");
@@ -104,9 +97,9 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
                     chatHistory as Message[],
                     conversationId
                 );
-
                 await refetchChatMessages();
                 await refetchProjectsList();
+                console.log('this is where its going ffs')
             }
             setMessage("");
         } catch (error) {

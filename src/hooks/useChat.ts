@@ -40,7 +40,9 @@ export const useChat = ({ id }: ChatProps) => {
                 },
             }
         );
+        console.log('heres the response data,', response.data)
         return response.data as Message[];
+
     };
     return {
         chatHistory,
