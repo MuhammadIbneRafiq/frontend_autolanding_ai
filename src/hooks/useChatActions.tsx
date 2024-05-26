@@ -16,7 +16,7 @@ export const useChatActions = () => {
         }
 
         const response = await axios.post(
-            "https://ai-freelance-be.onrender.com/chat/existing",
+            "http://localhost:3000/chat/existing",
             {
                 messageToSend: messageToSend,
                 conversationId: conversationId,
@@ -39,14 +39,14 @@ export const useChatActions = () => {
         messageToSend: string,
         from: SentFrom
     ) => {
-        // if (!user) {
-        //     throw new Error("User is not authenticated");
-        // }
+        if (!user) {
+            throw new Error("User is not authenticated");
+        }
 
         // TODO: Summarize the message request
 
         const response = await axios.post(
-            "https://ai-freelance-be.onrender.com/chat/new",
+            "http://localhost:3000/chat/new",
             {
                 messageToSend: messageToSend,
                 from: from,

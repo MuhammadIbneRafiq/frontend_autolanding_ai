@@ -1,17 +1,21 @@
 import { Message } from "@/types/Message";
 import axios from "axios";
-// import { formatForGPT } from "@/lib/utils";
+import { formatForGPT } from "@/lib/utils";
 
 export const useGPT = () => {
     async function generateAIResponse(
-        message: Message,
-        sessionId: string
+        chatHistory: Message[],
+        conversationId: string
     ) {
+        const formattedMessages = formatForGPT(chatHistory);
+
+        
+
         const response = await axios.post(
-            `http://localhost:3001/chat/${sessionId}`,
+            `http://localhost:3000/chat/${conversationId}`,
             {
-                // sessionId: sessionId,
-                message: message,
+                conversationId: conversationId,
+                chatHistory: formattedMessages,
                 from: "assistant",
             },
             {
@@ -24,7 +28,7 @@ export const useGPT = () => {
         );
 
         const responseAI = response.data as Message;
-        console.log(responseAI)
+
         return responseAI;
     }
 

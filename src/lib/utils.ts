@@ -48,5 +48,6 @@ export function formatForGPT(chatHistory: Message[] | undefined) {
         `,
     });
 
+    console.log('formatforgpt stuff', formattedHistory)
     return formattedHistory as ChatCompletionMessageParam[];
 }

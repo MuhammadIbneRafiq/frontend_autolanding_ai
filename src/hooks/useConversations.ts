@@ -17,7 +17,7 @@ export const useConversations = () => {
             const token = localStorage.getItem("accessToken");
 
             const response = await axios.get(
-                "https://ai-freelance-be.onrender.com/chat/conversations",
+                "http://localhost:3000/chat/conversations",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -25,13 +25,12 @@ export const useConversations = () => {
                 }
             );
 
-            console.log("Conversations from useConversations", response.data);
+            // console.log("Conversations from useConversations", response.data);
 
             return response.data as Conversation[];
         },
         refetchOnWindowFocus: false,
         retry: false,
     });
-
     return { conversations, isError, isLoading, refetchConversationsList };
 };
