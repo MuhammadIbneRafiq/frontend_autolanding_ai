@@ -10,8 +10,6 @@ export function Logo({
 }) {
     const { theme } = useTheme();
 
-    console.log("Theme: ", theme);
-
     return (
         <svg
             version="1.0"

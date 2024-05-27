@@ -29,7 +29,7 @@ export const useProject = ({ id }: ProjectProps) => {
                 }
             );
 
-            console.log("Response Project: ", response.data);
+            // console.log("Response Project: ", response.data);
 
             return response.data as Project;
         },

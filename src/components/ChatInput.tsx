@@ -24,8 +24,6 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
     const { isAuthenticated } = useAuth();
 
-    console.log("isAuthenticated", isAuthenticated);
-
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const { toast } = useToast();
@@ -70,20 +68,17 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
                 // Send the message to GPT
                 // console.log("Chat history being sent:", latestChatHistory);
                 await generateAIResponse(
-                    latestChatHistory as Message[],
+                    // latestChatHistory as Message[],
+                    message,
                     response.conversation_id
                 );
 
                 // Refetch the chat messages
 
-
-
-                const a = await refetchConversationsList();
-                const b = await refetchChatMessages();
                 await refetchConversationsList();
                 await refetchChatMessages();
 
-                console.log('HERES THE refetch convo probs', a, b)
+                // console.log('HERES THE refetch convo probs', a, b)
                 navigate(`/chat/${response.conversation_id}`);
             } else {
                 // if this is an existing chat, send the message
@@ -94,12 +89,12 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
                 // Send the message to GPT
                 await generateAIResponse(
-                    chatHistory as Message[],
+                    // chatHistory as Message[],
+                    message,
                     conversationId
                 );
                 await refetchChatMessages();
                 await refetchProjectsList();
-                console.log('this is where its going ffs')
             }
             setMessage("");
         } catch (error) {

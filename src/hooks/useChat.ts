@@ -14,7 +14,7 @@ export const useChat = ({ id }: ChatProps) => {
     const hardcodedId = '8c245f0d-daec-4845-9cfc-25365547ec21'; // Replace with your actual conversation ID
     const id_id = id || hardcodedId
 
-    console.log('heres the id', id)
+    // console.log('heres the id', id)
 
     const {
         data: chatHistory,
@@ -40,7 +40,6 @@ export const useChat = ({ id }: ChatProps) => {
                 },
             }
         );
-        console.log('heres the response data,', response.data)
         return response.data as Message[];
 
     };
