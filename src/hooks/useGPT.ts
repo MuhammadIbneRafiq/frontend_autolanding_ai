@@ -14,7 +14,7 @@ export const useGPT = () => {
         // console.log('INPUT is the chathistoyr,', chatHistory[chatHistory.length -1])
 
         const response = await axios.post(
-            `http://localhost:3000/chat/${conversationId}`,
+            `https://backend-autolanding-ai.onrender.com/${conversationId}`,
             {
                 conversationId: conversationId,
                 chatHistory: formattedMessages,

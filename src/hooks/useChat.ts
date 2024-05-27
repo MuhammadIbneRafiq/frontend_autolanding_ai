@@ -33,7 +33,7 @@ export const useChat = ({ id }: ChatProps) => {
     const getChatMessages = async (id: string) => {
         const token = localStorage.getItem("accessToken");
         const response = await axios.get(
-            `http://localhost:3000/chat/${id}`,
+            `https://backend-autolanding-ai.onrender.com/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

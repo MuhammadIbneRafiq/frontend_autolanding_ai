@@ -16,7 +16,7 @@ export const useChatActions = () => {
         }
 
         const response = await axios.post(
-            "http://localhost:3000/chat/existing",
+            "https://backend-autolanding-ai.onrender.com/chat/existing",
             {
                 messageToSend: messageToSend,
                 conversationId: conversationId,
@@ -46,7 +46,7 @@ export const useChatActions = () => {
         // TODO: Summarize the message request
 
         const response = await axios.post(
-            "http://localhost:3000/chat/new",
+            "https://backend-autolanding-ai.onrender.com/chat/new",
             {
                 messageToSend: messageToSend,
                 from: from,
