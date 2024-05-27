@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Message } from "@/types/Message";
+// import { Message } from "@/types/Message";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/useChat";
 import { useChatActions } from "@/hooks/useChatActions";
@@ -27,7 +27,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const { toast } = useToast();
-    const { chatHistory, refetchChatMessages, getChatMessages } = useChat({
+    const { refetchChatMessages /*, getChatMessages */} = useChat({
         id: conversationId,
     });
     const { generateAIResponse } = useGPT();
@@ -61,9 +61,9 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
             if (location.pathname === "/") {
                 const response = await sendMessageNewChat(message, "user");
 
-                const latestChatHistory = await getChatMessages(
-                    response.conversation_id
-                );
+                // const latestChatHistory = await getChatMessages(
+                //     response.conversation_id
+                // );
 
                 // Send the message to GPT
                 // console.log("Chat history being sent:", latestChatHistory);
