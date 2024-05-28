@@ -6,31 +6,31 @@ import { useQuery } from "@tanstack/react-query";
 Makes an api call to the backend and return the list of conversations.
 */
 export const useConversations = () => {
-    const {
-        data: conversations,
-        isError,
-        isLoading,
-        refetch: refetchConversationsList,
-    } = useQuery({
-        queryKey: ["conversations"],
-        queryFn: async () => {
-            const token = localStorage.getItem("accessToken");
+  const {
+    data: conversations,
+    isError,
+    isLoading,
+    refetch: refetchConversationsList,
+  } = useQuery({
+    queryKey: ["conversations"],
+    queryFn: async () => {
+      const token = localStorage.getItem("accessToken");
 
-            const response = await axios.get(
-                "https://backend-autolanding-ai.onrender.com/chat/conversations",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+      const response = await axios.get(
+        "https://backend-autolanding-ai.vercel.app/chat/conversations",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-            // console.log("Conversations from useConversations", response.data);
+      // console.log("Conversations from useConversations", response.data);
 
-            return response.data as Conversation[];
-        },
-        refetchOnWindowFocus: false,
-        retry: false,
-    });
-    return { conversations, isError, isLoading, refetchConversationsList };
+      return response.data as Conversation[];
+    },
+    refetchOnWindowFocus: false,
+    retry: false,
+  });
+  return { conversations, isError, isLoading, refetchConversationsList };
 };

@@ -3,38 +3,36 @@ import axios from "axios";
 // import { formatForGPT } from "@/lib/utils";
 
 export const useGPT = () => {
-    async function generateAIResponse(
-        // chatHistory: Message[],
-        message: string,
-        conversationId: string
-    ) {
-        const formattedMessages = message;
-        
-        // console.log('INPUT is chat the formatted message', formatForGPT)
-        // console.log('INPUT is the chathistoyr,', chatHistory[chatHistory.length -1])
+  async function generateAIResponse(
+    // chatHistory: Message[],
+    message: string,
+    conversationId: string
+  ) {
+    const formattedMessages = message;
 
-        const response = await axios.post(
-            `https://backend-autolanding-ai.onrender.com/${conversationId}`,
-            {
-                conversationId: conversationId,
-                chatHistory: formattedMessages,
-                from: "assistant",
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        "accessToken"
-                    )}`,
-                },
-            }
-        );
+    // console.log('INPUT is chat the formatted message', formatForGPT)
+    // console.log('INPUT is the chathistoyr,', chatHistory[chatHistory.length -1])
 
-        const responseAI = response.data as Message;
+    const response = await axios.post(
+      `https://backend-autolanding-ai.vercel.app/${conversationId}`,
+      {
+        conversationId: conversationId,
+        chatHistory: formattedMessages,
+        from: "assistant",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
 
-        // console.log('final return thingy', responseAI)
+    const responseAI = response.data as Message;
 
-        return responseAI;
-    }
+    // console.log('final return thingy', responseAI)
 
-    return { generateAIResponse };
+    return responseAI;
+  }
+
+  return { generateAIResponse };
 };
