@@ -1,5 +1,7 @@
+// import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
@@ -11,11 +13,24 @@ import { useAuth } from "@/hooks/useAuth";
 export default function HeroNav() {
     const { isAuthenticated } = useAuth();
 
+    const handleCreateProfileClick = () => {
+        toast.info('Come back in 24 hr to have your AI profile created');
+    };
+
     return (
         <header className="sticky border-b top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-6">
+            <ToastContainer />
             <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                 <NamedLogoWithLink />
-                {isAuthenticated && <div className="flex w-full gap-4"></div>}
+                {isAuthenticated && <div className="flex ml-auto gap-4 items-center">
+                    <Button 
+                        onClick={handleCreateProfileClick}
+                        variant="outline"
+                        className="rounded-full"
+                    >
+                        Create AI Profile ✈️
+                    </Button>
+                </div>}
                 <div className="flex ml-auto gap-4 items-center">
                     <ModeToggle />
                     {!isAuthenticated && (
@@ -44,7 +59,15 @@ export default function HeroNav() {
                 </SheetTrigger>
                 <SheetContent side="left">
                     <nav className="grid gap-6 text-lg font-medium">
-                        {isAuthenticated && <></>}
+                        {isAuthenticated && <div className="flex gap-4 flex-col">
+                            <Button 
+                                onClick={handleCreateProfileClick}
+                                variant="outline"
+                                className="rounded-full"
+                            >
+                                Create AI Profile
+                            </Button>
+                        </div>}
                         <div className="flex gap-4 flex-col">
                             {!isAuthenticated && (
                                 <>

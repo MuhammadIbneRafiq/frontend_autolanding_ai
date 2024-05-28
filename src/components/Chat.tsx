@@ -10,9 +10,11 @@ import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
 import user1 from '../assets/user1.jpg';
-import user2 from '../assets/user4.jpg';
+import user2 from '../assets/user5.jpg';
 import user3 from '../assets/user4.jpg';
 import user4 from '../assets/user6.jpg';
+import user7 from '../assets/user3.jpg';
+
 
 interface ChatProps {
   loading: boolean;
@@ -63,7 +65,7 @@ export default function Chat({ loading }: ChatProps) {
     { title: "Charlie", description: "ai hacker and musician exploring the frontiers of technology and ..." ,image:user2 },
     { title: "Tair", description: "Experienced developer specializing in web development and design.",image:user3  },
     { title: "Stavan", description: "Creative graphic designer with a passion for minimalist design and typography.",image:user4  },
-    { title: "Emma ", description: "Versatile software engineer adept at developing scalable and efficient applications.",image:user1  },
+    { title: "Rezvi ", description: "Versatile software engineer adept at developing scalable and efficient applications.",image:user7  },
     { title: "Luna ", description: "Innovative UI/UX designer committed to creating intuitive and visually appealing interfaces.",image:user3  },
     { title: "Oliver ", description: "Detail-oriented frontend developer with expertise in responsive web design and performance optimization.",image:user4  } 
   ]
