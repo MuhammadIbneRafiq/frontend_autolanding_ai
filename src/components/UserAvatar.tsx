@@ -22,7 +22,7 @@ export default function UserAvatar() {
     async function logout() {
         try {
             await axios.post(
-                "https://ai-freelance-be.onrender.com/auth/logout",
+                "https://backend-autolanding-ai.vercel.app/auth/logout",
                 {},
                 {
                     headers: {
