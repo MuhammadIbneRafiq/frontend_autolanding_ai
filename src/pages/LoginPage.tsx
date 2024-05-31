@@ -93,7 +93,7 @@ export default function LoginPage() {
             </Button>
             */}
           </div>
-          <div className="relative">
+          {/* <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
             </div>
@@ -102,7 +102,7 @@ export default function LoginPage() {
                 Or continue with
               </span>
             </div>
-          </div>
+          </div> */}
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

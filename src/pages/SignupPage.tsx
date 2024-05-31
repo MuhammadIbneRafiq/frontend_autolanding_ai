@@ -104,7 +104,7 @@ export default function SignupPage() {
             </Button>
             */}
           </div>
-          <div className="relative">
+          {/* <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
             </div>
@@ -113,7 +113,7 @@ export default function SignupPage() {
                 Or continue with
               </span>
             </div>
-          </div>
+          </div> */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">
