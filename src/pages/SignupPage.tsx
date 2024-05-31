@@ -97,11 +97,12 @@ export default function SignupPage() {
             {/* <Button variant="outline" onClick={()=>loginWithGithubAuth()} >
                     <Icons.gitHub className="mr-2 h-4 w-4" />
                     Github
-                </Button> */}
+                </Button> 
             <Button variant="outline" onClick={() => loginWithGoogleAuth()}>
               <Icons.google className="mr-2 h-4 w-4" />
               Google
             </Button>
+            */}
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
