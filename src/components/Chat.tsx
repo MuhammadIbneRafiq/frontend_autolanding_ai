@@ -9,12 +9,11 @@ import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
-import user1 from '../assets/user1.jpg';
-import user2 from '../assets/user5.jpg';
-import user3 from '../assets/user4.jpg';
-import user4 from '../assets/user6.jpg';
-import user7 from '../assets/user3.jpg';
-
+import user1 from "../assets/user1.jpg";
+import user2 from "../assets/user5.jpg";
+import user3 from "../assets/user4.jpg";
+import user4 from "../assets/user6.jpg";
+import user7 from "../assets/alshahabRezvi.jpg";
 
 interface ChatProps {
   loading: boolean;
@@ -41,7 +40,6 @@ export default function Chat({ loading }: ChatProps) {
     }
   }, [conversation.chatHistory]); // Trigger whenever chat history changes
 
-
   const truncateDescription = (description: String) => {
     const words = description.split(" ");
     if (words.length > 6) {
@@ -53,29 +51,70 @@ export default function Chat({ loading }: ChatProps) {
   // Card to display the niche of freelancers profiles
   const Card: React.FC<CardProps> = ({ title, description, image }) => (
     <div className="card bg-dark m-1 rounded pt-2 px-2">
-        <div className="image">
-        <img src={image} alt=""  className=" mb-3" />
-        </div>
+      <div className="image">
+        <img src={image} alt="" className=" mb-3" />
+      </div>
       <h3 className="mt-3">{title}</h3>
       <p className=" mt-2">{truncateDescription(description)}</p>
     </div>
-  )
+  );
   const freelancers = [
-    { title: "Sam", description: "designer exploring minimalist text-based interfaces and much more.",image:user1 },
-    { title: "Charlie", description: "ai hacker and musician exploring the frontiers of technology and ..." ,image:user2 },
-    { title: "Tair", description: "Experienced developer specializing in web development and design.",image:user3  },
-    { title: "Stavan", description: "Creative graphic designer with a passion for minimalist design and typography.",image:user4  },
-    { title: "Rezvi ", description: "Versatile software engineer adept at developing scalable and efficient applications.",image:user7  },
-    { title: "Luna ", description: "Innovative UI/UX designer committed to creating intuitive and visually appealing interfaces.",image:user3  },
-    { title: "Oliver ", description: "Detail-oriented frontend developer with expertise in responsive web design and performance optimization.",image:user4  } 
-  ]
+    {
+      title: "Sam",
+      description:
+        "designer exploring minimalist text-based interfaces and much more.",
+      image: user1,
+    },
+    {
+      title: "Charlie",
+      description:
+        "ai hacker and musician exploring the frontiers of technology and ...",
+      image: user2,
+    },
+    {
+      title: "Tair",
+      description:
+        "Experienced developer specializing in web development and design.",
+      image: user3,
+    },
+    {
+      title: "Stavan",
+      description:
+        "Creative graphic designer with a passion for minimalist design and typography.",
+      image: user4,
+    },
+    {
+      title: "Alshahab Rezvi",
+      description:
+        "MERN Stack , Automation And AI Expert Over 3 Year Plus Experience",
+      image: user7,
+    },
+    {
+      title: "Luna ",
+      description:
+        "Innovative UI/UX designer committed to creating intuitive and visually appealing interfaces.",
+      image: user3,
+    },
+    {
+      title: "Oliver ",
+      description:
+        "Detail-oriented frontend developer with expertise in responsive web design and performance optimization.",
+      image: user4,
+    },
+  ];
 
-  const keyWords=['models?','who is in sf?', 'musician growing fast','who is hiring ai developers?','innovative graphic designer', 
-  'creative web developer', 
-  'experienced UI/UX designer', 
-  'passionate digital marketer', 
-  'skilled software engineer', 
-  'talented photographer and videographer']
+  const keyWords = [
+    "models?",
+    "who is in sf?",
+    "musician growing fast",
+    "who is hiring ai developers?",
+    "innovative graphic designer",
+    "creative web developer",
+    "experienced UI/UX designer",
+    "passionate digital marketer",
+    "skilled software engineer",
+    "talented photographer and videographer",
+  ];
   return (
     <div className="h-full w-full py-0">
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
@@ -88,43 +127,42 @@ export default function Chat({ loading }: ChatProps) {
                 transition={{ duration: 1.5 }}
               >
                 <div className="flex flex-col gap-2 items-center">
-                <Logo height="210" width="340" />
+                  <Logo height="210" width="340" />
                   {loading ? (
                     <Loader className="animate-spin" size={36} />
                   ) : (
                     // Adding Freelancer static profiles
                     <>
-                       <p className="text-xl font-bold uppercase ">
-                                            Meet Autolance AI 🤖, your personal
-                                            agent to get you FREELANCERS👩🏿‍💻 OR CLIENTS👨🏻‍💼!
-                                        </p>
-                    <div className="freelancer_profiles w-full ">
-                      <ul className="flex gap-4 overflow-x-auto w-full">
-                        {freelancers.map((freelancer, index) => (
-                          <li key={index} className="flex-shrink-0">
-                            <Card
-                              title={freelancer.title.toLowerCase()}
-                              description={freelancer.description.toLowerCase()}
-                              image={freelancer.image}
+                      <p className="text-xl font-bold uppercase ">
+                        Meet Autolance AI 🤖, your personal agent to get you
+                        FREELANCERS👩🏿‍💻 OR CLIENTS👨🏻‍💼!
+                      </p>
+                      <div className="freelancer_profiles w-full ">
+                        <ul className="flex gap-4 overflow-x-auto w-full">
+                          {freelancers.map((freelancer, index) => (
+                            <li key={index} className="flex-shrink-0">
+                              <Card
+                                title={freelancer.title.toLowerCase()}
+                                description={freelancer.description.toLowerCase()}
+                                image={freelancer.image}
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                            />
-                          </li>
-                        ))}
-                      </ul>
-                     
-                    </div>
-
-                    {/* rendering keywords */}
-                    <div className="keywords w-full my-2">
-                      <ul className="flex gap-4 overflow-x-auto w-full">
-                        {keyWords.map((data, index) => (
-                          <li key={index} className="flex-shrink-0">
-                           <button className='btn p-2 rounded'>{data}</button>
-                          </li>
-                        ))}
-                      </ul>
-                     
-                    </div>
+                      {/* rendering keywords */}
+                      <div className="keywords w-full my-2">
+                        <ul className="flex gap-4 overflow-x-auto w-full">
+                          {keyWords.map((data, index) => (
+                            <li key={index} className="flex-shrink-0">
+                              <button className="btn p-2 rounded">
+                                {data}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </>
                   )}
                 </div>

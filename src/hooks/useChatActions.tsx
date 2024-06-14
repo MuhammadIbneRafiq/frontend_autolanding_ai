@@ -16,7 +16,7 @@ export const useChatActions = () => {
     }
 
     const response = await axios.post(
-      "https://ai-freelance-be.onrender.com/chat/existing",
+      "https://backend-autolanding-ai.vercel.app/chat/existing",
       {
         messageToSend: messageToSend,
         conversationId: conversationId,
