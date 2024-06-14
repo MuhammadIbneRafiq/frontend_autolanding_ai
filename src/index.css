@@ -214,3 +214,36 @@ body {
     border: 1px solid rgb(49, 47, 47);
 
   }
+
+
+  .bg-primary {
+    background-color: #3490dc;
+}
+
+.bg-primary-dark {
+    background-color: #2779bd;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.transform {
+    transform: scale(1);
+}
+
+.transition-transform {
+    transition: transform 0.3s ease-in-out;
+}
+
+.duration-300 {
+    transition-duration: 300ms;
+}
+
+.ease-in-out {
+    transition-timing-function: ease-in-out;
+}
+
+.hover\:scale-105:hover {
+    transform: scale(1.05);
+}

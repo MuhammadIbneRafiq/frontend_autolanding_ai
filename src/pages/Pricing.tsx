@@ -1,4 +1,19 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Pricing = () => {
+    const handleButtonClick = () => {
+        toast.success('Haha thanks but it\'s free now!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    };
+
     return (
         <div className="min-h-screen bg-background text-white flex items-center justify-center">
             <div className="container mx-auto px-4 py-12">
@@ -12,7 +27,10 @@ const Pricing = () => {
                             <li className="mb-2">Feature 2</li>
                             <li className="mb-2">Feature 3</li>
                         </ul>
-                        <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark">
+                        <button 
+                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
+                            onClick={handleButtonClick}
+                        >
                             Choose Plan
                         </button>
                     </div>
@@ -24,7 +42,10 @@ const Pricing = () => {
                             <li className="mb-2">Feature 2</li>
                             <li className="mb-2">Feature 3</li>
                         </ul>
-                        <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark">
+                        <button 
+                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
+                            onClick={handleButtonClick}
+                        >
                             Choose Plan
                         </button>
                     </div>
@@ -36,12 +57,16 @@ const Pricing = () => {
                             <li className="mb-2">Feature 2</li>
                             <li className="mb-2">Feature 3</li>
                         </ul>
-                        <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark">
+                        <button 
+                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
+                            onClick={handleButtonClick}
+                        >
                             Choose Plan
                         </button>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
