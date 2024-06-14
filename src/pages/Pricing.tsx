@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Pricing = () => {
     return (
         <div className="min-h-screen bg-background text-white flex items-center justify-center">
