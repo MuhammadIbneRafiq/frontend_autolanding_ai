@@ -9,6 +9,8 @@ import { PublicRoute } from "./components/PublicRoute";
 import SignupPage from "./pages/SignupPage";
 import { ThemeProvider } from "./services/providers/ThemeProvider";
 import { Toaster } from "./components/ui/toaster";
+import Pricing from './pages/Pricing';
+
 
 // TODO: AI One question at a time.
 // TODO: After 5 prompts, request to sign up. (store prompts in local storage)
@@ -57,6 +59,7 @@ function App() {
                                     </PublicRoute>
                                 }
                             />
+                            <Route path="/pricing" element={<Pricing />} />
                         </Routes>
                         <Toaster />
                     </main>

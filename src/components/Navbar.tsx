@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -10,7 +9,7 @@ import { NamedLogoWithLink } from "./Logo";
 import UserAvatar from "./UserAvatar";
 import { useAuth } from "@/hooks/useAuth";
 
-export default function HeroNav() {
+export default function Navbar() {
     const { isAuthenticated } = useAuth();
 
     const handleCreateProfileClick = () => {
@@ -22,16 +21,21 @@ export default function HeroNav() {
             <ToastContainer />
             <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                 <NamedLogoWithLink />
-                {isAuthenticated && <div className="flex ml-auto gap-4 items-center">
-                    <Button 
-                        onClick={handleCreateProfileClick}
-                        variant="outline"
-                        className="rounded-full"
-                    >
-                        Create AI Profile ✈️
-                    </Button>
-                </div>}
+                {isAuthenticated && (
+                    <div className="flex ml-auto gap-4 items-center">
+                        <Button 
+                            onClick={handleCreateProfileClick}
+                            variant="outline"
+                            className="rounded-full"
+                        >
+                            Create AI Profile ✈️
+                        </Button>
+                    </div>
+                )}
                 <div className="flex ml-auto gap-4 items-center">
+                    <Link to="/pricing" className="text-primary">
+                        Pricing
+                    </Link>
                     <ModeToggle />
                     {!isAuthenticated && (
                         <>
@@ -59,16 +63,21 @@ export default function HeroNav() {
                 </SheetTrigger>
                 <SheetContent side="left">
                     <nav className="grid gap-6 text-lg font-medium">
-                        {isAuthenticated && <div className="flex gap-4 flex-col">
-                            <Button 
-                                onClick={handleCreateProfileClick}
-                                variant="outline"
-                                className="rounded-full"
-                            >
-                                Create AI Profile
-                            </Button>
-                        </div>}
+                        {isAuthenticated && (
+                            <div className="flex gap-4 flex-col">
+                                <Button 
+                                    onClick={handleCreateProfileClick}
+                                    variant="outline"
+                                    className="rounded-full"
+                                >
+                                    Create AI Profile
+                                </Button>
+                            </div>
+                        )}
                         <div className="flex gap-4 flex-col">
+                            <Link to="/pricing" className="text-primary">
+                                Pricing
+                            </Link>
                             {!isAuthenticated && (
                                 <>
                                     <Link
