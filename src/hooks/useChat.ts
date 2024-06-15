@@ -7,7 +7,7 @@ interface ChatProps {
 }
 
 /*
-Makes an api call to the backend and return the chat history of a specific conversation.
+Makes an api call to the backend and return the chat history of a specific chat.
 */
 export const useChat = ({ id }: ChatProps) => {
   const hardcodedId = "8c245f0d-daec-4845-9cfc-25365547ec21"; // Replace with your actual chat ID

@@ -7,7 +7,7 @@ export enum ProjectStatus {
 
 export type Project = {
     project_id: string;
-    conversation_id: string;
+    chat_id: string;
     user_id: string;
     freelancer_id: string;
     created_at: string;

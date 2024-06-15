@@ -8,7 +8,7 @@ export const useGPT = () => {
   ) {
 
     const response = await axios.put(
-      `http://localhost:3000/chats/${chatId}`,
+      `https://backend-autolanding-ai.vercel.app/chats/${chatId}`,
       {
         sender: "assistant",
       },

@@ -20,7 +20,7 @@ interface ChatInputProps {
 
 export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const location = useLocation();
-    const conversationId = location.pathname.split("/")[2];
+    const chatId = location.pathname.split("/")[2];
 
     const { isAuthenticated } = useAuth();
 
@@ -28,10 +28,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const [message, setMessage] = useState("");
     const { toast } = useToast();
     const { refetchChatMessages /*, getChatMessages */} = useChat({
-        id: conversationId,
+        id: chatId,
     });
     const { generateAIResponse } = useGPT();
-    const { refetchConversationsList } = useChats();
+    const { refetchChatsList } = useChats();
     const { sendMessageNewChat, sendMessageExistingChat } = useChatActions();
     const { projects, refetchProjectsList } = useProjects();
 
@@ -49,10 +49,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
         return Boolean(
             projects.find(
-                (project) => project.conversation_id === conversationId
+                (project) => project.chat_id === chatId
             )
         );
-    }, [projects, conversationId]);
+    }, [projects, chatId]);
 
     async function onSendMessage() {
         setLoading(true);
@@ -63,7 +63,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
                 await generateAIResponse(response.chat_id);
 
                 // Refetch the chat messages
-                await refetchConversationsList();
+                await refetchChatsList();
                 await refetchChatMessages();
 
                 // console.log('HERES THE refetch convo probs', a, b)

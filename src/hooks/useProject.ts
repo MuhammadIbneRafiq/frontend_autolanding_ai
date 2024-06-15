@@ -7,7 +7,7 @@ interface ProjectProps {
 }
 
 /*
-Makes an api call to the backend and return the list of conversations.
+Makes an api call to the backend and return the list of chats.
 */
 export const useProject = ({ id }: ProjectProps) => {
   const {

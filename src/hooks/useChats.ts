@@ -3,14 +3,14 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 /*
-Makes an api call to the backend and return the list of conversations.
+Makes an api call to the backend and return the list of chats.
 */
 export const useChats = () => {
   const {
     data: chats,
     isError,
     isLoading,
-    refetch: refetchConversationsList,
+    refetch: refetchChatsList,
   } = useQuery({
     queryKey: ["chats"],
     queryFn: async () => {
@@ -25,12 +25,10 @@ export const useChats = () => {
         }
       );
 
-      // console.log("Conversations from useConversations", response.data);
-
       return response.data as Chat[];
     },
     refetchOnWindowFocus: false,
     retry: false,
   });
-  return { chats, isError, isLoading, refetchConversationsList };
+  return { chats, isError, isLoading, refetchChatsList };
 };

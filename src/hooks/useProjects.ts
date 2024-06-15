@@ -3,7 +3,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 /*
-Makes an api call to the backend and return the list of conversations.
+Makes an api call to the backend and return the list of chats.
 */
 export const useProjects = () => {
   const {
