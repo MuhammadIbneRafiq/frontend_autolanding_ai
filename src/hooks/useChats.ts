@@ -1,18 +1,18 @@
-import { Conversation } from "@/types/Conversation";
+import { Chat } from "@/types/Chat";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 /*
 Makes an api call to the backend and return the list of conversations.
 */
-export const useConversations = () => {
+export const useChats = () => {
   const {
-    data: conversations,
+    data: chats,
     isError,
     isLoading,
     refetch: refetchConversationsList,
   } = useQuery({
-    queryKey: ["conversations"],
+    queryKey: ["chats"],
     queryFn: async () => {
       const token = localStorage.getItem("accessToken");
 
@@ -27,10 +27,10 @@ export const useConversations = () => {
 
       // console.log("Conversations from useConversations", response.data);
 
-      return response.data as Conversation[];
+      return response.data as Chat[];
     },
     refetchOnWindowFocus: false,
     retry: false,
   });
-  return { conversations, isError, isLoading, refetchConversationsList };
+  return { chats, isError, isLoading, refetchConversationsList };
 };

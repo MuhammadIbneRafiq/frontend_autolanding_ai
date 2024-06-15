@@ -10,8 +10,8 @@ interface ChatProps {
 Makes an api call to the backend and return the chat history of a specific conversation.
 */
 export const useChat = ({ id }: ChatProps) => {
-  const hardcodedId = "8c245f0d-daec-4845-9cfc-25365547ec21"; // Replace with your actual conversation ID
-  const id_id = id || hardcodedId;
+  const hardcodedId = "8c245f0d-daec-4845-9cfc-25365547ec21"; // Replace with your actual chat ID
+  const chatId = id || hardcodedId;
 
   // console.log('heres the id', id)
 
@@ -21,12 +21,12 @@ export const useChat = ({ id }: ChatProps) => {
     isLoading,
     refetch: refetchChatMessages,
   } = useQuery({
-    queryKey: ["chatHistory", id_id], // putting the convo id here
+    queryKey: ["chatHistory", chatId], // putting the convo id here
     queryFn: async () => {
-      return await getChatMessages(id_id); // here
+      return await getChatMessages(chatId); // here
     },
     refetchOnWindowFocus: false,
-    enabled: Boolean(id_id), // here
+    enabled: Boolean(chatId), // here
   });
 
   const getChatMessages = async (id: string) => {

@@ -1,6 +1,6 @@
 import { Project, ProjectStatus } from "@/types/Project";
 
-import { Conversation } from "@/types/Conversation";
+import { Conversation } from "@/types/Chat";
 import { Message } from "@/types/Message";
 
 export const mockConversationList = [

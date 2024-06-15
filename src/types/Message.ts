@@ -1,9 +1,9 @@
 export type Message = {
     message_id: string;
-    message: string;
-    sent_at: string;
-    conversation_id: string;
-    from: string;
+    content: string;
+    created_at: string;
+    chat_id: string;
+    sender: string;
     user_id: string;
 };
 

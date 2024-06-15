@@ -242,7 +242,7 @@ export default function Chat({ loading }: ChatProps) {
                 conversation?.chatHistory?.map((message) => (
                   <div key={message.message_id} className={`pt-4 pb-4`}>
                     <div className={`flex gap-1`}>
-                      {message.from === "user" ? (
+                      {message.sender === "user" ? (
                         <Avatar className="h-[32px] w-[32px]">
                           <AvatarImage
                             src="https://github.com/shadcn.png"
@@ -255,12 +255,12 @@ export default function Chat({ loading }: ChatProps) {
                       )}
                       <div className="flex flex-col items-center justify-center">
                         <span className="font-semibold">
-                          {message.from === "user" ? "You" : "Autolance AI"}
+                          {message.sender === "user" ? "You" : "Autolance AI"}
                         </span>
                       </div>
                     </div>
                     <div>
-                      <p>{message.message}</p>
+                      <p>{message.content}</p>
                     </div>
                   </div>
                 ))}

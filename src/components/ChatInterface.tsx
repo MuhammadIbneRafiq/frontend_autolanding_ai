@@ -1,7 +1,7 @@
 import { Card } from "./ui/card";
 import Chat from "./Chat";
 import { ChatInput } from "./ChatInput";
-import { ConversationList } from "./ConversationList";
+import { ChatList } from "./ChatList";
 import { Edit } from "lucide-react";
 import { ProjectList } from "./ProjectList";
 import { Separator } from "./ui/separator";
@@ -25,7 +25,7 @@ export default function ChatInterface() {
                         />
                     </div>
                     <Separator />
-                    <ConversationList />
+                    <ChatList />
                     <h2 className="font-semibold text-lg">Projects</h2>
                     <Separator />
                      <ProjectList />
