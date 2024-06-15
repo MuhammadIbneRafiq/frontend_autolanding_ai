@@ -21,7 +21,7 @@ export const useProject = ({ id }: ProjectProps) => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.get(
-        `http://localhost:3000/projects/${id}`,
+        `https://backend-autolanding-ai.vercel.app/projects/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

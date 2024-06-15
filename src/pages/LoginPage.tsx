@@ -48,7 +48,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/login",
+        "https://backend-autolanding-ai.vercel.app/auth/login",
         {
           email: values.email,
           password: values.password,
