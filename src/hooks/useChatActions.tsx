@@ -15,8 +15,8 @@ export const useChatActions = () => {
       throw new Error("User is not authenticated");
     }
 
-    const response = await axios.post(
-      "https://backend-autolanding-ai.vercel.app/chat/existing",
+    const response = await axios.put(
+      `http://localhost:3000/chat/${conversationId}`,
       {
         messageToSend: messageToSend,
         conversationId: conversationId,
@@ -41,7 +41,7 @@ export const useChatActions = () => {
     // TODO: Summarize the message request
 
     const response = await axios.post(
-      "https://backend-autolanding-ai.vercel.app/chat/new",
+      "http://localhost:3000/chat/new",
       {
         messageToSend: messageToSend,
         from: from,

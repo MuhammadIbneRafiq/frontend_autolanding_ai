@@ -32,7 +32,7 @@ export const useChat = ({ id }: ChatProps) => {
   const getChatMessages = async (id: string) => {
     const token = localStorage.getItem("accessToken");
     const response = await axios.get(
-      `https://backend-autolanding-ai.vercel.app/${id}`,
+      `http://localhost:3000/chats/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

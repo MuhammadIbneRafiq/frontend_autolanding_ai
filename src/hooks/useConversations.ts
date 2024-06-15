@@ -17,7 +17,7 @@ export const useConversations = () => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.get(
-        "https://backend-autolanding-ai.vercel.app/chat/conversations",
+        "http://localhost:3000/chats",
         {
           headers: {
             Authorization: `Bearer ${token}`,

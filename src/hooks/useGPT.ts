@@ -13,8 +13,8 @@ export const useGPT = () => {
     // console.log('INPUT is chat the formatted message', formatForGPT)
     // console.log('INPUT is the chathistoyr,', chatHistory[chatHistory.length -1])
 
-    const response = await axios.post(
-      `https://backend-autolanding-ai.vercel.app/${conversationId}`,
+    const response = await axios.put(
+      `http://localhost:3000/chats/${conversationId}`,
       {
         conversationId: conversationId,
         chatHistory: formattedMessages,
