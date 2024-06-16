@@ -1,17 +1,22 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
-const Pricing = () => {
-    const handleButtonClick = () => {
-        toast.success('Haha thanks but it\'s free now!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+
+const Pricing = ( ) => {
+
+    const handleButtonClick = async () => {
+        const token = localStorage.getItem("accessToken");
+        const response = await axios.post(
+            `http://localhost:3000/stripe`,
+            {
+                plan: "test"
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log(response.data);
     };
 
     return (
@@ -66,7 +71,6 @@ const Pricing = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 };
