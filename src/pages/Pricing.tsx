@@ -1,22 +1,44 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 
 const Pricing = ( ) => {
+    const StripePlans = {
+        BASIC: "basic",
+        PRO: "pro",
+        ENTERPRISE: "enterprise",
+    }
 
-    const handleButtonClick = async () => {
-        const token = localStorage.getItem("accessToken");
-        const response = await axios.post(
-            `http://localhost:3000/stripe`,
-            {
-                plan: "test"
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          console.log(response.data);
+    const handleButtonClick = async (plan: string) => {
+        try {
+            const token = localStorage.getItem("accessToken");
+            const response = await axios.post(
+                `https://backend-autolanding-ai.vercel.app/stripe`,
+                {
+                    plan: plan
+                },
+                {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                }
+            );
+
+            console.log("Response:", response);
+            window.location.href = response.data.checkoutUrl;
+        } catch (error) {
+            toast.error('There was an error. Please try again.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });    
+            console.error("Error creating Stripe checkout session:", error);
+        }
     };
 
     return (
@@ -34,7 +56,7 @@ const Pricing = ( ) => {
                         </ul>
                         <button 
                             className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={handleButtonClick}
+                            onClick={() => handleButtonClick(StripePlans.BASIC)}
                         >
                             Choose Plan
                         </button>
@@ -49,7 +71,7 @@ const Pricing = ( ) => {
                         </ul>
                         <button 
                             className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={handleButtonClick}
+                            onClick={() => handleButtonClick(StripePlans.PRO)}
                         >
                             Choose Plan
                         </button>
@@ -64,13 +86,14 @@ const Pricing = ( ) => {
                         </ul>
                         <button 
                             className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={handleButtonClick}
+                            onClick={() => handleButtonClick(StripePlans.ENTERPRISE)}
                         >
                             Choose Plan
                         </button>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

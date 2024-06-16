@@ -54,7 +54,7 @@ export default function SignupPage() {
     try {
       console.log(values);
       await axios.post(
-        "http://localhost:3000/auth/signup",
+        "https://backend-autolanding-ai.vercel.app/auth/signup",
         {
           email: values.email,
           password: values.password,
