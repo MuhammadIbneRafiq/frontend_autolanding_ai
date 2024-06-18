@@ -28,7 +28,7 @@ interface CardProps {
 export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
 
-  const conversation = useChat({ id: path?.pathname.split("/")[2] });
+  const chat = useChat({ id: path?.pathname.split("/")[2] });
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ export default function Chat({ loading }: ChatProps) {
       // Scroll to the bottom
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [conversation.chatHistory]); // Trigger whenever chat history changes
+  }, [chat.chatHistory]); // Trigger whenever chat history changes
 
   const truncateDescription = (description: String) => {
     const words = description.split(" ");
@@ -238,11 +238,11 @@ export default function Chat({ loading }: ChatProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              {!conversation.isError &&
-                conversation?.chatHistory?.map((message) => (
+              {!chat.isError &&
+                chat?.chatHistory?.map((message) => (
                   <div key={message.message_id} className={`pt-4 pb-4`}>
                     <div className={`flex gap-1`}>
-                      {message.from === "user" ? (
+                      {message.sender === "user" ? (
                         <Avatar className="h-[32px] w-[32px]">
                           <AvatarImage
                             src="https://github.com/shadcn.png"
@@ -255,12 +255,12 @@ export default function Chat({ loading }: ChatProps) {
                       )}
                       <div className="flex flex-col items-center justify-center">
                         <span className="font-semibold">
-                          {message.from === "user" ? "You" : "Autolance AI"}
+                          {message.sender === "user" ? "You" : "Autolance AI"}
                         </span>
                       </div>
                     </div>
                     <div>
-                      <p>{message.message}</p>
+                      <p>{message.content}</p>
                     </div>
                   </div>
                 ))}

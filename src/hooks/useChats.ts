@@ -1,27 +1,23 @@
-import { Project } from "@/types/Project";
+import { Chat } from "@/types/Chat";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-
-interface ProjectProps {
-  id: string;
-}
 
 /*
 Makes an api call to the backend and return the list of chats.
 */
-export const useProject = ({ id }: ProjectProps) => {
+export const useChats = () => {
   const {
-    data: project,
+    data: chats,
     isError,
     isLoading,
-    refetch: refetchProject,
+    refetch: refetchChatsList,
   } = useQuery({
-    queryKey: ["project", id],
+    queryKey: ["chats"],
     queryFn: async () => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.get(
-        `https://backend-autolanding-ai.vercel.app/projects/${id}`,
+        "https://backend-autolanding-ai.vercel.app/chats",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -29,13 +25,10 @@ export const useProject = ({ id }: ProjectProps) => {
         }
       );
 
-      // console.log("Response Project: ", response.data);
-
-      return response.data as Project;
+      return response.data as Chat[];
     },
     refetchOnWindowFocus: false,
     retry: false,
   });
-
-  return { project, isError, isLoading, refetchProject };
+  return { chats, isError, isLoading, refetchChatsList };
 };

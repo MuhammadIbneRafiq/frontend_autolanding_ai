@@ -8,7 +8,7 @@ import { Input } from "./ui/input";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/useChat";
 import { useChatActions } from "@/hooks/useChatActions";
-import { useConversations } from "@/hooks/useConversations";
+import { useChats } from "@/hooks/useChats";
 import { useGPT } from "@/hooks/useGPT";
 import { useProjects } from "@/hooks/useProjects";
 import { useToast } from "./ui/use-toast";
@@ -20,7 +20,7 @@ interface ChatInputProps {
 
 export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const location = useLocation();
-    const conversationId = location.pathname.split("/")[2];
+    const chatId = location.pathname.split("/")[2];
 
     const { isAuthenticated } = useAuth();
 
@@ -28,10 +28,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const [message, setMessage] = useState("");
     const { toast } = useToast();
     const { refetchChatMessages /*, getChatMessages */} = useChat({
-        id: conversationId,
+        id: chatId,
     });
     const { generateAIResponse } = useGPT();
-    const { refetchConversationsList } = useConversations();
+    const { refetchChatsList } = useChats();
     const { sendMessageNewChat, sendMessageExistingChat } = useChatActions();
     const { projects, refetchProjectsList } = useProjects();
 
@@ -49,10 +49,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
         return Boolean(
             projects.find(
-                (project) => project.conversation_id === conversationId
+                (project) => project.chat_id === chatId
             )
         );
-    }, [projects, conversationId]);
+    }, [projects, chatId]);
 
     async function onSendMessage() {
         setLoading(true);
@@ -60,39 +60,23 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
             // if this is a new chat, send the message and navigate to the chat
             if (location.pathname === "/") {
                 const response = await sendMessageNewChat(message, "user");
-
-                // const latestChatHistory = await getChatMessages(
-                //     response.conversation_id
-                // );
-
-                // Send the message to GPT
-                // console.log("Chat history being sent:", latestChatHistory);
-                await generateAIResponse(
-                    // latestChatHistory as Message[],
-                    message,
-                    response.conversation_id
-                );
+                await generateAIResponse(response.chat_id);
 
                 // Refetch the chat messages
-
-                await refetchConversationsList();
+                await refetchChatsList();
                 await refetchChatMessages();
 
                 // console.log('HERES THE refetch convo probs', a, b)
-                navigate(`/chat/${response.conversation_id}`);
+                navigate(`/chat/${response.chat_id}`);
             } else {
                 // if this is an existing chat, send the message
                 setMessage("");
-                const conversationId = location.pathname.split("/")[2];
-                await sendMessageExistingChat(message, conversationId, "user");
+                const chatId = location.pathname.split("/")[2];
+                await sendMessageExistingChat(message, chatId, "user");
                 await refetchChatMessages();
 
                 // Send the message to GPT
-                await generateAIResponse(
-                    // chatHistory as Message[],
-                    message,
-                    conversationId
-                );
+                await generateAIResponse(chatId);
                 await refetchChatMessages();
                 await refetchProjectsList();
             }

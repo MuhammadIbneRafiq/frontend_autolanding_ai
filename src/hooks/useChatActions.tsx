@@ -7,20 +7,20 @@ export const useChatActions = () => {
   const user = useUserSessionStore((state) => state.user);
 
   const sendMessageExistingChat = async (
-    messageToSend: string,
-    conversationId: string,
-    from: SentFrom
+    content: string,
+    chatId: string,
+    sender: SentFrom
   ) => {
     if (!user) {
       throw new Error("User is not authenticated");
     }
 
-    const response = await axios.post(
-      "https://backend-autolanding-ai.vercel.app/chat/existing",
+    const response = await axios.put(
+      `https://backend-autolanding-ai.vercel.app/chats/${chatId}`,
       {
-        messageToSend: messageToSend,
-        conversationId: conversationId,
-        from: from,
+        content: content,
+        chatId: chatId,
+        sender: sender,
       },
       {
         headers: {
@@ -33,7 +33,7 @@ export const useChatActions = () => {
     return response.data as Message;
   };
 
-  const sendMessageNewChat = async (messageToSend: string, from: SentFrom) => {
+  const sendMessageNewChat = async (content: string, sender: SentFrom) => {
     if (!user) {
       throw new Error("User is not authenticated");
     }
@@ -41,10 +41,10 @@ export const useChatActions = () => {
     // TODO: Summarize the message request
 
     const response = await axios.post(
-      "https://backend-autolanding-ai.vercel.app/chat/new",
+      "https://backend-autolanding-ai.vercel.app/chats/new",
       {
-        messageToSend: messageToSend,
-        from: from,
+        content: content,
+        sender: sender,
       },
       {
         headers: {
