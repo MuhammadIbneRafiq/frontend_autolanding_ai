@@ -164,7 +164,7 @@ body {
     background-color: var(--card-foreground);
     max-width: 220px;
     border: 1px solid rgb(49, 47, 47);
-    height: 100%;
+    height: 97.5%;
     cursor: pointer;
   }
 
@@ -178,13 +178,17 @@ body {
   }
   .freelancer_profiles ul li .card h3{
     color: rgb(179, 173, 173);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
   }
   .freelancer_profiles ul li .card p{
     color: rgb(131, 125, 125);
-    font-size: 13px;
+    font-size: 13px; /* Adjust if needed */
     font-weight: 600;
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis to overflow text */
+    max-height: 3em; /* Adjust based on your design */
+    line-height: 1.5; /* Adjust for better text fit */  
   }
 
   @keyframes moveLeftToRight {

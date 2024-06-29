@@ -21,17 +21,6 @@ export default function Navbar() {
             <ToastContainer />
             <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                 <NamedLogoWithLink />
-                {isAuthenticated && (
-                    <div className="flex ml-auto gap-4 items-center">
-                        <Button 
-                            onClick={handleCreateProfileClick}
-                            variant="outline"
-                            className="rounded-full"
-                        >
-                            Create AI Profile ✈️
-                        </Button>
-                    </div>
-                )}
                 <div className="flex ml-auto gap-4 items-center">
                     <Link to="/pricing" className="text-primary">
                         Pricing

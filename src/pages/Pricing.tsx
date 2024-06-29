@@ -47,8 +47,8 @@ const Pricing = ( ) => {
                 <h1 className="text-4xl font-bold text-center mb-8">Pricing Plans</h1>
                 <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                     <div className="bg-card rounded-lg shadow-lg p-6 text-center w-full max-w-sm">
-                        <h2 className="text-2xl font-bold mb-4">Basic Plan</h2>
-                        <p className="text-xl mb-4">$10 / month</p>
+                        <h2 className="text-2xl font-bold mb-4">Pro</h2>
+                        <p className="text-xl mb-4">€10/month</p>
                         <ul className="text-left mb-6">
                             <li className="mb-2">Feature 1</li>
                             <li className="mb-2">Feature 2</li>
@@ -62,23 +62,8 @@ const Pricing = ( ) => {
                         </button>
                     </div>
                     <div className="bg-card rounded-lg shadow-lg p-6 text-center w-full max-w-sm">
-                        <h2 className="text-2xl font-bold mb-4">Pro Plan</h2>
-                        <p className="text-xl mb-4">$30 / month</p>
-                        <ul className="text-left mb-6">
-                            <li className="mb-2">Feature 1</li>
-                            <li className="mb-2">Feature 2</li>
-                            <li className="mb-2">Feature 3</li>
-                        </ul>
-                        <button 
-                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={() => handleButtonClick(StripePlans.PRO)}
-                        >
-                            Choose Plan
-                        </button>
-                    </div>
-                    <div className="bg-card rounded-lg shadow-lg p-6 text-center w-full max-w-sm">
-                        <h2 className="text-2xl font-bold mb-4">Enterprise Plan</h2>
-                        <p className="text-xl mb-4">$100 / month</p>
+                        <h2 className="text-2xl font-bold mb-4">Enterprise</h2>
+                        <p className="text-xl mb-4">Custom</p>
                         <ul className="text-left mb-6">
                             <li className="mb-2">Feature 1</li>
                             <li className="mb-2">Feature 2</li>

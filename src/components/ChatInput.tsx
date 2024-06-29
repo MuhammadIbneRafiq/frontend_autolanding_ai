@@ -98,12 +98,12 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
             <Input
                 placeholder={
                     !isAuthenticated
-                        ? "Sign up to start finding freelancers or clients"
+                        ? "Sign up to start finding freelancers."
                         : projectExistsForChat
-                        ? "This chat has been moved to a project and is read-only."
+                        ? "We already created a project for this chat and is now read-only."
                         : isOnProjectPage
-                        ? "Chat is disabled for projects. Reach out to us via email for any questions."
-                        : "Ask me anything..."
+                        ? "Chat is currently not available for projects. Reach out to us via email for any questions."
+                        : "Tell me about your project..."
                 }
                 value={message}
                 className={`${
