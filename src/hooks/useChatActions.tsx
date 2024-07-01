@@ -29,16 +29,13 @@ export const useChatActions = () => {
       }
     );
 
-    // console.log("Response: is sdkjfshdfkjshfkj", response);
-    return response.data as Message;
+    return response.data.message as Message;
   };
 
-  const sendMessageNewChat = async (content: string, sender: SentFrom) => {
+  const createChat = async (content: string, sender: SentFrom) => {
     if (!user) {
       throw new Error("User is not authenticated");
     }
-
-    // TODO: Summarize the message request
 
     const response = await axios.post(
       "http://localhost:3000/chats/new",
@@ -58,5 +55,5 @@ export const useChatActions = () => {
     return response.data as Message;
   };
 
-  return { sendMessageNewChat, sendMessageExistingChat };
+  return { createChat, sendMessageExistingChat };
 };

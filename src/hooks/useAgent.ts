@@ -1,7 +1,7 @@
 import { Message } from "@/types/Message";
 import axios from "axios";
 
-export const useGPT = () => {
+export const useAgent = () => {
   async function generateAIResponse(
     chatId: string
   ) {

@@ -5,6 +5,7 @@ export type Message = {
     chat_id: string;
     sender: string;
     user_id: string;
+    is_final: boolean;
 };
 
 export type SentFrom = "user" | "assistant";
