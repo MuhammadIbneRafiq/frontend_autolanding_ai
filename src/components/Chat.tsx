@@ -112,58 +112,56 @@ export default function Chat({ loading }: ChatProps) {
     "Talented photographer and videographer",
   ];
   return (
-    <div className="h-full w-full py-4">
+    <div className="flex flex-col h-[80vh] w-full gap-2 py-4">
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
-        <div className="flex flex-col gap-2 h-full">
+        <div className="justify-center items-center">
           {path.pathname === "/" ? (
-            <div className="flex flex-col h-full justify-center items-center">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.5 }}
-              >
-                <div className="flex flex-col gap-2 items-center">
-                  <Logo height="210" width="340" />
-                  {loading ? (
-                    <Loader className="animate-spin" size={36} />
-                  ) : (
-                    // Adding Freelancer static profiles
-                    <>
-                      <p className="text-xl font-bold uppercase ">
-                        Meet Autolanding AI, your personal agent to find
-                        affordable and talented freelancers 👩🏿‍💻
-                      </p>
-                      <div className="freelancer_profiles w-full ">
-                        <ul className="flex gap-4 overflow-x-auto w-full">
-                          {freelancers.map((freelancer, index) => (
-                            <li key={index} className="flex-shrink-0">
-                              <Card
-                                title={freelancer.title}
-                                description={freelancer.description}
-                                image={freelancer.image}
-                              />
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              <div className="flex flex-col gap-2 items-center">
+                <Logo height="210" width="340" />
+                {loading ? (
+                  <Loader className="animate-spin" size={36} />
+                ) : (
+                  // Adding Freelancer static profiles
+                  <>
+                    <p className="text-xl font-bold uppercase ">
+                      Meet Autolanding AI, your personal agent to find
+                      affordable and talented freelancers 👩🏿‍💻
+                    </p>
+                    <div className="freelancer_profiles w-full ">
+                      <ul className="flex gap-4 overflow-x-auto w-full">
+                        {freelancers.map((freelancer, index) => (
+                          <li key={index} className="flex-shrink-0">
+                            <Card
+                              title={freelancer.title}
+                              description={freelancer.description}
+                              image={freelancer.image}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                      {/* rendering keywords */}
-                      <div className="keywords w-full my-2">
-                        <ul className="flex gap-4 overflow-x-auto w-full">
-                          {keyWords.map((data, index) => (
-                            <li key={index} className="flex-shrink-0">
-                              <button className="btn p-2 rounded">
-                                {data}
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </motion.div>
-            </div>
+                    {/* rendering keywords */}
+                    <div className="keywords w-full my-2">
+                      <ul className="flex gap-4 overflow-x-auto w-full">
+                        {keyWords.map((data, index) => (
+                          <li key={index} className="flex-shrink-0">
+                            <button className="btn p-2 rounded">
+                              {data}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
           ) : path.pathname.split("/")[1] === "project" && project ? (
             <motion.div
               initial={{ opacity: 0 }}
