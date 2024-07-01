@@ -14,7 +14,7 @@ const Pricing = ( ) => {
         try {
             const token = localStorage.getItem("accessToken");
             const response = await axios.post(
-                `https://backend-autolanding-ai.vercel.app/stripe`,
+                `http://localhost:3000/stripe`,
                 {
                     plan: plan
                 },

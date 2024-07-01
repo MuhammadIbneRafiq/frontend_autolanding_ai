@@ -16,7 +16,7 @@ export const useChatActions = () => {
     }
 
     const response = await axios.put(
-      `https://backend-autolanding-ai.vercel.app/chats/${chatId}`,
+      `http://localhost:3000/chats/${chatId}`,
       {
         content: content,
         chatId: chatId,
@@ -41,7 +41,7 @@ export const useChatActions = () => {
     // TODO: Summarize the message request
 
     const response = await axios.post(
-      "https://backend-autolanding-ai.vercel.app/chats/new",
+      "http://localhost:3000/chats/new",
       {
         content: content,
         sender: sender,

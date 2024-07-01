@@ -112,7 +112,7 @@ export default function Chat({ loading }: ChatProps) {
     "Talented photographer and videographer",
   ];
   return (
-    <div className="h-full w-full py-0">
+    <div className="h-full w-full py-4">
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="flex flex-col gap-2 h-full">
           {path.pathname === "/" ? (
@@ -130,7 +130,7 @@ export default function Chat({ loading }: ChatProps) {
                     // Adding Freelancer static profiles
                     <>
                       <p className="text-xl font-bold uppercase ">
-                        Meet Autolance AI, your personal agent to find
+                        Meet Autolanding AI, your personal agent to find
                         affordable and talented freelancers 👩🏿‍💻
                       </p>
                       <div className="freelancer_profiles w-full ">
@@ -219,7 +219,7 @@ export default function Chat({ loading }: ChatProps) {
                 <div className="flex flex-col items-center pb-8">
                   <Logo height="100" width="100" />
                   <h2 className="scroll-m-20 text-xl mt-2 font-semibold tracking-tight first:mt-0 text-center">
-                    Thank you for using Autolance AI!
+                    Thank you for using Autolanding AI!
                   </h2>
                   <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
                     One of our team members will be in touch with you shortly.
@@ -250,7 +250,7 @@ export default function Chat({ loading }: ChatProps) {
                       )}
                       <div className="flex flex-col items-center justify-center ml-2">
                         <span className="font-semibold">
-                          {message.sender === "user" ? "You" : "Autolance AI"}
+                          {message.sender === "user" ? "You" : "Autolanding AI"}
                         </span>
                       </div>
                     </div>
