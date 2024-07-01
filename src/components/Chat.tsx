@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "./ui/avatar";
 import { useEffect, useRef } from "react";
 
 import { Loader } from "lucide-react";
@@ -62,13 +62,13 @@ export default function Chat({ loading }: ChatProps) {
     {
       title: "Sam",
       description:
-        "designer exploring minimalist text-based interfaces and much more.",
+        "Designer exploring minimalist text-based interfaces and much more.",
       image: user1,
     },
     {
       title: "Charlie",
       description:
-        "ai hacker and musician exploring the frontiers of technology and ...",
+        "AI hacker and musician exploring the frontiers of technology and ...",
       image: user2,
     },
     {
@@ -86,7 +86,7 @@ export default function Chat({ loading }: ChatProps) {
     {
       title: "Alshahab Rezvi",
       description:
-        "MERN Stack , Automation And AI Expert Over 3 Year Plus Experience",
+        "MERN Stack, Automation And AI Expert Over 3 Year Plus Experience",
       image: user7,
     },
     {
@@ -104,16 +104,12 @@ export default function Chat({ loading }: ChatProps) {
   ];
 
   const keyWords = [
-    "models?",
-    "who is in sf?",
-    "musician growing fast",
-    "who is hiring ai developers?",
-    "innovative graphic designer",
-    "creative web developer",
-    "experienced UI/UX designer",
-    "passionate digital marketer",
-    "skilled software engineer",
-    "talented photographer and videographer",
+    "Innovative graphic designer",
+    "Creative web developer",
+    "Experienced UI/UX designer",
+    "Passionate digital marketer",
+    "Skilled software engineer",
+    "Talented photographer and videographer",
   ];
   return (
     <div className="h-full w-full py-0">
@@ -134,16 +130,16 @@ export default function Chat({ loading }: ChatProps) {
                     // Adding Freelancer static profiles
                     <>
                       <p className="text-xl font-bold uppercase ">
-                        Meet Autolance AI 🤖, your personal agent to get you
-                        FREELANCERS👩🏿‍💻 OR CLIENTS👨🏻‍💼!
+                        Meet Autolance AI, your personal agent to find
+                        affordable and talented freelancers 👩🏿‍💻
                       </p>
                       <div className="freelancer_profiles w-full ">
                         <ul className="flex gap-4 overflow-x-auto w-full">
                           {freelancers.map((freelancer, index) => (
                             <li key={index} className="flex-shrink-0">
                               <Card
-                                title={freelancer.title.toLowerCase()}
-                                description={freelancer.description.toLowerCase()}
+                                title={freelancer.title}
+                                description={freelancer.description}
                                 image={freelancer.image}
                               />
                             </li>
@@ -240,7 +236,7 @@ export default function Chat({ loading }: ChatProps) {
             >
               {!chat.isError &&
                 chat?.chatHistory?.map((message) => (
-                  <div key={message.message_id} className={`pt-4 pb-4`}>
+                  <div key={message.message_id}>
                     <div className={`flex gap-1`}>
                       {message.sender === "user" ? (
                         <Avatar className="h-[32px] w-[32px]">
@@ -248,18 +244,17 @@ export default function Chat({ loading }: ChatProps) {
                             src="https://github.com/shadcn.png"
                             alt="@shadcn"
                           />
-                          <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                       ) : (
-                        <Logo height="60" width="60" />
+                        <Logo height="32" width="32" />
                       )}
-                      <div className="flex flex-col items-center justify-center">
+                      <div className="flex flex-col items-center justify-center ml-2">
                         <span className="font-semibold">
                           {message.sender === "user" ? "You" : "Autolance AI"}
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div className="mt-2">
                       <p>{message.content}</p>
                     </div>
                   </div>
