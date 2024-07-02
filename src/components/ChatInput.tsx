@@ -4,13 +4,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-// import { Message } from "@/types/Message";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/useChat";
 import { useChatActions } from "@/hooks/useChatActions";
 import { useChats } from "@/hooks/useChats";
-import { useGPT } from "@/hooks/useGPT";
+import { useAgent } from "@/hooks/useAgent";
 import { useProjects } from "@/hooks/useProjects";
+import { useProjectActions } from "@/hooks/useProjectActions";
 import { useToast } from "./ui/use-toast";
 
 interface ChatInputProps {
@@ -30,10 +30,11 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     const { refetchChatMessages /*, getChatMessages */} = useChat({
         id: chatId,
     });
-    const { generateAIResponse } = useGPT();
+    const { generateAIResponse } = useAgent();
     const { refetchChatsList } = useChats();
-    const { sendMessageNewChat, sendMessageExistingChat } = useChatActions();
+    const { createChat, sendMessageExistingChat } = useChatActions();
     const { projects, refetchProjectsList } = useProjects();
+    const { createProject } = useProjectActions();
 
     const isOnProjectPage = location.pathname.split("/")[1] === "project";
 
@@ -57,28 +58,39 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     async function onSendMessage() {
         setLoading(true);
         try {
-            // if this is a new chat, send the message and navigate to the chat
             if (location.pathname === "/") {
-                const response = await sendMessageNewChat(message, "user");
+                // If this is a new chat, send the message and navigate to the chat
+                const response = await createChat(message, "user");
                 await generateAIResponse(response.chat_id);
 
-                // Refetch the chat messages
                 await refetchChatsList();
                 await refetchChatMessages();
 
-                // console.log('HERES THE refetch convo probs', a, b)
                 navigate(`/chat/${response.chat_id}`);
             } else {
-                // if this is an existing chat, send the message
+                // If this is an existing chat, send the message
                 setMessage("");
                 const chatId = location.pathname.split("/")[2];
                 await sendMessageExistingChat(message, chatId, "user");
                 await refetchChatMessages();
 
-                // Send the message to GPT
-                await generateAIResponse(chatId);
+                const aiMessage = await generateAIResponse(chatId);
                 await refetchChatMessages();
-                await refetchProjectsList();
+
+                if (aiMessage.is_final) {
+                    console.log("Final message received");
+                    toast({
+                        title: "New project requested",
+                        description:
+                            "Our agent is creating the new project for you. You should see it in a few seconds.",
+                        variant: "success",
+                    });
+
+                    const response = await createProject(chatId);
+                    await refetchProjectsList();
+
+                    navigate(`/project/${response.project_id}`);
+                }
             }
             setMessage("");
         } catch (error) {
@@ -102,7 +114,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
                         : projectExistsForChat
                         ? "We already created a project for this chat and is now read-only."
                         : isOnProjectPage
-                        ? "Chat is currently not available for projects. Reach out to us via email for any questions."
+                        ? "Chat is currently not available for projects. Reach out to us via email if you have any questions."
                         : "Tell me about your project..."
                 }
                 value={message}
