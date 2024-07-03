@@ -4,8 +4,8 @@
 
 Our multi-agent platform allows clients to hire freelancers by chatting with an AI agent.
 
-- Website: https://www.autolanding.ai/
-- Backend repository: https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai
+- Website: [https://www.autolanding.ai/](https://www.autolanding.ai)
+- Backend repository: [https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai](https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai)
 
 ## Technology Stack
 
