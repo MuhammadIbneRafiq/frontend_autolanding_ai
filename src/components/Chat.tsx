@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
-import user1 from "../assets/user1.jpg";
+import user1 from "../assets/faheem.jpeg";
 import user2 from "../assets/user5.jpg";
 import user3 from "../assets/user4.jpg";
 import user4 from "../assets/user6.jpg";
@@ -60,9 +60,9 @@ export default function Chat({ loading }: ChatProps) {
   );
   const freelancers = [
     {
-      title: "Sam",
+      title: "Faheem Ghaus",
       description:
-        "Designer exploring minimalist text-based interfaces and much more.",
+        "Sales Development Representative, Lead Generation, Sales Conversion, Cold Outreach, Oline Research",
       image: user1,
     },
     {
