@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
 import user1 from "../assets/faheem.jpeg";
 import user2 from "../assets/user5.jpg";
-import user3 from "../assets/user4.jpg";
+import user3 from "../assets/JAMIL.jpg";
 import user4 from "../assets/user6.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 
@@ -72,9 +72,9 @@ export default function Chat({ loading }: ChatProps) {
       image: user2,
     },
     {
-      title: "Tair",
+      title: "Jamil",
       description:
-        "Experienced developer specializing in web development and design.",
+        "SEO silver plate youtuber with 10+ ecommerce clients.",
       image: user3,
     },
     {
