@@ -1,40 +1,29 @@
-﻿# AI Freelancing Platform
+﻿# Autolanding AI✈️
 
 ## Introduction
 
-This AI-powered platform abstracts all the complexity that comes with dealing with freelancers through an LLM Agent.
+Our multi-agent platform allows clients to hire freelancers by chatting with an AI agent.
+
+- Website: [https://www.autolanding.ai/](https://www.autolanding.ai)
+- Backend repository: [https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai](https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai)
 
 ## Technology Stack
 
--   **Frontend:** TypeScript & Tailwind CSS with Shadcn UI library
--   **Backend:** Supabase
--   **Database:** Postgres
+-   **Frontend:** TypeScript & Tailwind CSS with Shadcn UI library.
+-   **Backend:** JavaScript and Supabase.
+-   **Database:** Postgres.
 
 ## Project Setup
 
-Follow these steps to it set up on your local development environment.
-
-### Backend repository
-
-https://github.com/MuhammadIbneRafiq/BACKEND_autolanding_ai
-
-
-### Frontend Setup
+Follow these steps in case you want to set up our frontend locally:
 
 ```bash
-# setup env varialbe
-export "SUPABASE_KEY=[paste supabase api key here]" > .env
-export "SUPABASE_URL=[paste supabase URL here]" >> .env
-export GROQ_API_KEY= 'paste groq api key here.'
-
 # Open a new terminal and navigate to the frontend directory
-cd ai-freelance-platform
+cd frontend_autolanding_ai
 
 # Install npm packages
 npm install
 
 # Start the frontend development server
 npm run dev
-
-
 ```
