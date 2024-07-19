@@ -9,64 +9,74 @@ import { PublicRoute } from "./components/PublicRoute";
 import SignupPage from "./pages/SignupPage";
 import { ThemeProvider } from "./services/providers/ThemeProvider";
 import { Toaster } from "./components/ui/toaster";
-import Pricing from './pages/Pricing';
-
+import Pricing from "./pages/Pricing";
+import LandingPage from "./pages/LandingPage";
 
 // TODO: AI One question at a time.
 // TODO: After 5 prompts, request to sign up. (store prompts in local storage)
 // TODO: Clean up ai text
 
 function App() {
-    const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
 
-    return (
-        <QueryClientProvider client={queryClient}>
-            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-                <BrowserRouter>
-                    <main className="sm:px-10 px-5 h-full">
-                        <Navbar />
-                        <Routes>
-                            <Route path="/" element={<HomePage />} />
-                            <Route
-                                path="/chat/:id"
-                                element={
-                                    <ProtectedRoute>
-                                        <HomePage />
-                                    </ProtectedRoute>
-                                }
-                            />
-                            <Route
-                                path="/project/:id"
-                                element={
-                                    <ProtectedRoute>
-                                        <HomePage />
-                                    </ProtectedRoute>
-                                }
-                            />
-                            <Route
-                                path="/login"
-                                element={
-                                    <PublicRoute>
-                                        <LoginPage />
-                                    </PublicRoute>
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    <PublicRoute>
-                                        <SignupPage />
-                                    </PublicRoute>
-                                }
-                            />
-                            <Route path="/pricing" element={<Pricing />} />
-                        </Routes>
-                        <Toaster />
-                    </main>
-                </BrowserRouter>
-            </ThemeProvider>
-        </QueryClientProvider>
-    );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/landing" element={<LandingPage />} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <main className="sm:px-10 px-5 h-full">
+                    <Navbar />
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route
+                        path="/chat/:id"
+                        element={
+                          <ProtectedRoute>
+                            <HomePage />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/project/:id"
+                        element={
+                          <ProtectedRoute>
+                            <HomePage />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/login"
+                        element={
+                          <PublicRoute>
+                            <LoginPage />
+                          </PublicRoute>
+                        }
+                      />
+                      <Route
+                        path="/register"
+                        element={
+                          <PublicRoute>
+                            <SignupPage />
+                          </PublicRoute>
+                        }
+                      />
+                      <Route path="/pricing" element={<Pricing />} />
+                    </Routes>
+                    <Toaster />
+                  </main>
+                </div>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
