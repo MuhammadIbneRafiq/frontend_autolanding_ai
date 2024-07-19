@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
-import user1 from "../assets/faheem.jpeg";
+import user1 from "../assets/francesco from Konnecte.png";
 import user2 from "../assets/user5.jpg";
 import user3 from "../assets/JAMIL.jpg";
 import user4 from "../assets/user6.jpg";
@@ -60,9 +60,9 @@ export default function Chat({ loading }: ChatProps) {
   );
   const freelancers = [
     {
-      title: "Faheem Ghaus",
+      title: "Francesco from Konnecte",
       description:
-        "Sales Development Representative, Lead Generation, Sales Conversion, Cold Outreach, Oline Research",
+        "Italian AI agency helping law consultant and firms to 10x their business",
       image: user1,
     },
     {
