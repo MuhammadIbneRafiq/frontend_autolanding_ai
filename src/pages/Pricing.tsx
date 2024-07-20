@@ -1,49 +1,49 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import axios from "axios";
 
 
 const Pricing = ( ) => {
-    const StripePlans = {
-        BASIC: "basic",
-        PRO: "pro",
-        ENTERPRISE: "enterprise",
-    }
+    // const StripePlans = {
+    //     BASIC: "basic",
+    //     PRO: "pro",
+    //     ENTERPRISE: "enterprise",
+    // }
 
-    const handleButtonClick = async (plan: string) => {
-        try {
-            const token = localStorage.getItem("accessToken");
-            const response = await axios.post(
-                `https://backend-autolanding-ai.vercel.app/stripe`,
-                {
-                    plan: plan
-                },
-                {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                }
-            );
+    // const handleButtonClick = async (plan: string) => {
+    //     try {
+    //         const token = localStorage.getItem("accessToken");
+    //         const response = await axios.post(
+    //             `https://backend-autolanding-ai.vercel.app/stripe`,
+    //             {
+    //                 plan: plan
+    //             },
+    //             {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //             }
+    //         );
 
-            console.log("Response:", response);
-            window.location.href = response.data.checkoutUrl;
-        } catch (error) {
-            toast.error('There was an error. Please try again.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });    
-            console.error("Error creating Stripe checkout session:", error);
-        }
-    };
+    //         console.log("Response:", response);
+    //         window.location.href = response.data.checkoutUrl;
+    //     } catch (error) {
+    //         toast.error('There was an error. Please try again.', {
+    //             position: "top-right",
+    //             autoClose: 3000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //         });    
+    //         console.error("Error creating Stripe checkout session:", error);
+    //     }
+    // };
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center justify-center py-12">
-            <h1 className="text-4xl font-bold text-center mb-6">Start 30 trial no credit card</h1>
+            <h1 className="text-4xl font-bold text-center mb-6">Start 30 day trial no credit card</h1>
             <div className="flex justify-center mb-8">
                 <div className="flex items-center bg-gray-800 rounded-full p-1">
                     <button className="px-4 py-2 bg-blue-500 text-white rounded-full transition-all">Annually -40%</button>
