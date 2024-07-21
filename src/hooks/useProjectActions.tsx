@@ -14,7 +14,7 @@ export const useProjectActions = () => {
     }
 
     const response = await axios.post(
-      `https://backend-autolanding-ai.vercel.app/projects/new`,
+      `http://localhost:3000/projects/new`,
       {
         chatId: chatId
       },
