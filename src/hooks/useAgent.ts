@@ -7,7 +7,7 @@ export const useAgent = () => {
   ) {
 
     const response = await axios.put(
-      `https://backend-autolanding-ai.vercel.app/chats/${chatId}`,
+      `http://localhost:3000/chats/${chatId}`,
       {
         sender: "assistant",
       },

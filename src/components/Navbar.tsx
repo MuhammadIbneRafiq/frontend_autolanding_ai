@@ -22,9 +22,11 @@ export default function Navbar() {
             <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                 <NamedLogoWithLink />
                 <div className="flex ml-auto gap-4 items-center">
-                    <Link to="/pricing" className="text-primary">
-                        Pricing
-                    </Link>
+                    {isAuthenticated && (
+                        <Link to="/pricing" className="text-primary">
+                            Pay Us
+                        </Link>
+                    )}
                     <ModeToggle />
                     {!isAuthenticated && (
                         <>
