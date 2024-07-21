@@ -10,6 +10,7 @@ const Pricing = () => {
                 const token = localStorage.getItem("accessToken");
                 const response = await axios.post(
                     `https://backend-autolanding-ai.vercel.app/stripe`,
+                    {},
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
