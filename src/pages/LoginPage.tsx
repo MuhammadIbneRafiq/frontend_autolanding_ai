@@ -21,6 +21,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // import { Icons } from "@/components/ui/icons";
 // import { loginWithGoogleAuth } from "./SupabaseAuth";
 
+// sliding window of testimonials and JOIN DISCORD SERVER
+
+
+
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
