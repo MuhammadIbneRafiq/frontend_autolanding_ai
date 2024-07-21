@@ -79,12 +79,6 @@ export default function LoginPage() {
           <CardTitle className="text-2xl">Login</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
-          {/* <div className="grid grid-cols-1 gap-6">
-            {<Button variant="outline" onClick={() => loginWithGoogleAuth()}>
-              <Icons.google className="mr-2 h-4 w-4" />
-              Google
-            </Button>}
-          </div> */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">

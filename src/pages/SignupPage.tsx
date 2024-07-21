@@ -24,8 +24,6 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Icons } from "@/components/ui/icons";
-import { loginWithGoogleAuth } from "./SupabaseAuth";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -91,12 +89,6 @@ export default function SignupPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <div className="grid grid-cols-1 gap-6">
-            <Button variant="outline" onClick={() => loginWithGoogleAuth()}>
-              <Icons.google className="mr-2 h-4 w-4" />
-              Google
-            </Button>
-          </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">
