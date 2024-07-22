@@ -61,9 +61,9 @@ export default function SignupPage() {
       );
       navigate("/");
       toast({
-        title: "Check your email!",
+        title: "LETS FREAKING GO!!!",
         description:
-          "We've sent you a verification email. Please verify your email address to login.",
+          "YOU'VE SUCCESSFULLY CREATED YOUR ACCOUNT. yep it was that easy! now go and hire by chatting.",
         variant: "success",
       });
     } catch (error: any) {
