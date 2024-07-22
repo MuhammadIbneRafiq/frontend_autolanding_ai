@@ -54,13 +54,7 @@ const Pricing = ( ) => {
                             <li className="mb-2">Feature 2</li>
                             <li className="mb-2">Feature 3</li>
                         </ul>
-                        <button 
-                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={() => handleButtonClick(StripePlans.BASIC)}
-                        >
-                            Choose Plan
-                        </button>
-                    </div>
+                </div>
                     <div className="bg-card rounded-lg shadow-lg p-6 text-center w-full max-w-sm">
                         <h2 className="text-2xl font-bold mb-4">Enterprise</h2>
                         <p className="text-xl mb-4">Custom</p>
@@ -69,16 +63,9 @@ const Pricing = ( ) => {
                             <li className="mb-2">Feature 2</li>
                             <li className="mb-2">Feature 3</li>
                         </ul>
-                        <button 
-                            className="px-4 py-2 bg-primary text-white rounded-lg shadow-lg hover:bg-primary-dark transform transition-transform duration-300 ease-in-out hover:scale-105"
-                            onClick={() => handleButtonClick(StripePlans.ENTERPRISE)}
-                        >
-                            Choose Plan
-                        </button>
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 };
