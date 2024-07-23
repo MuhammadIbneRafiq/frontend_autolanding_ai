@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
+import ReactMarkdown from 'react-markdown';
 import user1 from "../assets/francesco from Konnecte.png";
 import user2 from "../assets/user5.jpg";
 import user3 from "../assets/JAMIL.jpg";
@@ -37,10 +38,15 @@ export default function Chat({ loading }: ChatProps) {
 
   useEffect(() => {
     if (scrollRef.current) {
-      // Scroll to the bottom
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      if (path?.pathname.includes("/project")) {
+        // Scroll to the top
+        scrollRef.current.scrollTop = 0;
+      } else if (path?.pathname.includes("/chat")) {
+        // Scroll to the bottom
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      }
     }
-  }, [chat.chatHistory]); // Trigger whenever chat history changes
+  }, [chat.chatHistory, path?.pathname]); // Trigger whenever chat history or path changes
 
   const truncateDescription = (description: String) => {
     const words = description.split(" ");
@@ -114,6 +120,31 @@ export default function Chat({ loading }: ChatProps) {
     "Talented photographer and videographer",
   ];
 
+  function MarkdownRenderer({ content }: { content: string }) {
+    return (
+      <div className="markdown-content">
+        <ReactMarkdown
+          components={{
+            h1: ({node, ...props}) => <h1 style={{fontSize: '2em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
+            h2: ({node, ...props}) => <h2 style={{fontSize: '1.5em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
+            h3: ({node, ...props}) => <h3 style={{fontSize: '1.17em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
+            ul: ({node, ...props}) => <ul style={{listStyleType: 'disc', marginBottom: '1em', paddingLeft: '2em'}} {...props} />,
+            ol: ({node, ...props}) => <ol style={{listStyleType: 'decimal', marginBottom: '1em', paddingLeft: '2em'}} {...props} />,
+            li: ({node, ...props}) => <li style={{marginBottom: '0.5em'}} {...props} />,
+            strong: ({node, ...props}) => <strong style={{fontWeight: 'bold'}} {...props} />,
+            em: ({node, ...props}) => <em style={{fontStyle: 'italic'}} {...props} />,
+            p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: '1.5'}} {...props} />,
+            blockquote: ({node, ...props}) => <blockquote style={{borderLeft: '4px solid #ccc', paddingLeft: '1em', marginLeft: '0', marginRight: '0'}} {...props} />,
+            code: ({node, ...props}) => <code style={{backgroundColor: '#f0f0f0', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />,
+            pre: ({node, ...props}) => <pre style={{backgroundColor: '#f0f0f0', padding: '1em', overflowX: 'auto', borderRadius: '4px'}} {...props} />,
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      </div>
+    );
+  }  
+
   const [isLoading, setIsLoading] = useState(false);
   const fetchCheckoutUrl = async () => {
       setIsLoading(true);
@@ -172,9 +203,11 @@ export default function Chat({ loading }: ChatProps) {
                 ) : (
                   // Adding Freelancer static profiles
                   <>
-                    <p className="text-xl font-bold uppercase ">
-                      Meet Autolanding AI, your personal agent to find
-                      freelancers or clients 👩🏿‍💻
+                    <p className="text-xl font-bold uppercase text-center">
+                      We'll find you the best freelancers to get the job done. 
+                    </p>
+                    <p className="text-xl font-bold uppercase text-center">
+                      All you need to do is describe your project to our agent.
                     </p>
                     <div className="freelancer_profiles w-full ">
                       <ul className="flex gap-4 overflow-x-auto w-full">
@@ -226,7 +259,7 @@ export default function Chat({ loading }: ChatProps) {
                   Description
                 </h2>
                 <p className="text-sm md:text-lg">
-                  {project?.description ?? "No description found."}
+                  <MarkdownRenderer content={project?.description ?? "No description found."} />
                 </p>
               </div>
               <div className="flex flex-col w-full h-full space-y-2 mb-4">
@@ -256,19 +289,22 @@ export default function Chat({ loading }: ChatProps) {
               <div className="flex flex-col items-center pb-8">
                 <Logo height="140" width="290" />
                 <div className="scroll-m-20 mt-2 font-semibold text-center w-full px-5">
+                  <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
+                      Thank you for using Autolanding AI.
+                  </h2>
+                  <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mb-8 text-center">
+                      Our team will be in touch with you shortly to discuss your project further.
+                  </h2>
+                  <h3 className="tracking-tight first:mt-0 mb-4 text-center">
+                    After that, you can use the link below to pay 50% of the agreed price upfront.
+                  </h3>
                   <button 
                     onClick={fetchCheckoutUrl} 
-                    className="w-full py-3 mb-4 bg-white text-gray-700 text-xl rounded-lg hover:bg-gray-800 hover:text-white transition-transform transform hover:scale-105"
+                    className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
                   >
-                    Pay 50% Advanced
+                    Pay 50% Upfront
                   </button>
                 </div>
-                <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
-                  Get started with an advance payment and see Auto Landing Agent handle your project
-                </h2>
-                <h3 className="tracking-tight first:mt-0 text-center mt-4">
-                  P.S. if you are an agency/freelancers, no need to pay, wait for the client to be assigned to you. later on standard 20% commission applies!
-                </h3>
               </div>
 
             </motion.div>

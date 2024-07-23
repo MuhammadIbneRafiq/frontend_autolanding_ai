@@ -258,3 +258,29 @@ button:hover {
   color: black;
   transform: scale(0.95);
 }
+
+.markdown-content h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin-left: 1.5em;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5em;
+}
+
+.markdown-content strong {
+  font-weight: bold;
+}
+
+.markdown-content em {
+  font-style: italic;
+}

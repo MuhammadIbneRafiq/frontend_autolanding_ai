@@ -1,54 +1,56 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { useState } from 'react';
+// import axios from 'axios';
+// import { toast } from 'react-toastify';
 
 const Pricing = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [billingCycle, setBillingCycle] = useState('annually'); // 'annually' or 'monthly'
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [billingCycle, setBillingCycle] = useState('annually'); // 'annually' or 'monthly'
 
-    const fetchCheckoutUrl = async () => {
-        setIsLoading(true);
-        try {
-            const token = localStorage.getItem("accessToken");
-            const response = await axios.post(
-                `https://backend-autolanding-ai.vercel.app/stripe`,
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+    // const fetchCheckoutUrl = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const token = localStorage.getItem("accessToken");
+    //         const response = await axios.post(
+    //             `https://backend-autolanding-ai.vercel.app/stripe`,
+    //             {},
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             }
+    //         );
 
-            console.log("Response:", response);
-            window.location.href = response.data.checkoutUrl;
-        } catch (error) {
-            toast.error('There was an error. Please try again.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            console.error("Error creating Stripe checkout session:", error);
-            setIsLoading(false);
-        }
-    };
+    //         console.log("Response:", response);
+    //         window.location.href = response.data.checkoutUrl;
+    //     } catch (error) {
+    //         toast.error('There was an error. Please try again.', {
+    //             position: "top-right",
+    //             autoClose: 3000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //         });
+    //         console.error("Error creating Stripe checkout session:", error);
+    //         setIsLoading(false);
+    //     }
+    // };
 
-    const toggleBillingCycle = () => {
-        setBillingCycle(prevCycle => (prevCycle === 'annually' ? 'monthly' : 'annually'));
-    };
+    // const toggleBillingCycle = () => {
+    //     setBillingCycle(prevCycle => (prevCycle === 'annually' ? 'monthly' : 'annually'));
+    // };
 
-    if (isLoading) {
-        return <div>Redirecting to payment...</div>;
-    }
+    // if (isLoading) {
+    //     return <div>Redirecting to payment...</div>;
+    // }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center justify-center py-12">
-            <h1 className="text-4xl font-bold text-center mb-6">Start 30 day trial no credit card</h1>
-            <div className="flex justify-center mb-8">
+        <div className="min-h-screen flex flex-col items-center justify-center py-12">
+            <h1 className="text-4xl font-bold text-center">Great news,</h1>
+            <h1 className="text-4xl font-bold text-center mb-10">You can start hiring for free!</h1>
+            <p className="font-bold text-center mb-6">We only charge for our freelancing service. To get started, sing up and start chatting with our agent.</p>
+            {/* <div className="flex justify-center mb-8">
                 <div className="flex items-center bg-gray-800 rounded-full p-1">
                     <button 
                         onClick={toggleBillingCycle}
@@ -115,7 +117,7 @@ const Pricing = () => {
                         <li className="mb-2">✔ 0% discount taken</li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
