@@ -23,14 +23,12 @@ export default function Navbar() {
             <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                 <NamedLogoWithLink />
                 <div className="flex ml-auto gap-4 items-center">
-                    {isAuthenticated && (
-                        <Link
-                            to="/pricing"
-                            className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
-                        >
-                            Pricing
-                        </Link>
-                    )}
+                    <Link
+                        to="/pricing"
+                        className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
+                    >
+                        Pricing
+                    </Link>
                     <ModeToggle />
                     {!isAuthenticated && (
                         <>
