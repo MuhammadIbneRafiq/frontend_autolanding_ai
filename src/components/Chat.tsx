@@ -174,7 +174,7 @@ export default function Chat({ loading }: ChatProps) {
                   <>
                     <p className="text-xl font-bold uppercase ">
                       Meet Autolanding AI, your personal agent to find
-                      affordable and talented freelancers 👩🏿‍💻
+                      freelancers or clients 👩🏿‍💻
                     </p>
                     <div className="freelancer_profiles w-full ">
                       <ul className="flex gap-4 overflow-x-auto w-full">
