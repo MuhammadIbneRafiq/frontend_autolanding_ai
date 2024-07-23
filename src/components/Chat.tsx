@@ -267,7 +267,7 @@ export default function Chat({ loading }: ChatProps) {
                   Get started with an advance payment and see Auto Landing Agent handle your project
                 </h2>
                 <h3 className="tracking-tight first:mt-0 text-center mt-4">
-                  P.S. chat will be enabled and will give you updates for 24/7!
+                  P.S. if you are an agency/freelancers, no need to pay, wait for the client to be assigned to you. later on standard 20% commission applies!
                 </h3>
               </div>
 
