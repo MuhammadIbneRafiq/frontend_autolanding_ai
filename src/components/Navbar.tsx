@@ -8,6 +8,7 @@ import { ModeToggle } from "./ui/ModeToggle";
 import { NamedLogoWithLink } from "./Logo";
 import UserAvatar from "./UserAvatar";
 import { useAuth } from "@/hooks/useAuth";
+import '../index.css';
 
 export default function Navbar() {
     const { isAuthenticated } = useAuth();
@@ -23,8 +24,11 @@ export default function Navbar() {
                 <NamedLogoWithLink />
                 <div className="flex ml-auto gap-4 items-center">
                     {isAuthenticated && (
-                        <Link to="/pricing" className="text-primary">
-                            Pay Us
+                        <Link
+                            to="/pricing"
+                            className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
+                        >
+                            Pricing
                         </Link>
                     )}
                     <ModeToggle />
@@ -66,7 +70,10 @@ export default function Navbar() {
                             </div>
                         )}
                         <div className="flex gap-4 flex-col">
-                            <Link to="/pricing" className="text-primary">
+                            <Link
+                                to="/pricing"
+                                className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
+                            >
                                 Pricing
                             </Link>
                             {!isAuthenticated && (

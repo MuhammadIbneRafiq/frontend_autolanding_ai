@@ -1,6 +1,8 @@
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useEffect, useRef } from "react";
-
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import { Loader } from "lucide-react";
 import { Logo } from "./Logo";
 import { ProjectStatus } from "@/types/Project";
@@ -111,10 +113,52 @@ export default function Chat({ loading }: ChatProps) {
     "Skilled software engineer",
     "Talented photographer and videographer",
   ];
+
+  const [isLoading, setIsLoading] = useState(false);
+  const fetchCheckoutUrl = async () => {
+      setIsLoading(true);
+      try {
+          const token = localStorage.getItem("accessToken");
+          const response = await axios.post(
+              `https://backend-autolanding-ai.vercel.app/stripe`,
+              {},
+              {
+                  headers: {
+                      Authorization: `Bearer ${token}`,
+                  },
+              }
+          );
+
+          console.log("Response:", response);
+          window.location.href = response.data.checkoutUrl;
+      } catch (error) {
+          toast.error('There was an error. Please try again.', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+          });
+          console.error("Error creating Stripe checkout session:", error);
+          setIsLoading(false);
+      }
+  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen w-screen">
+        <div className="text-center p-4">
+          <p className="text-2xl font-semibold">Redirecting to payment...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col h-[80vh] w-full gap-2 py-4">
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
-        <div className="justify-center items-center">
+        <div className="justify-center items-center px-4 pt-8 pb-8">
           {path.pathname === "/" ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -210,14 +254,23 @@ export default function Chat({ loading }: ChatProps) {
               </div>
 
               <div className="flex flex-col items-center pb-8">
-                <Logo height="100" width="100" />
-                <h2 className="scroll-m-20 text-xl mt-2 font-semibold tracking-tight first:mt-0 text-center">
-                  Thank you for using Autolanding AI!
-                </h2>
+                <Logo height="140" width="290" />
+                <div className="scroll-m-20 mt-2 font-semibold text-center w-full px-5">
+                  <button 
+                    onClick={fetchCheckoutUrl} 
+                    className="w-full py-3 mb-4 bg-white text-gray-700 text-xl rounded-lg hover:bg-gray-800 hover:text-white transition-transform transform hover:scale-105"
+                  >
+                    Pay 50% Advanced
+                  </button>
+                </div>
                 <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
-                  One of our team members will be in touch with you shortly.
+                  Get started with an advance payment and see Auto Landing Agent handle your project
                 </h2>
+                <h3 className="tracking-tight first:mt-0 text-center mt-4">
+                  P.S. chat will be enabled and will give you updates for 24/7!
+                </h3>
               </div>
+
             </motion.div>
           ) : (
             <motion.div

@@ -251,3 +251,10 @@ button:hover {
 .hover\:scale-105:hover {
     transform: scale(1.05);
 }
+
+/* styles.css */
+.link-click-effect:active {
+  background-color: white;
+  color: black;
+  transform: scale(0.95);
+}
