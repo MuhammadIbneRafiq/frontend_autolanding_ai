@@ -137,6 +137,7 @@ export default function Chat({ loading }: ChatProps) {
             blockquote: ({node, ...props}) => <blockquote style={{borderLeft: '4px solid #ccc', paddingLeft: '1em', marginLeft: '0', marginRight: '0'}} {...props} />,
             code: ({node, ...props}) => <code style={{backgroundColor: '#f0f0f0', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />,
             pre: ({node, ...props}) => <pre style={{backgroundColor: '#f0f0f0', padding: '1em', overflowX: 'auto', borderRadius: '4px'}} {...props} />,
+            a: ({node, ...props}) => <a style={{fontWeight: 'bold', textDecoration: 'underline'}} {...props} />,
           }}
         >
           {content}
@@ -178,7 +179,7 @@ export default function Chat({ loading }: ChatProps) {
   };
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen w-screen">
+      <div className="flex flex-col h-[80vh] w-full gap-2 py-4 justify-center">
         <div className="text-center p-4">
           <p className="text-2xl font-semibold">Redirecting to payment...</p>
         </div>
@@ -336,7 +337,7 @@ export default function Chat({ loading }: ChatProps) {
                       </div>
                     </div>
                     <div className="mt-2">
-                      <p>{message.content}</p>
+                      <MarkdownRenderer content={message.content} />
                     </div>
                   </div>
                 ))}
