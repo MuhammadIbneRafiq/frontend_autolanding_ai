@@ -36,9 +36,9 @@ export const ChatList = () => {
                                 to={`/chat/${chat.chat_id}`}
                                 className="h-full rounded-lg text-sm"
                             >
-                                <p className="w-[500px] ml-[-1px] pl-3 ">
-                                    {chat.title}
-                                </p>
+                            <p className="w-[500px] ml-[-1px] pl-3 whitespace-nowrap overflow-hidden text-overflow-ellipsis">
+                                {chat.title}
+                            </p>
                             </Link>
                         </ScrollShadow>
                     ))}

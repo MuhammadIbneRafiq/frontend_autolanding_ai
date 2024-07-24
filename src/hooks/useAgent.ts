@@ -15,6 +15,7 @@ export const useAgent = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
+        timeout: 30000  // 30 seconds
       }
     );
 

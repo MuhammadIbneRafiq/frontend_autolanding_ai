@@ -59,9 +59,9 @@ export default function SignupPage() {
       );
       navigate("/");
       toast({
-        title: "LETS FREAKING GO!!!",
+        title: "Thank you for signing up!",
         description:
-          "YOU'VE SUCCESSFULLY CREATED YOUR ACCOUNT. yep it was that easy! now go and hire by chatting.",
+          "You've successfully created an account. Now start a chat with our agent and describe your project.",
         variant: "success",
       });
     } catch (error: any) {
