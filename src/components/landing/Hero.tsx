@@ -1,5 +1,5 @@
-import { FaArrowRight } from 'react-icons/fa';
-import MagicButton from "@/components/MagicButton";
+// import { FaArrowRight } from 'react-icons/fa';
+// import MagicButton from "@/components/MagicButton";
 // import { Spotlight } from "@/components/ui/Spotlight";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
@@ -43,11 +43,7 @@ const Hero = () => {
           </p>
 
           <button>
-            <MagicButton
-              title="Discover Our Services"
-              icon={<FaArrowRight />}
-              position="right"
-            />
+            title="Discover Our Services"
           </button>
         </div>
       </div>

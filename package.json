@@ -36,11 +36,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.3",
-<<<<<<< HEAD
-    "react-icons": "^5.2.1",
-=======
     "react-markdown": "^9.0.1",
->>>>>>> d9068dc232e950c45148abd5925e8e2836dfb172
     "react-modal": "^3.16.1",
     "react-resizable-panels": "^2.0.18",
     "react-router-dom": "^6.22.3",
