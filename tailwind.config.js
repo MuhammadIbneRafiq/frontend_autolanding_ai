@@ -2,6 +2,7 @@
 const { nextui } = require("@nextui-org/react");
 
 module.exports = {
+    mode: 'jit',
     darkMode: ["class"],
     content: [
         "./pages/**/*.{ts,tsx}",

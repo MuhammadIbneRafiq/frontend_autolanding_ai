@@ -10,8 +10,6 @@ export const ChatList = () => {
 
     const path = useLocation();
 
-    console.log("chats", chats, isError);
-
     return (
         <ScrollArea className="flex flex-col h-full">
             <div className="flex flex-col h-full mt-2 gap-1">
