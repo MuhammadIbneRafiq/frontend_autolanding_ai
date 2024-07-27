@@ -20,6 +20,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { Icons } from "@/components/ui/icons";
 // import { loginWithGoogleAuth } from "./SupabaseAuth";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -74,57 +76,77 @@ export default function LoginPage() {
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <Card className="h-fit max-w-[400px] w-full">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Login</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email Address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="johndoe@gmail.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+      <div className="grid grid-cols-2 w-full max-w-7xl h-full">
+        <div className="flex flex-col justify-center items-center bg-dark-blue-100 p-8">
+          <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">
+            <div>
+              <img src="https://pbs.twimg.com/media/EAC2iswX4AUZXav.jpg" alt="Slide 1" />
+            </div>
+            <div>
+              <img src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1707927008/catalog/1486193250725023744/lji9hy0cptoe849n5xdl.webp" alt="Slide 2" />
+            </div>
+            <div>
+              <img src="https://images.ctfassets.net/m9n8o4ceoyuw/7L9z8LIlai8hBJrl1xWhX/9d740ec59d0712021ec1bd397b5a868a/Discord_-_Server.jpg" alt="Slide 3" />
+            </div>
+          </Carousel>
+          <Button className="mt-4" onClick={() => window.location.href='https://discord.gg/xeX2Zhut82'}
+          >Join the Discord</Button>
+          <h1 className="mt-4 text-center text-white font-bold"> Join 100s of agencies/communities and exchange client on referral</h1>
+        </div>
+        <div className="flex justify-center items-center">
+          <Card className="h-fit max-w-[400px] w-full">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-2xl">Login</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  <div className="grid gap-4">
+                    <div className="grid gap-2">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address</FormLabel>
+                            <FormControl>
+                              <Input placeholder="johndoe@gmail.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Password</FormLabel>
+                            <FormControl>
+                              <Input {...field} type="password" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    {form.formState.errors.root && (
+                      <FormMessage>
+                        {form.formState.errors.root.message}
+                      </FormMessage>
                     )}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input {...field} type="password" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                {form.formState.errors.root && (
-                  <FormMessage>
-                    {form.formState.errors.root.message}
-                  </FormMessage>
-                )}
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <Loader className="animate-spin" /> : "Login"}
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? <Loader className="animate-spin" /> : "Login"}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

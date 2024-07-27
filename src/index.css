@@ -76,6 +76,8 @@
 }
 html {
     height: 100%;
+    background-color: rgba(2, 8, 23, 0.977) !important;
+    color: rgb(20, 3, 49); /* Ensure text is readable */
 }
 
 body {

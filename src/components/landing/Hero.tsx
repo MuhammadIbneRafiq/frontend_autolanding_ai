@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 // import { FaArrowRight } from 'react-icons/fa';
 // import MagicButton from "@/components/MagicButton";
 // import { Spotlight } from "@/components/ui/Spotlight";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/chat');
+  };
+
   return (
     <div className="pb-10 pt-36 bg-transparent">
       {/* <div>
@@ -42,8 +49,8 @@ const Hero = () => {
             Connect with top AI freelancers and agencies to transform your ideas into reality.
           </p>
 
-          <button>
-            title="Discover Our Services"
+          <button onClick={handleButtonClick} className="text-black bg-white px-12 py-4 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg">
+            Try for free
           </button>
         </div>
       </div>
