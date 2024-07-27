@@ -13,9 +13,11 @@ import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
 import ReactMarkdown from 'react-markdown';
 import user1 from "../assets/francesco from Konnecte.png";
-import user2 from "../assets/user5.jpg";
+// import user2 from "../assets/user3.jpg";
 import user3 from "../assets/JAMIL.jpg";
 import user4 from "../assets/user6.jpg";
+import user5 from "../assets/user5.jpg";
+import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 
 interface ChatProps {
@@ -73,12 +75,12 @@ export default function Chat({ loading }: ChatProps) {
         "Italian AI agency helping law consultant and firms to 10x their business",
       image: user1,
     },
-    {
-      title: "Charlie",
-      description:
-        "AI hacker and musician exploring the frontiers of technology and ...",
-      image: user2,
-    },
+    // {
+    //   title: "Charlie",
+    //   description:
+    //     "AI hacker and musician exploring the frontiers of technology and ...",
+    //   image: user2,
+    // },
     {
       title: "Jamil",
       description:
@@ -95,19 +97,19 @@ export default function Chat({ loading }: ChatProps) {
       title: "Alshahab Rezvi",
       description:
         "MERN Stack, Automation And AI Expert Over 3 Year Plus Experience",
-      image: user7,
+      image: user5,
     },
     {
       title: "Luna ",
       description:
         "Innovative UI/UX designer committed to creating intuitive and visually appealing interfaces.",
-      image: user3,
+      image: user6,
     },
     {
       title: "Oliver ",
       description:
         "Detail-oriented frontend developer with expertise in responsive web design and performance optimization.",
-      image: user4,
+      image: user7,
     },
   ];
 
@@ -204,11 +206,11 @@ export default function Chat({ loading }: ChatProps) {
                   // Adding Freelancer static profiles
                   <>
                     <p className="text-xl font-bold uppercase text-center">
-                      We'll find you the best freelancers to get the job done. 
+                      Your Personal AI Agent to get you agencies or freelancers by simply chatting!
                     </p>
-                    <p className="text-xl font-bold uppercase text-center">
+                    {/* <p className="text-xl font-bold uppercase text-center">
                       All you need to do is describe your project to our agent.
-                    </p>
+                    </p> */}
                     <div className="freelancer_profiles w-full ">
                       <ul className="flex gap-4 overflow-x-auto w-full">
                         {freelancers.map((freelancer, index) => (
