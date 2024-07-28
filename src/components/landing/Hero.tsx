@@ -1,42 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-// import { FaArrowRight } from 'react-icons/fa';
-// import MagicButton from "@/components/MagicButton";
+import { FaLocationArrow } from "react-icons/fa6";
+
+import MagicButton from "@/components/MagicButton";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-// import ChatInterface from '../ChatInterface';
 
 const Hero = () => {
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    navigate('/chat1');
-  };
-
   return (
-    <div className="pb-10 pt-36 bg-transparent">
-      <div className="flex justify-center relative my-20 z-10">
-        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-xs text-center text-blue-900 max-w-80">
-            AI-Powered Solutions for Your Business
-          </p>
-
-          <TextGenerateEffect
-            words="Empowering Businesses with Intelligent AI Freelance Services"
-            className="text-center text-[40px] md:text-5xl lg:text-6xl"
-          />
-
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-blue-900">
-            Connect with top AI freelancers and agencies to transform your ideas into reality.
-          </p>
-
-          <button onClick={handleButtonClick} className="text-black bg-white px-12 py-4 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg">
-            Try for free
-          </button>
-        </div>
-      </div>
+    <div className="pb-20 pt-36">
+      {/**
+       *  UI: Spotlights
+       *  Link: https://ui.aceternity.com/components/spotlight
+       */}
       <div>
         <Spotlight
-          className="-top-40 -left-10 md:-left-32 md:-top-20"
+          className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
           fill="white"
         />
         <Spotlight
@@ -46,13 +23,53 @@ const Hero = () => {
         <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="blue" />
       </div>
 
+      {/**
+       *  UI: grid
+       *  change bg color to bg-black-100 and reduce grid color from
+       *  0.2 to 0.03
+       */}
       <div
-        className="h-screen w-full flex items-center justify-center"
+        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+       absolute top-0 left-0 flex items-center justify-center"
       >
+        {/* Radial gradient for the container to give a faded look */}
         <div
+          // chnage the bg to bg-black-100, so it matches the bg color and will blend in
           className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black-100
           [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
         />
+      </div>
+
+      <div className="flex justify-center relative my-20 z-10">
+        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
+          <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
+            Hire or get hired by chatting.
+          </p>
+
+          {/**
+           *  Link: https://ui.aceternity.com/components/text-generate-effect
+           *
+           *  change md:text-6xl, add more responsive code
+           */}
+          <TextGenerateEffect
+            words="Auto Landing AI: Hire or get hired 3x faster."
+            className="text-center text-[40px] md:text-5xl lg:text-6xl"
+          />
+
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            Tired of Sifting Through Endless Resumes? Find Your Perfect
+            Freelancer by simply chatting
+          </p>
+
+          <a href="<ChatInterface />
+">
+            <MagicButton
+              title="Start Your Search"
+              icon={<FaLocationArrow />}
+              position="right"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
