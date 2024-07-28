@@ -59,7 +59,7 @@ export default function LoginPage() {
       const token = response.data.accessToken;
       localStorage.setItem("accessToken", token);
 
-      navigate("/");
+      navigate("/chatHome");
     } catch (error: any) {
       form.setError("root", {
         message: error.response.data.error,
