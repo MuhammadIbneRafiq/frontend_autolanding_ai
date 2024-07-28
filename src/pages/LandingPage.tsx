@@ -1,5 +1,7 @@
-import { FeaturesSectionDemo } from "@/components/landing/Feature";
+// import { FeaturesSectionDemo } from "@/components/landing/Feature";
+import Footer from "@/components/landing/Footer";
 import Hero from "@/components/landing/Hero";
+import { HeroHighlightDemo } from "@/components/landing/HeroHighlight";
 import { LogoScroll } from "@/components/landing/LogoScroll";
 import { ScreenScroll } from "@/components/landing/Screen";
 import { TwitterCard } from "@/components/landing/TwitterCard";
@@ -15,10 +17,12 @@ const LandingPage = () => {
         <Hero />
         <ScreenScroll />
         <LogoScroll />
+        <HeroHighlightDemo />
         {/* <TextRevealDemo /> */}
-        <FeaturesSectionDemo />
+        {/* <FeaturesSectionDemo /> */}
         <LampDemo />
         <TwitterCard />
+        <Footer />
       </main>
     </>
   );
