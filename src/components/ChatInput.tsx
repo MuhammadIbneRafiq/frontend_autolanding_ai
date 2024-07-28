@@ -61,6 +61,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
             if (location.pathname === "/") {
                 // If this is a new chat, send the message and navigate to the chat
                 const response = await createChat(message, "user");
+                console.log('if er modhe', response)
                 await generateAIResponse(response.chat_id);
 
                 await refetchChatsList();
@@ -70,7 +71,9 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
             } else {
                 // If this is an existing chat, send the message
                 setMessage("");
+                console.log('mesage', message)
                 const chatId = location.pathname.split("/")[2];
+                console.log('else', chatId)
                 await sendMessageExistingChat(message, chatId, "user");
                 await refetchChatMessages();
 

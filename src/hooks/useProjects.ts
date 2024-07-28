@@ -24,9 +24,6 @@ export const useProjects = () => {
           },
         }
       );
-
-      console.log(response.data);
-
       return response.data as Project[];
     },
     refetchOnWindowFocus: false,

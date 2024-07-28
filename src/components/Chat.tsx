@@ -32,7 +32,6 @@ interface CardProps {
 
 export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
-
   const chat = useChat({ id: path?.pathname.split("/")[2] });
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
 
@@ -193,7 +192,7 @@ export default function Chat({ loading }: ChatProps) {
     <div className="flex flex-col h-[80vh] w-full gap-2 py-4">
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="justify-center items-center px-4 pt-8 pb-8">
-          {path.pathname === "/" ? (
+          {path.pathname === "/chatHome" ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
