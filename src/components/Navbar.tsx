@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
@@ -12,10 +12,6 @@ import '../index.css';
 
 export default function Navbar() {
     const { isAuthenticated } = useAuth();
-
-    const handleCreateProfileClick = () => {
-        toast.info('Come back in 24 hr to have your AI profile created');
-    };
 
     return (
         <header className="sticky border-b top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-6">
@@ -56,17 +52,6 @@ export default function Navbar() {
                 </SheetTrigger>
                 <SheetContent side="left">
                     <nav className="grid gap-6 text-lg font-medium">
-                        {isAuthenticated && (
-                            <div className="flex gap-4 flex-col">
-                                <Button 
-                                    onClick={handleCreateProfileClick}
-                                    variant="outline"
-                                    className="rounded-full"
-                                >
-                                    Create AI Profile
-                                </Button>
-                            </div>
-                        )}
                         <div className="flex gap-4 flex-col">
                             <Link
                                 to="/pricing"

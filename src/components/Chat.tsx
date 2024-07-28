@@ -293,7 +293,7 @@ export default function Chat({ loading }: ChatProps) {
                 <Logo height="140" width="290" />
                 <div className="scroll-m-20 mt-2 font-semibold text-center w-full px-5">
                   <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
-                      Thank you for using Autolanding AI.
+                      Thank you for using Auto Landing AI.
                   </h2>
                   <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mb-8 text-center">
                       Our team will be in touch with you shortly to discuss your project further.

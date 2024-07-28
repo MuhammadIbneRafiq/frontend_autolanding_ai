@@ -14,6 +14,7 @@ const LandingPage = () => {
       <TextRevealDemo />
       {/* <FeaturesSectionDemo /> */}
       <LampDemo />
+      {/*have a footer with details */}
     </div>
   );
 };
