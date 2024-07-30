@@ -3,42 +3,43 @@ import Marquee from "../magicui/marquee";
 
 const reviews = [
   {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
+    name: "Ahmed",
+    username: "@ahmed_freelancer",
+    body: "wth finally no more review based shit! 🥳 Chatting with clients is so easy. Supporting my fam, thanks to this. 💪",
+    img: "https://randomuser.me/api/portraits/men/1.jpg",
   },
   {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
+    name: "Maria",
+    username: "@maria_dev",
+    body: "and i thought ai's gonna take my job, heres its giving me DANG, love it! 🔥",
+    img: "https://randomuser.me/api/portraits/women/2.jpg",
   },
   {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
+    name: "Chen",
+    username: "@chen_code",
+    body: "who thought of hiring by chatting? i wish tinder found me dates like Auto landing Ai finding me clients🙌",
+    img: "https://randomuser.me/api/portraits/men/3.jpg",
   },
   {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
+    name: "Aisha",
+    username: "@aisha_designs",
+    body: "dude fuck cold emails haha this is infinite client leads glitch! 🌟",
+    img: "https://randomuser.me/api/portraits/women/4.jpg",
   },
   {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
+    name: "Rahul",
+    username: "@rahul_dev",
+    body: "The AI chat rocks! Finding clients is so quick and easy. Feeling blessed. ✨",
+    img: "https://randomuser.me/api/portraits/men/5.jpg",
   },
   {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    name: "Sophia",
+    username: "@sophia_writer",
+    body: "This platform is next level! AI chat is awesome. So many opportunities, so much freedom. 😍",
+    img: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
+
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);

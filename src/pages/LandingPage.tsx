@@ -55,7 +55,7 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Tired of fake reviews on fiverr? Hire the verified quality
+            Tired of fake reviews on fiverr? Hire verified
             Freelancer by simply chatting
           </p>
 

@@ -5,24 +5,19 @@ import footergrid from "@/assets/footer-grid.svg";
 const socialMedia = [
   {
     id: 1,
-    img: "/insta.svg",
-    link: "https://instagram.com/skillonation_kids?igshid=ZDdkNTZiNTM=",
+    img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png", // Instagram logo
+    link: "https://www.instagram.com/autolandingaiofficial/",
   },
   {
     id: 2,
-    img: "/youtube.svg",
-    link: "https://www.skillonationkids.com/",
+    img: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png", // YouTube logo
+    link: "https://www.youtube.com/channel/UCbmFzKaDReXV7XpUi6HTfXw",
   },
   {
     id: 3,
-    img: "/link.svg",
-    link: "https://www.linkedin.com/company/skillonationedtech/",
-  },
-  {
-    id: 4,
-    img: "/facebook.svg",
-    link: "https://www.facebook.com/Skillonation/",
-  },
+    img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg", // LinkedIn logo
+    link: "https://www.linkedin.com/in/muhammad-ibne-rafiq/",
+  }
 ];
 
 const Footer = () => {
