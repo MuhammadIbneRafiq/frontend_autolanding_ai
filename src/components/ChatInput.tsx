@@ -58,9 +58,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     async function onSendMessage() {
         setLoading(true);
         try {
-            if (location.pathname === "/") {
+            if (location.pathname === "/chatHome") {
                 // If this is a new chat, send the message and navigate to the chat
                 const response = await createChat(message, "user");
+                console.log('this is new chat', response)
                 await generateAIResponse(response.chat_id);
 
                 await refetchChatsList();

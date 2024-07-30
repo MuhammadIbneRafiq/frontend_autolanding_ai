@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
+// import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
@@ -19,9 +19,20 @@ import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { Icons } from "@/components/ui/icons";
-// import { loginWithGoogleAuth } from "./SupabaseAuth";
+// import { Auth } from '@supabase/auth-ui-react';
+// import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
+
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+// import { createClient } from "@supabase/supabase-js";
+// import { Theme } from "react-toastify";
+// import { ThemeProvider } from "@/services/providers/ThemeProvider";
+
+// const SUPABASE_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ra2RsYmRuZmF5bGFrZmJ5Y3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM1MjIzNTIsImV4cCI6MjAyOTA5ODM1Mn0.Zf4DnOscUxz5LxbulHsMMmtyXT7Eoapg50WVgAW_Nig'
+// const SUPABASE_URL= 'https://okkdlbdnfaylakfbycta.supabase.co'
+
+// const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -99,6 +110,13 @@ export default function LoginPage() {
               <CardTitle className="text-2xl">Login</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
+              {/* <Auth
+                supabaseClient={supabase}
+                appearance={{
+                  theme: ThemeSupa
+                }}
+                providers={["google"]}
+              /> */}
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <div className="grid gap-4">
@@ -142,7 +160,7 @@ export default function LoginPage() {
                     </Button>
                   </div>
                 </form>
-              </Form>
+              </Form> 
             </CardContent>
           </Card>
         </div>

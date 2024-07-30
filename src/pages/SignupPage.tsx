@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
+// import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
@@ -140,7 +140,7 @@ export default function SignupPage() {
                     )}
                   />
                 </div>
-                <div className="grid gap-2">
+                {/* <div className="grid gap-2">
                   <FormField
                     control={form.control}
                     name="role"
@@ -171,7 +171,7 @@ export default function SignupPage() {
                       </FormItem>
                     )}
                   />
-                </div>
+                </div> */}
                 {form.formState.errors.root && (
                   <FormMessage>
                     {form.formState.errors.root.message}
