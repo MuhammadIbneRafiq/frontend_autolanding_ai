@@ -19,7 +19,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <BrowserRouter>
-                    <main className="sm:px-10 px-5 h-full">
+                    <main className="w-full">
                         <Navbar />
                         <Routes>
                             <Route path="/" element={<LandingPage />} />
