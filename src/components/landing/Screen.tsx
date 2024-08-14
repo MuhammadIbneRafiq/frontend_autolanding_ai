@@ -4,7 +4,7 @@ import demo from "@/assets/demo.gif"
 
 export function ScreenScroll() {
   return (
-    <div className="flex flex-col overflow-hidden bg-transparent"> {/* Ensuring the parent div has a transparent background */}
+    <div className="flex flex-col overflow-hidden bg-background"> {/* Ensuring the parent div has a transparent background */}
       <ContainerScroll>
         <img
           src={demo}

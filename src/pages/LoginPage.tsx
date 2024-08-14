@@ -86,7 +86,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="absolute top-7 w-full h-full flex justify-center items-center bg-white dark:bg-background">
       <div className="grid grid-cols-2 w-full max-w-7xl h-full">
         <div className="flex flex-col justify-center items-center bg-dark-blue-100 p-8">
           <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">
@@ -102,7 +102,7 @@ export default function LoginPage() {
           </Carousel>
           <Button className="mt-4" onClick={() => window.location.href='https://discord.gg/xeX2Zhut82'}
           >Join the Discord</Button>
-          <h1 className="mt-4 text-center text-white font-bold"> Join 100s of agencies/communities and exchange client on referral</h1>
+          <h1 className="mt-4 text-center text-black-100 dark:text-white font-bold "> Join 100s of agencies/communities and exchange client on referral</h1>
         </div>
         <div className="flex justify-center items-center">
           <Card className="h-fit max-w-[400px] w-full">
@@ -128,7 +128,7 @@ export default function LoginPage() {
                           <FormItem>
                             <FormLabel>Email Address</FormLabel>
                             <FormControl>
-                              <Input placeholder="johndoe@gmail.com" {...field} />
+                              <Input className="focus:outline-none focus:border-transparent focus:ring-0 border-black-100 dark:border-gray-800" placeholder="johndoe@gmail.com" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -143,7 +143,7 @@ export default function LoginPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input {...field} type="password" />
+                              <Input className="focus:outline-none focus:border-transparent focus:ring-0 border-black-100 dark:border-gray-800" placeholder="••••••••" {...field} type="password" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

@@ -32,9 +32,10 @@ export function Logo({
 }
 
 export function NamedLogoWithLink() {
+    const isMobile = window.innerWidth < 768;
     return (
         <Link to="/" className="flex flex-row items-center gap-3">
-            <Logo height="100" width="100" />
+            <Logo height={isMobile ? "80" : "100"} width={isMobile ? "80" : "100"} />
         </Link>
     );
 }

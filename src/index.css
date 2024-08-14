@@ -4,36 +4,37 @@
 
 @layer base {
     :root {
-        --background: 0 0% 0%; /* Changed this to black */
-        --foreground: 210 40% 98%;
-
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-
-        --radius: 0.5rem;
+            --background: 0 0% 100%; /* White background */
+            --foreground: 0 0% 0%; /* Black text color */
+    
+            --card: 0 0% 100%; /* White background for cards */
+            --card-foreground: 0 0% 0%; /* Black text color for cards */
+    
+            --popover: 0 0% 100%; /* White background for popovers */
+            --popover-foreground: 0 0% 0%; /* Black text color for popovers */
+    
+            --primary: 222.2 47.4% 11.2%; /* Customize this color for buttons or primary elements */
+            --primary-foreground: 0 0% 100%; /* White text on primary elements */
+    
+            --secondary: 0 0% 85%; /* Light gray for secondary elements */
+            --secondary-foreground: 0 0% 0%; /* Black text for secondary elements */
+    
+            --muted: 0 0% 90%; /* Muted background color */
+            --muted-foreground: 0 0% 50%; /* Muted text color */
+    
+            --accent: 0 0% 85%; /* Accent color for light theme */
+            --accent-foreground: 0 0% 0%; /* Accent text color */
+    
+            --destructive: 0 84.2% 60.2%; /* Red for destructive actions */
+            --destructive-foreground: 0 0% 100%; /* White text on destructive actions */
+    
+            --border: 0 0% 85%; /* Border color */
+            --input: 0 0% 100%; /* Input background */
+            --ring: 222.2 47.4% 11.2%; /* Ring color for focus states */
+    
+            --radius: 0.5rem; /* Border radius */
     }
+    
 
     .dark {
         --background: 222.2 84% 4.9%;
@@ -76,7 +77,8 @@
 }
 html {
     height: 100%;
-    background-color: rgba(2, 8, 23, 0.977) !important;
+    /* background-color: rgba(2, 8, 23, 0.977) !important; */
+    background-color: rgba(206, 208, 211, 0.977) !important;
     color: rgb(20, 3, 49); /* Ensure text is readable */
 }
 

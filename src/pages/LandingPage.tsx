@@ -34,18 +34,18 @@ const Hero = () => {
 
       {/* Grid */}
       <div
-        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.04] bg-grid-black-100/[0.08]
        absolute top-0 left-0 flex items-center justify-center"
       >
         <div
-          className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black-100
+          className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white dark:bg-black-100
           [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
         />
       </div>
 
       <div className="flex justify-center relative my-20 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
+          <p className="uppercase tracking-widest text-xs text-center text-black dark:text-blue-100 max-w-80">
             Hire by chatting with our AI.
           </p>
 
@@ -75,7 +75,7 @@ const Hero = () => {
 const LandingPage = () => {
   return (
     <>
-      <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto ">
+      <main className="relative bg-background flex justify-center items-center flex-col overflow-hidden mx-auto ">
         <Hero />
         <ScreenScroll />
         <LogoScroll />

@@ -98,7 +98,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="w-full h-fit flex justify-center items-center space-x-24">
+    <div className="absolute top-14 w-full h-fit flex justify-center items-center space-x-56 bg-white dark:bg-background">
       <Card className="h-full max-w-[400px] w-full">
         <CardHeader className="space-y-3">
           <CardTitle className="text-2xl">Create an account</CardTitle>
@@ -118,7 +118,7 @@ export default function SignupPage() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="muhammadrafiq@gmail.com" {...field} />
+                          <Input className="focus:outline-none focus:border-transparent focus:ring-0 border-black-100 dark:border-gray-800" placeholder="muhammadrafiq@gmail.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -133,7 +133,7 @@ export default function SignupPage() {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input {...field} type="password" />
+                          <Input {...field} className="focus:outline-none focus:border-transparent focus:ring-0 border-black-100 dark:border-gray-800" placeholder="••••••••" type="password" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -193,7 +193,7 @@ export default function SignupPage() {
         <div
           className="calendly-inline-widget"
           data-url="https://calendly.com/muhammadibnerafiq/30min"
-          style={{ minWidth: "620px", height: "600px" }}
+          style={{ minWidth: "550px", height: "600px" }}
         ></div>
       </div>
     </div>

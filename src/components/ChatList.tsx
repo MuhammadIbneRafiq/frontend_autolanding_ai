@@ -14,7 +14,7 @@ export const ChatList = () => {
         <ScrollArea className="flex flex-col h-full">
             <div className="flex flex-col h-full mt-2 gap-1">
                 {isLoading && (
-                    <div className="flex justify-center items-center justify-center h-full">
+                    <div className="flex justify-center items-center h-full">
                         <Loader className="animate-spin" />
                     </div>
                 )}
