@@ -46,7 +46,7 @@ const Pricing = () => {
     // }
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center py-12">
+        <div className="min-h-screen flex flex-col items-center justify-center py-12 text-black dark:text-white">
             <h1 className="text-4xl font-bold text-center">Great news,</h1>
             <h1 className="text-4xl font-bold text-center mb-10">You can start hiring for free!</h1>
             <p className="font-bold text-center mb-6">We only charge for our freelancing service. To get started, sing up and start chatting with our agent.</p>

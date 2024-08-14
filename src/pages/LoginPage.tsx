@@ -86,7 +86,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full mt-28 h-full flex justify-center items-center">
       <div className="grid grid-cols-2 w-full max-w-7xl h-full">
         <div className="flex flex-col justify-center items-center bg-dark-blue-100 p-8">
           <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">

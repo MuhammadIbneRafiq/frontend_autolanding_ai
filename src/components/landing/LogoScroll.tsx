@@ -1,14 +1,14 @@
 import { Marquee } from "../ui/Marquee";
 
 export const LogoScroll = () => {
-  const arr = [Logos.cogniWave, Logos.framer, Logos.nextjs, Logos.aws, Logos.nanoTech, Logos.brainyBots];
+  const arr = [Logos.cogniWave,Logos.nextjs, Logos.aws, Logos.nanoTech, Logos.brainyBots];
 
   return (
     <Marquee>
       {arr.map((Logo, index) => (
         <div
           key={index}
-          className="relative h-full w-fit mx-[4rem] flex items-center justify-start"
+          className="relative h-full mx-[4rem] flex items-center justify-center"
         >
           <Logo />
         </div>
@@ -19,16 +19,17 @@ export const LogoScroll = () => {
 
 const Logos = {
   cogniWave: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="150" height="60">
-      <text x="5" y="35" font-family="Arial" font-size="24" fill="#4C51BF">CogniWave</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="1000" height="150">
+      <text x="-80" y="40" font-family="Arial" font-size="40" fill="#4C51BF">CogniWave</text>
       <polygon points="130,15 140,30 130,45" fill="#4C51BF" />
     </svg>
   ),
   nextjs: () => (
     <svg
-      className={"h-[20px] fill-primary"}
+      className={"fill-primary"}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 394 79"
+      width="500" height="150"
     >
       <path d="M261.919 0.0330722H330.547V12.7H303.323V79.339H289.71V12.7H261.919V0.0330722Z"></path>
       <path d="M149.052 0.0330722V12.7H94.0421V33.0772H138.281V45.7441H94.0421V66.6721H149.052V79.339H80.43V12.7H80.4243V0.0330722H149.052Z"></path>
@@ -44,33 +45,17 @@ const Logos = {
       <path d="M387.691 54.5338C387.544 53.1251 386.898 52.0254 385.773 51.2438C384.638 50.4531 383.172 50.0623 381.373 50.0623C380.11 50.0623 379.022 50.2532 378.118 50.6258C377.214 51.0075 376.513 51.5164 376.033 52.1617C375.554 52.807 375.314 53.5432 375.295 54.3703C375.295 55.061 375.461 55.6608 375.784 56.1607C376.107 56.6696 376.54 57.0968 377.103 57.4422C377.656 57.7966 378.274 58.0874 378.948 58.3237C379.63 58.56 380.313 58.76 380.995 58.9236L384.14 59.6961C385.404 59.9869 386.631 60.3778 387.802 60.8776C388.973 61.3684 390.034 61.9955 390.965 62.7498C391.897 63.5042 392.635 64.413 393.179 65.4764C393.723 66.5397 394 67.7848 394 69.2208C394 71.1566 393.502 72.8562 392.496 74.3285C391.491 75.7917 390.043 76.9369 388.143 77.764C386.252 78.582 383.965 79 381.272 79C378.671 79 376.402 78.6002 374.493 77.8004C372.575 77.0097 371.08 75.8463 370.001 74.3194C368.922 72.7926 368.341 70.9294 368.258 68.7391H374.235C374.318 69.8842 374.687 70.8386 375.314 71.6111C375.95 72.3745 376.78 72.938 377.795 73.3197C378.819 73.6923 379.962 73.8832 381.226 73.8832C382.545 73.8832 383.707 73.6832 384.712 73.2924C385.708 72.9016 386.492 72.3564 387.055 71.6475C387.627 70.9476 387.913 70.1206 387.922 69.1754C387.913 68.312 387.654 67.5939 387.156 67.0304C386.649 66.467 385.948 65.9944 385.053 65.6127C384.15 65.231 383.098 64.8856 381.899 64.5857L378.081 63.6223C375.323 62.9225 373.137 61.8592 371.541 60.4323C369.937 59.0054 369.143 57.115 369.143 54.7429C369.143 52.798 369.678 51.0894 370.758 49.6261C371.827 48.1629 373.294 47.0268 375.148 46.2179C377.011 45.4 379.114 45 381.456 45C383.836 45 385.92 45.4 387.719 46.2179C389.517 47.0268 390.929 48.1538 391.952 49.5897C392.976 51.0257 393.511 52.6707 393.539 54.5338H387.691Z"></path>
     </svg>
   ),
-  framer: () => (
-    <div
-      className={
-        "h-fit flex items-center justify-start font-bold text-xl gap-3"
-      }
-    >
-      <svg
-        viewBox="0 0 14 21"
-        role="presentation"
-        className={"h-[30px] fill-primary"}
-      >
-        <path d="M0 0h14v7H7zm0 7h7l7 7H7v7l-7-7z" fill="currentColor"></path>
-      </svg>
-      Motion
-    </div>
-  ),
   nanoTech: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60" width="140" height="60">
-      <text x="10" y="35" font-family="Arial" font-size="24" fill="#E53E3E">NanoTech</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60" width="1000" height="150">
+      <text x="-80" y="40" font-family="Arial" font-size="40" fill="#E53E3E">NanoTech</text>
       <circle cx="120" cy="30" r="15" fill="#E53E3E" />
     </svg>
   ),
   aws: () => (
     <svg
-      className={"h-[40px]"}
       version="1.1"
       viewBox="-45.101 -44.95 390.872 269.7"
+      width="500" height="150"
     >
       <g transform="translate(-1.668 -1.1)">
         <path
@@ -80,7 +65,7 @@ const Logos = {
         <g>
           <path
             id="path1859"
-            d="M273.5 143.7c-32.9 24.3-80.7 37.2-121.8 37.2-57.6 0-109.5-21.3-148.7-56.7-3.1-2.8-.3-6.6 3.4-4.4 42.4 24.6 94.7 39.5 148.8 39.5 36.5 0 76.6-7.6 113.5-23.2 5.5-2.5 10.2 3.6 4.8 7.6"
+            d="M273.5 143.7c-32.9 24.30.7 37.2-121.8 37.2-57.6 0-109.5-21.3-148.7-56.7-3.1-2.8-.3-6.6 3.4-4.4 42.4 24.6 94.7 39.5 148.8 39.5 36.5 0 76.6-7.6 113.5-23.2 5.5-2.5 10.2 3.6 4.8 7.6"
             className="fill-[#f90]"
           />
           <path
@@ -92,8 +77,8 @@ const Logos = {
     </svg>
   ),
   brainyBots: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="150" height="60">
-      <text x="5" y="35" font-family="Arial" font-size="24" fill="#38A169">BrainyBots</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="1000" height="150">
+      <text x="-80" y="40" font-family="Arial" font-size="40" fill="#38A169">BrainyBots</text>
       <path d="M115 30 Q 125 15, 135 30 Q 145 45, 155 30" stroke="#38A169" fill="none" stroke-width="3" />
     </svg>
   )

@@ -98,7 +98,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="w-full h-fit flex justify-center items-center space-x-24">
+    <div className="w-full mt-28 h-fit flex justify-center items-center space-x-24">
       <Card className="h-full max-w-[400px] w-full">
         <CardHeader className="space-y-3">
           <CardTitle className="text-2xl">Create an account</CardTitle>

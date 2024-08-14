@@ -14,9 +14,9 @@ export default function ChatInterface() {
     const [loading, setLoading] = useState(false);
 
     return (
-        <div className="w-full h-full flex">
+        <div className="w-full flex">
             <Card className="h-full rounded-none max-w-[140px] md:max-w-[250px] w-full">
-                <div className="flex flex-col h-full p-6">
+                <div className="flex flex-col p-6">
                     <div className="flex items-center justify-between">
                         <h2 className="font-semibold text-lg">Chats</h2>
                         <Edit

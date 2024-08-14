@@ -1,6 +1,5 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
@@ -9,75 +8,101 @@ import { NamedLogoWithLink } from "./Logo";
 import UserAvatar from "./UserAvatar";
 import { useAuth } from "@/hooks/useAuth";
 import '../index.css';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
     const { isAuthenticated } = useAuth();
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isSticky, setIsSticky] = useState(true);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 60) {
+            setIsSticky(false);
+        } else {
+            setIsSticky(true);
+        }
+        setLastScrollY(window.scrollY);
+    };
+    useEffect(() => {
+        const handleOutsideClick = (e) => {
+          if (isPopupOpen && !e.target.closest(".sheet") && !e.target.closest(".three-dot")) {
+            setIsPopupOpen(false);
+          }
+        };
+    
+        document.addEventListener("click", handleOutsideClick);
+    
+        return () => {
+          document.removeEventListener("click", handleOutsideClick);
+        };
+      }, [isPopupOpen]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
+    const togglePopup = () => {
+        setIsPopupOpen(!isPopupOpen);
+    };
 
     return (
-        <header className="sticky border-b top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-6">
+        <header
+            className={`fixed top-0 left-0 right-0 z-[102] w-full text-nav-label bg-base/80 backdrop-blur-sm transition-transform ease-curve-d duration-600 ${
+                isSticky ? 'translate-y-0' : '-translate-y-full'
+            }`}
+        >
             <ToastContainer />
-            <nav className="hidden flex-col gap-6 text-lg font-medium w-full md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-                <NamedLogoWithLink />
-                <div className="flex ml-auto gap-4 items-center">
-                    <Link
-                        to="/pricing"
-                        className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
-                    >
+            <nav aria-label="Main navigation" className="h-full max-w-[2000px] mx-auto flex items-center justify-between px-4 md:px-6">
+                <div className="flex items-center">
+                    <NamedLogoWithLink />
+                </div>
+                <div className="flex items-center justify-center gap-4 md:gap-6">
+                    <Link to="/pricing" className="hidden md:block text-small transition-colors duration-fast hover:text-nav-label dark:text-white text-black">
                         Pricing
                     </Link>
                     <ModeToggle />
                     {!isAuthenticated && (
                         <>
-                            <Link to="/register" className="text-primary">
+                            <Link to="/register" className="hidden md:block text-small transition-colors duration-fast hover:text-nav-label dark:text-white text-black">
                                 Sign up
                             </Link>
-                            <Link to="/login" className="text-primary">
+                            <Link to="/login" className="hidden md:block text-small transition-colors duration-fast hover:text-nav-label dark:text-white text-black">
                                 Log in
                             </Link>
                         </>
                     )}
                     {isAuthenticated && <UserAvatar />}
+                    <div className="relative md:hidden">
+                        {!isAuthenticated && 
+                        <Button variant="ghost" size="icon" className="md:hidden three-dot dark:text-white text-black" onClick={togglePopup}>
+                            <Menu className="w-6 h-6" />
+                        </Button>
+                        }
+                        {isPopupOpen && (
+                            <div className="absolute border-solid border-2 border-black-200 right-0 top-10 bg-transperant text-gray-400 shadow-lg rounded-lg w-40">
+                                <nav className="grid gap-2 p-4 text-sm font-medium">
+                                    <Link to="/pricing" className="text-gray-400 transition-colors duration-fast hover:text-black hover:dark:text-white">
+                                        Pricing
+                                    </Link>
+                                    {!isAuthenticated && (
+                                        <>
+                                            <Link to="/register" className="text-gray-400 transition-colors duration-fast hover:text-black hover:dark:text-white">
+                                                Sign up
+                                            </Link>
+                                            <Link to="/login" className="text-gray-400 transition-colors duration-fast hover:text-black hover:dark:text-white">
+                                                Log in
+                                            </Link>
+                                        </>
+                                    )}
+                                    {isAuthenticated && <UserAvatar />}
+                                </nav>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </nav>
-            <Sheet>
-                <SheetTrigger asChild>
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="shrink-0 md:hidden"
-                    >
-                        <Menu className="h-5 w-5" />
-                        <span className="sr-only">Toggle navigation menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="left">
-                    <nav className="grid gap-6 text-lg font-medium">
-                        <div className="flex gap-4 flex-col">
-                            <Link
-                                to="/pricing"
-                                className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
-                            >
-                                Pricing
-                            </Link>
-                            {!isAuthenticated && (
-                                <>
-                                    <Link
-                                        to="/register"
-                                        className="text-primary"
-                                    >
-                                        Sign up
-                                    </Link>
-                                    <Link to="/login" className="text-primary">
-                                        Log in
-                                    </Link>
-                                </>
-                            )}
-                            <ModeToggle />
-                            {isAuthenticated && <UserAvatar />}
-                        </div>
-                    </nav>
-                </SheetContent>
-            </Sheet>
         </header>
-    );
+    );    
 }
