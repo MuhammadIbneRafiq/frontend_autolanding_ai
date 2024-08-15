@@ -26,7 +26,7 @@ export default function Navbar() {
     };
     useEffect(() => {
         const handleOutsideClick = (e) => {
-            if (isPopupOpen && !e.target.closest(".sheet") && !e.target.closest(".three-dot")) {
+            if (isPopupOpen && !e.target.closest(".three-dot")) {
                 setIsPopupOpen(false);
             }
         };
