@@ -101,7 +101,7 @@ export default function LoginPage() {
           </Carousel>
           <Button className="mt-4 bg-green-500"><a href="https://discord.gg/xeX2Zhut82" target="_blank">
           Join the Discord</a></Button>
-          <h1 className="mt-4 text-center text-white font-bold"> Join 100s of agencies/communities and exchange client on referral</h1>
+          <h1 className="mt-4 text-center text-black dark:text-white font-bold"> Join 100s of agencies/communities and exchange client on referral</h1>
         </div>
         <div className="flex w-[50%] px-4 h-full justify-center items-center">
           <Card className="h-fit max-w-[700px] w-full">

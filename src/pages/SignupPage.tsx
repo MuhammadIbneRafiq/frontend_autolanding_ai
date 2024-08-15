@@ -118,7 +118,7 @@ export default function SignupPage() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="muhammadrafiq@gmail.com" {...field} />
+                          <Input placeholder="abc@gmail.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
