@@ -25,6 +25,32 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      animation: {
+        marquee: 'marquee 20s linear infinite',
+        marqueeVertical: 'marquee-vertical 20s linear infinite',
+        paused: 'paused 0s linear infinite',
+        reverse: 'reverse 20s linear infinite',
+        slideIn: 'slide-in 10s linear infinite',
+        slideOut: 'slide-out 10s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        marqueeVertical: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
     },
     extend: {
       colors: {

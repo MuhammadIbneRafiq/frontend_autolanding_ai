@@ -40,10 +40,6 @@ const reviews = [
   },
 ];
 
-
-const firstRow = reviews.slice(0, reviews.length / 2);
-// const secondRow = reviews.slice(reviews.length / 2);
-
 const ReviewCard = ({
   img,
   name,
@@ -82,18 +78,20 @@ const ReviewCard = ({
 export const TwitterCard = () => {
   return (
     <div className="relative bg-white flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border dark:bg-background md:shadow-xl">
-      <Marquee pauseOnHover className="[--duration:5s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+      <Marquee pauseOnHover className="[--duration-10]">
+        {reviews.map((review, index) => (
+          <ReviewCard
+            key={review.username}
+            {...review}
+            className={cn("transition [--duration-10]", {
+              "animate-slide-in": index % 2 === 0,
+              "animate-slide-out": index % 2 !== 0,
+            })}
+          />
         ))}
       </Marquee>
-      {/* <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee> */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-gray-400 dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-gray-400 dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
     </div>
   );
 };

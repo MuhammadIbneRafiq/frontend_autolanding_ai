@@ -33,7 +33,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 // const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
@@ -86,9 +85,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full mt-28 h-full flex justify-center items-center">
-      <div className="grid grid-cols-2 w-full max-w-7xl h-full">
-        <div className="flex flex-col justify-center items-center bg-dark-blue-100 p-8">
+    <div className="w-full h-screen pt-24 flex justify-center items-center">
+      <div className="flex w-full max-w-7xl h-full justify-center">
+        <div className="flex flex-col justify-center items-center bg-dark-blue-100 p-8 max-w-[50%]">
           <Carousel autoPlay infiniteLoop showThumbs={false} className="w-full">
             <div>
               <img src="https://pbs.twimg.com/media/EAC2iswX4AUZXav.jpg" alt="Slide 1" />
@@ -100,14 +99,14 @@ export default function LoginPage() {
               <img src="https://images.ctfassets.net/m9n8o4ceoyuw/7L9z8LIlai8hBJrl1xWhX/9d740ec59d0712021ec1bd397b5a868a/Discord_-_Server.jpg" alt="Slide 3" />
             </div>
           </Carousel>
-          <Button className="mt-4" onClick={() => window.location.href='https://discord.gg/xeX2Zhut82'}
-          >Join the Discord</Button>
+          <Button className="mt-4 bg-green-500"><a href="https://discord.gg/xeX2Zhut82" target="_blank">
+          Join the Discord</a></Button>
           <h1 className="mt-4 text-center text-white font-bold"> Join 100s of agencies/communities and exchange client on referral</h1>
         </div>
-        <div className="flex justify-center items-center">
-          <Card className="h-fit max-w-[400px] w-full">
+        <div className="flex w-[50%] px-4 h-full justify-center items-center">
+          <Card className="h-fit max-w-[700px] w-full">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl">Login</CardTitle>
+              <CardTitle className="text-3xl text-center">Login</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
               {/* <Auth

@@ -16,14 +16,13 @@ export default function Marquee({
   pauseOnHover = false,
   children,
   vertical = false,
-  repeat = 4,
   ...props
 }: MarqueeProps) {
   return (
     <div
       {...props}
       className={cn(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
+        "group flex overflow-hidden p-2 duration-1 gap-20",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
@@ -31,21 +30,17 @@ export default function Marquee({
         className,
       )}
     >
-      {Array(repeat)
-        .fill(0)
-        .map((_, i) => (
-          <div
-            key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-              "[animation-direction:reverse]": reverse,
-            })}
-          >
-            {children}
-          </div>
-        ))}
+      <div
+        className={cn("flex shrink-0 justify-around gap-4 transition", {
+          "animate-marquee flex-row": !vertical,
+          "animate-marquee-vertical flex-col": vertical,
+          "group-hover:animate-paused": pauseOnHover,
+          "animate-reverse": reverse,
+        })}
+      >
+        {children}
+        {children}
+      </div>
     </div>
   );
 }

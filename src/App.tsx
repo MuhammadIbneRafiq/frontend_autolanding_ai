@@ -20,9 +20,9 @@ function App() {
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <BrowserRouter>
                     <Navbar />
-                    <main className="h-full flex justify-center
+                    <main className="h-max flex justify-center
                     dark:bg-black bg-white">
-                        <div className="max-w-[2000px]">
+                        <div className="max-w-[2000px] w-screen">
                             <Routes>
                                 <Route path="/" element={<LandingPage />} />
                                 <Route path="/chatHome" element={<HomePage />} />

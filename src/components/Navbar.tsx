@@ -26,17 +26,17 @@ export default function Navbar() {
     };
     useEffect(() => {
         const handleOutsideClick = (e) => {
-          if (isPopupOpen && !e.target.closest(".sheet") && !e.target.closest(".three-dot")) {
-            setIsPopupOpen(false);
-          }
+            if (isPopupOpen && !e.target.closest(".sheet") && !e.target.closest(".three-dot")) {
+                setIsPopupOpen(false);
+            }
         };
-    
+
         document.addEventListener("click", handleOutsideClick);
-    
+
         return () => {
-          document.removeEventListener("click", handleOutsideClick);
+            document.removeEventListener("click", handleOutsideClick);
         };
-      }, [isPopupOpen]);
+    }, [isPopupOpen]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -49,9 +49,8 @@ export default function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-[102] w-full text-nav-label bg-base/80 backdrop-blur-sm transition-transform ease-curve-d duration-600 ${
-                isSticky ? 'translate-y-0' : '-translate-y-full'
-            }`}
+            className={`fixed top-0 left-0 right-0 z-[102] w-full text-nav-label bg-base/80 backdrop-blur-sm transition-transform ease-curve-d duration-600 ${isSticky ? 'translate-y-0' : '-translate-y-full'
+                }`}
         >
             <ToastContainer />
             <nav aria-label="Main navigation" className="h-full max-w-[2000px] mx-auto flex items-center justify-between px-4 md:px-6">
@@ -75,10 +74,10 @@ export default function Navbar() {
                     )}
                     {isAuthenticated && <UserAvatar />}
                     <div className="relative md:hidden">
-                        {!isAuthenticated && 
-                        <Button variant="ghost" size="icon" className="md:hidden three-dot dark:text-white text-black" onClick={togglePopup}>
-                            <Menu className="w-6 h-6" />
-                        </Button>
+                        {!isAuthenticated &&
+                            <Button variant="ghost" size="icon" className="md:hidden three-dot dark:text-white text-black" onClick={togglePopup}>
+                                <Menu className="w-6 h-6" />
+                            </Button>
                         }
                         {isPopupOpen && (
                             <div className="absolute border-solid border-2 border-black-200 right-0 top-10 bg-transperant text-gray-400 shadow-lg rounded-lg w-40">
@@ -104,5 +103,5 @@ export default function Navbar() {
                 </div>
             </nav>
         </header>
-    );    
+    );
 }

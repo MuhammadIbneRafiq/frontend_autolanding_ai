@@ -29,7 +29,7 @@ export const ProjectList = () => {
                                 project.project_id
                                     ? "bg-muted"
                                     : ""
-                            } w-full max-w-[100px] md:max-w-[210px] hover:bg-muted transition-colors pt-2 pb-2 rounded-lg cursor-pointer`}
+                            } w-full max-w-[30vw] md:max-w-[210px] hover:bg-muted transition-colors pt-2 pb-2 rounded-lg cursor-pointer`}
                         >
                             <Link
                                 key={project.project_id}
