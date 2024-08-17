@@ -24,15 +24,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-// import { createClient } from "@supabase/supabase-js";
-// import { Theme } from "react-toastify";
-// import { ThemeProvider } from "@/services/providers/ThemeProvider";
-
-// const SUPABASE_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ra2RsYmRuZmF5bGFrZmJ5Y3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM1MjIzNTIsImV4cCI6MjAyOTA5ODM1Mn0.Zf4DnOscUxz5LxbulHsMMmtyXT7Eoapg50WVgAW_Nig'
-// const SUPABASE_URL= 'https://okkdlbdnfaylakfbycta.supabase.co'
-
-// const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
