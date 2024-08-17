@@ -25,7 +25,7 @@ export default function Navbar() {
         setLastScrollY(window.scrollY);
     };
     useEffect(() => {
-        const handleOutsideClick = (e) => {
+        const handleOutsideClick = (e: any) => {
             if (isPopupOpen && !e.target.closest(".three-dot")) {
                 setIsPopupOpen(false);
             }

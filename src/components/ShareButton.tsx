@@ -13,7 +13,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ shareUrl, title }) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = (e: any) => {
         if (isOpen && !e.target.closest(".share-button")) {
           setIsOpen(false);
         }

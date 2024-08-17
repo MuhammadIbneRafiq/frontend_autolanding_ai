@@ -9,7 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import { ThemeProvider } from "./services/providers/ThemeProvider";
 import { Toaster } from "./components/ui/toaster";
 import Pricing from './pages/Pricing';
-import ChatInterface from "./components/ChatInterface";
+// import ChatInterface from "./components/ChatInterface";
 import LandingPage from "./pages/LandingPage";
 
 function App() {
