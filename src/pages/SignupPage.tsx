@@ -50,15 +50,15 @@ export default function SignupPage() {
     },
   });
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "https://assets.calendly.com/assets/external/widget.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
@@ -98,15 +98,15 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="w-full h-fit flex justify-center items-center space-x-24">
-      <Card className="h-full max-w-[400px] w-full">
+    <div className="w-full h-screen flex justify-center items-center space-x-24 dark:bg-black bg-white pt-24 p-4">
+      <Card className="max-h-[600px] h-full max-w-[600px] w-full">
         <CardHeader className="space-y-3">
-          <CardTitle className="text-2xl">Create an account</CardTitle>
+          <CardTitle className="text-3xl text-center">Create an account</CardTitle>
           <CardDescription>
             Enter your email below to create your account
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-2">
+        <CardContent className="grid gap-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-4">
@@ -118,7 +118,7 @@ export default function SignupPage() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="muhammadrafiq@gmail.com" {...field} />
+                          <Input placeholder="abc@gmail.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -140,7 +140,7 @@ export default function SignupPage() {
                     )}
                   />
                 </div>
-                {/* <div className="grid gap-2">
+                <div className="grid gap-2">
                   <FormField
                     control={form.control}
                     name="role"
@@ -171,7 +171,7 @@ export default function SignupPage() {
                       </FormItem>
                     )}
                   />
-                </div> */}
+                </div>
                 {form.formState.errors.root && (
                   <FormMessage>
                     {form.formState.errors.root.message}
@@ -186,16 +186,22 @@ export default function SignupPage() {
                 </Button>
               </div>
             </form>
+            <div className="text-center mt-2">
+              <h1>Interested in speaking with the CEO?<br /> Schedule a meeting now!</h1>
+              <Button className="w-full h-12 rounded-xl my-4 bg-green-500 text-black">
+                <a target="_blank" href="https://calendly.com/muhammadibnerafiq/30min">Book appoinment</a>
+              </Button>
+            </div>
           </Form>
         </CardContent>
       </Card>
-      <div className="h-fit max-w-[400px] w-full">
+      {/* <div className="h-fit max-w-[400px] w-full">
         <div
           className="calendly-inline-widget"
           data-url="https://calendly.com/muhammadibnerafiq/30min"
           style={{ minWidth: "620px", height: "600px" }}
         ></div>
-      </div>
+      </div> */}
     </div>
   );
 }

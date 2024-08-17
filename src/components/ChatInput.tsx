@@ -107,7 +107,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     }
 
     return (
-        <div className="flex items-end w-full gap-2 ">
+        <div className="flex items-end w-full justify-between items-center gap-2">
             <Input
                 placeholder={
                     !isAuthenticated
@@ -121,7 +121,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
                 value={message}
                 className={`${
                     !isAuthenticated ? "cursor-pointer font-bold" : ""
-                }`}
+                } bg-white dark:bg-black`}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {

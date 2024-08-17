@@ -19,46 +19,49 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <BrowserRouter>
-                    <main className="sm:px-10 px-5 h-full">
-                        <Navbar />
-                        <Routes>
-                            <Route path="/" element={<LandingPage />} />
-                            <Route path="/chatHome" element={<ChatInterface />} />
-                            <Route
-                                path="/chat/:id"
-                                element={
-                                    <ProtectedRoute>
-                                        <HomePage />
-                                    </ProtectedRoute>
-                                }
-                            />
-                            <Route
-                                path="/project/:id"
-                                element={
-                                    <ProtectedRoute>
-                                        <HomePage />
-                                    </ProtectedRoute>
-                                }
-                            />
-                            <Route
-                                path="/login"
-                                element={
-                                    <PublicRoute>
-                                        <LoginPage />
-                                    </PublicRoute>
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    <PublicRoute>
-                                        <SignupPage />
-                                    </PublicRoute>
-                                }
-                            />
-                            <Route path="/pricing" element={<Pricing />} />
-                        </Routes>
-                        <Toaster />
+                    <Navbar />
+                    <main className="h-max flex justify-center
+                    dark:bg-black bg-white">
+                        <div className="max-w-[2000px] w-screen">
+                            <Routes>
+                                <Route path="/" element={<LandingPage />} />
+                                <Route path="/chatHome" element={<HomePage />} />
+                                <Route
+                                    path="/chat/:id"
+                                    element={
+                                        <ProtectedRoute>
+                                            <HomePage />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/project/:id"
+                                    element={
+                                        <ProtectedRoute>
+                                            <HomePage />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <PublicRoute>
+                                            <LoginPage />
+                                        </PublicRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/register"
+                                    element={
+                                        <PublicRoute>
+                                            <SignupPage />
+                                        </PublicRoute>
+                                    }
+                                />
+                                <Route path="/pricing" element={<Pricing />} />
+                            </Routes>
+                            <Toaster />
+                        </div>
                     </main>
                 </BrowserRouter>
             </ThemeProvider>

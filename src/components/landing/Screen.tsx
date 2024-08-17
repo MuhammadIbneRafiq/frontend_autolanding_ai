@@ -11,7 +11,7 @@ export function ScreenScroll() {
           alt="hero"
           height={720}
           width={1670}
-          className="mx-auto rounded-2xl object-cover h-full object-left-top"
+          className="mx-auto rounded-3xl object-cover h-full object-left-top"
           draggable={false}
           style={{ backgroundColor: 'transparent' }} 
         />

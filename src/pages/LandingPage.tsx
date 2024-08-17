@@ -18,12 +18,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="pb-20 pt-36">
+    <div className="pb-40 pt-40">
       {/* Spotlights */}
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-          fill="white"
+          fill="gray"
         />
         <Spotlight
           className="h-[80vh] w-[50vw] top-10 left-full"
@@ -34,27 +34,27 @@ const Hero = () => {
 
       {/* Grid */}
       <div
-        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+        className="dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.03]
        absolute top-0 left-0 flex items-center justify-center"
       >
         <div
-          className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black-100
+          className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 
           [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
         />
       </div>
 
-      <div className="flex justify-center relative my-20 z-10">
+      <div className="flex justify-center relative my-40 item-center">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
+          <p className="uppercase tracking-widest text-md text-center text-black dark:text-blue-300 max-w-80 font-medium">
             Hire by chatting with our AI.
           </p>
 
           <TextGenerateEffect
             words="Auto Landing AI: Hire 3x faster and better."
-            className="text-center text-[40px] md:text-5xl lg:text-6xl"
+            className="text-center text-[40px] md:text-6xl lg:text-7xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-black dark:text-white">
             Tired of fake reviews on fiverr? Hire verified
             Freelancer by simply chatting
           </p>
@@ -75,7 +75,7 @@ const Hero = () => {
 const LandingPage = () => {
   return (
     <>
-      <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto ">
+      <main className="relative -mt-28 bg-white dark:bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto">
         <Hero />
         <ScreenScroll />
         <LogoScroll />
