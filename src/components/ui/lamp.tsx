@@ -14,7 +14,7 @@ export function LampDemo() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="mt-8 bg-gradient-to-br from-sky-400 to-indigo-500 text-center text-4xl font-medium tracking-tight md:text-7xl text-white shadow-lg"
+        className="mt-8 text-center text-4xl font-medium tracking-tight md:text-7xl text-white shadow-lg"
       >
         Hire or get hired by chatting <br />
       </motion.h1>
@@ -32,7 +32,7 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black-100 w-full rounded-md z-0",
+        "relative flex min-h-[1000px] max-h-[2000px] flex-col items-center justify-center overflow-hidden bg-black-100 w-full rounded-md z-0",
         className
       )}
     >
