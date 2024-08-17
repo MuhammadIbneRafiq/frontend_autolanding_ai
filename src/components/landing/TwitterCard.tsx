@@ -50,6 +50,7 @@ const ReviewCard = ({
   name: string;
   username: string;
   body: string;
+  className?: string;  // Add className here
 }) => {
   return (
     <figure
