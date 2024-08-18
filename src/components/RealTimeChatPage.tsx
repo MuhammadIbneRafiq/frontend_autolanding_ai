@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card } from "./ui/card";
 import { ChatInput } from "./ChatInput";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+// import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "@/types/supabase";
-import { supabase } from "./utils/supabaseClient";
 import { Loader } from "lucide-react";
+import { useSupabase } from "@/components/utils/supabaseContext"; // Import your provider
+
 
 type Message = {
   id: string;
@@ -17,7 +18,8 @@ type Message = {
 
 export const RealTimeChatPage = () => {
   const { id } = useParams();
-  const supabase = useSupabaseClient<Database>();
+  const supabase = useSupabase();
+  console.log('this is supabase client', supabase)
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
