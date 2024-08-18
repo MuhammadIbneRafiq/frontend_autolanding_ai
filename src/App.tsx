@@ -11,6 +11,7 @@ import { Toaster } from "./components/ui/toaster";
 import Pricing from './pages/Pricing';
 // import ChatInterface from "./components/ChatInterface";
 import LandingPage from "./pages/LandingPage";
+import AuthCallback from './hooks/AuthCallback';
 
 function App() {
     const queryClient = new QueryClient();
@@ -59,6 +60,7 @@ function App() {
                                     }
                                 />
                                 <Route path="/pricing" element={<Pricing />} />
+                                <Route path="/auth/callback" element={<AuthCallback />} />
                             </Routes>
                             <Toaster />
                         </div>
