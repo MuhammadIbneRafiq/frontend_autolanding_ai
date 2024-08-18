@@ -13,23 +13,23 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import GoogleButton from 'react-google-button'
-import useUserSessionStore from "@/services/state/useUserSessionStore";
+// import useUserSessionStore from "@/services/state/useUserSessionStore";
 // import { Icons } from "@/components/ui/icons";
-import { Auth } from '@supabase/auth-ui-react';
-import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
+// import { Auth } from '@supabase/auth-ui-react';
+// import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Theme } from "react-toastify";
-import { ThemeProvider } from "@/services/providers/ThemeProvider";
+// import { Theme } from "react-toastify";
+// import { ThemeProvider } from "@/services/providers/ThemeProvider";
 import { supabase } from "@/hooks/supaBase";
-import { Provider } from "@radix-ui/react-toast";
+// import { Provider } from "@radix-ui/react-toast";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -59,7 +59,7 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'http://localhost:5173/auth/callback',
+          redirectTo: 'https://www.autolanding.ai/auth/callback',
         }
       });
       if (error) {
