@@ -13,25 +13,23 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import GoogleButton from 'react-google-button'
+import useUserSessionStore from "@/services/state/useUserSessionStore";
 // import { Icons } from "@/components/ui/icons";
-// import { Auth } from '@supabase/auth-ui-react';
-// import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
+import { Auth } from '@supabase/auth-ui-react';
+import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-// import { createClient } from "@supabase/supabase-js";
-// import { Theme } from "react-toastify";
-// import { ThemeProvider } from "@/services/providers/ThemeProvider";
-
-// const SUPABASE_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ra2RsYmRuZmF5bGFrZmJ5Y3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM1MjIzNTIsImV4cCI6MjAyOTA5ODM1Mn0.Zf4DnOscUxz5LxbulHsMMmtyXT7Eoapg50WVgAW_Nig'
-// const SUPABASE_URL= 'https://okkdlbdnfaylakfbycta.supabase.co'
-
-// const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+import { Theme } from "react-toastify";
+import { ThemeProvider } from "@/services/providers/ThemeProvider";
+import { supabase } from "@/hooks/supaBase";
+import { Provider } from "@radix-ui/react-toast";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -55,6 +53,32 @@ export default function LoginPage() {
     },
   });
 
+  async function ThirdPartyOAuth() {
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: 'http://localhost:5173/auth/callback',
+        }
+      });
+      if (error) {
+        throw error;
+      }
+    } catch (error: any) {
+      form.setError("root", {
+        message: error.response.data.error,
+      });
+      toast({
+        title: "Error",
+        description: "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+  
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
@@ -109,13 +133,9 @@ export default function LoginPage() {
               <CardTitle className="text-3xl text-center">Login</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
-              {/* <Auth
-                supabaseClient={supabase}
-                appearance={{
-                  theme: ThemeSupa
-                }}
-                providers={["google"]}
-              /> */}
+              <div className="flex justify-center">
+                <GoogleButton onClick={()=>{ThirdPartyOAuth()}}/>
+              </div>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <div className="grid gap-4">
@@ -159,7 +179,7 @@ export default function LoginPage() {
                     </Button>
                   </div>
                 </form>
-              </Form> 
+              </Form>
             </CardContent>
           </Card>
         </div>
