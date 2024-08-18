@@ -7,7 +7,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-// import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
@@ -18,18 +17,9 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import GoogleButton from 'react-google-button'
-// import useUserSessionStore from "@/services/state/useUserSessionStore";
-// import { Icons } from "@/components/ui/icons";
-// import { Auth } from '@supabase/auth-ui-react';
-// import { SocialLayout, ThemeSupa, ViewType } from '@supabase/auth-ui-shared'
-
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-// import { Theme } from "react-toastify";
-// import { ThemeProvider } from "@/services/providers/ThemeProvider";
-import { supabase } from "@/hooks/supaBase";
-// import { Provider } from "@radix-ui/react-toast";
+import ThirdPartyAuth from "@/hooks/ThirdPartyAuth";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -52,33 +42,8 @@ export default function LoginPage() {
       password: "",
     },
   });
+  const googleMessage: string = "Login";
 
-  async function ThirdPartyOAuth() {
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: 'https://www.autolanding.ai/auth/callback',
-        }
-      });
-      if (error) {
-        throw error;
-      }
-    } catch (error: any) {
-      form.setError("root", {
-        message: error.response.data.error,
-      });
-      toast({
-        title: "Error",
-        description: "An error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  }
-  
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
@@ -134,7 +99,6 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="flex justify-center">
-                <GoogleButton onClick={()=>{ThirdPartyOAuth()}}/>
               </div>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -177,6 +141,7 @@ export default function LoginPage() {
                     <Button type="submit" className="w-full" disabled={loading}>
                       {loading ? <Loader className="animate-spin" /> : "Login"}
                     </Button>
+                    <ThirdPartyAuth googleMessage={googleMessage}/>
                   </div>
                 </form>
               </Form>

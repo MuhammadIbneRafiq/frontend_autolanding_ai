@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ThirdPartyAuth from "@/hooks/ThirdPartyAuth";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -40,6 +41,7 @@ export default function SignupPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const googleMessage: string = "Sign up";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -99,7 +101,7 @@ export default function SignupPage() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center space-x-24 dark:bg-black bg-white pt-24 p-4">
-      <Card className="max-h-[600px] h-full max-w-[600px] w-full">
+      <Card className="max-h-[700px] h-full max-w-[600px] w-full">
         <CardHeader className="space-y-3">
           <CardTitle className="text-3xl text-center">Create an account</CardTitle>
           <CardDescription>
@@ -186,6 +188,7 @@ export default function SignupPage() {
                 </Button>
               </div>
             </form>
+            <ThirdPartyAuth googleMessage={googleMessage}/>
             <div className="text-center mt-2">
               <h1>Interested in speaking with the CEO?<br /> Schedule a meeting now!</h1>
               <Button className="w-full h-12 rounded-xl my-4 bg-green-500 text-black">

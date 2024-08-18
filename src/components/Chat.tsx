@@ -20,6 +20,7 @@ import user5 from "../assets/user5.jpg";
 import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ChatProps {
   loading: boolean;
@@ -35,6 +36,7 @@ export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
+  const { isAuthenticated } = useAuth();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -191,7 +193,7 @@ export default function Chat({ loading }: ChatProps) {
 
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">
-      <ShareButton shareUrl={window.location.href} title={"🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"}/>
+      {isAuthenticated && <ShareButton shareUrl={window.location.href} title={"🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"}/>}
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="justify-center items-center px-4 pt-8 pb-8">
           {path.pathname === "/chatHome" ? (

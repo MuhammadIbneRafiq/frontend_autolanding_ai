@@ -30,17 +30,17 @@ function App() {
                                 <Route
                                     path="/chat/:id"
                                     element={
-                                        <ProtectedRoute>
+                                        // <ProtectedRoute>
                                             <HomePage />
-                                        </ProtectedRoute>
+                                        // </ProtectedRoute>
                                     }
                                 />
                                 <Route
                                     path="/project/:id"
                                     element={
-                                        <ProtectedRoute>
+                                        // <ProtectedRoute>
                                             <HomePage />
-                                        </ProtectedRoute>
+                                        // </ProtectedRoute>
                                     }
                                 />
                                 <Route
