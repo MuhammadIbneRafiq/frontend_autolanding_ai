@@ -13,6 +13,8 @@ import Pricing from "./pages/Pricing";
 import LandingPage from "./pages/LandingPage";
 import AuthCallback from "./hooks/AuthCallback";
 import { RealTimeChatPage } from "./components/RealTimeChatPage";
+import { SupabaseProvider } from "@/components/utils/supabaseContext"; // Import your provider
+
 
 function App() {
   const queryClient = new QueryClient();
@@ -20,63 +22,65 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <BrowserRouter>
-          <Navbar />
-          <main
-            className="h-max flex justify-center
-                    dark:bg-black bg-white"
-          >
-            <div className="max-w-[2000px] w-screen">
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/chatHome" element={<HomePage />} />
-                <Route
-                  path="/chat/:id"
-                  element={
-                    <ProtectedRoute>
-                      <HomePage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/realtime-chat/:id"
-                  element={
-                    <ProtectedRoute>
-                      <RealTimeChatPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/project/:id"
-                  element={
-                    <ProtectedRoute>
-                      <HomePage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/login"
-                  element={
-                    <PublicRoute>
-                      <LoginPage />
-                    </PublicRoute>
-                  }
-                />
-                <Route
-                  path="/register"
-                  element={
-                    <PublicRoute>
-                      <SignupPage />
-                    </PublicRoute>
-                  }
-                />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
-              </Routes>
-              <Toaster />
-            </div>
-          </main>
-        </BrowserRouter>
+        <SupabaseProvider>
+          <BrowserRouter>
+            <Navbar />
+            <main
+              className="h-max flex justify-center
+                      dark:bg-black bg-white"
+            >
+              <div className="max-w-[2000px] w-screen">
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/chatHome" element={<HomePage />} />
+                  <Route
+                    path="/chat/:id"
+                    element={
+                      <ProtectedRoute>
+                        <HomePage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/realtime-chat/:id"
+                    element={
+                      <ProtectedRoute>
+                        <RealTimeChatPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/project/:id"
+                    element={
+                      <ProtectedRoute>
+                        <HomePage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/login"
+                    element={
+                      <PublicRoute>
+                        <LoginPage />
+                      </PublicRoute>
+                    }
+                  />
+                  <Route
+                    path="/register"
+                    element={
+                      <PublicRoute>
+                        <SignupPage />
+                      </PublicRoute>
+                    }
+                  />
+                  <Route path="/pricing" element={<Pricing />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
+                </Routes>
+                <Toaster />
+              </div>
+            </main>
+          </BrowserRouter>
+        </SupabaseProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
