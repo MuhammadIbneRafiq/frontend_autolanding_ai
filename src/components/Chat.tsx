@@ -1,8 +1,8 @@
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useEffect, useRef } from "react";
-import { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { Loader } from "lucide-react";
 import { Logo } from "./Logo";
 import { ProjectStatus } from "@/types/Project";
@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
 import { useLocation } from "react-router-dom";
 import { useProject } from "@/hooks/useProject";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import user1 from "../assets/francesco from Konnecte.png";
 // import user2 from "../assets/user3.jpg";
 import user3 from "../assets/JAMIL.jpg";
@@ -20,6 +20,8 @@ import user5 from "../assets/user5.jpg";
 import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
+import { useSearch } from "@/hooks/useSearch";
+import TwitterSearch from "./TwitterSearch";
 
 interface ChatProps {
   loading: boolean;
@@ -34,6 +36,8 @@ interface CardProps {
 export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
+  const search = useSearch();
+
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -50,7 +54,7 @@ export default function Chat({ loading }: ChatProps) {
     }
   }, [chat.chatHistory, path?.pathname]); // Trigger whenever chat history or path changes
 
-  const truncateDescription = (description: String) => {
+  const truncateDescription = (description: string) => {
     const words = description.split(" ");
     if (words.length > 6) {
       return words.slice(0, 10).join(" ") + "...";
@@ -83,8 +87,7 @@ export default function Chat({ loading }: ChatProps) {
     // },
     {
       title: "Jamil",
-      description:
-        "SEO silver plate youtuber with 10+ ecommerce clients.",
+      description: "SEO silver plate youtuber with 10+ ecommerce clients.",
       image: user3,
     },
     {
@@ -127,57 +130,147 @@ export default function Chat({ loading }: ChatProps) {
       <div className="markdown-content">
         <ReactMarkdown
           components={{
-            h1: ({node, ...props}) => <h1 style={{fontSize: '2em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
-            h2: ({node, ...props}) => <h2 style={{fontSize: '1.5em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
-            h3: ({node, ...props}) => <h3 style={{fontSize: '1.17em', marginBottom: '0.5em', marginTop: '1em'}} {...props} />,
-            ul: ({node, ...props}) => <ul style={{listStyleType: 'disc', marginBottom: '1em', paddingLeft: '2em'}} {...props} />,
-            ol: ({node, ...props}) => <ol style={{listStyleType: 'decimal', marginBottom: '1em', paddingLeft: '2em'}} {...props} />,
-            li: ({node, ...props}) => <li style={{marginBottom: '0.5em'}} {...props} />,
-            strong: ({node, ...props}) => <strong style={{fontWeight: 'bold'}} {...props} />,
-            em: ({node, ...props}) => <em style={{fontStyle: 'italic'}} {...props} />,
-            p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: '1.5'}} {...props} />,
-            blockquote: ({node, ...props}) => <blockquote style={{borderLeft: '4px solid #ccc', paddingLeft: '1em', marginLeft: '0', marginRight: '0'}} {...props} />,
-            code: ({node, ...props}) => <code style={{backgroundColor: '#f0f0f0', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />,
-            pre: ({node, ...props}) => <pre style={{backgroundColor: '#f0f0f0', padding: '1em', overflowX: 'auto', borderRadius: '4px'}} {...props} />,
-            a: ({node, ...props}) => <a style={{fontWeight: 'bold', textDecoration: 'underline'}} {...props} />,
+            h1: ({ node, ...props }) => (
+              <h1
+                style={{
+                  fontSize: "2em",
+                  marginBottom: "0.5em",
+                  marginTop: "1em",
+                }}
+                {...props}
+              />
+            ),
+            h2: ({ node, ...props }) => (
+              <h2
+                style={{
+                  fontSize: "1.5em",
+                  marginBottom: "0.5em",
+                  marginTop: "1em",
+                }}
+                {...props}
+              />
+            ),
+            h3: ({ node, ...props }) => (
+              <h3
+                style={{
+                  fontSize: "1.17em",
+                  marginBottom: "0.5em",
+                  marginTop: "1em",
+                }}
+                {...props}
+              />
+            ),
+            ul: ({ node, ...props }) => (
+              <ul
+                style={{
+                  listStyleType: "disc",
+                  marginBottom: "1em",
+                  paddingLeft: "2em",
+                }}
+                {...props}
+              />
+            ),
+            ol: ({ node, ...props }) => (
+              <ol
+                style={{
+                  listStyleType: "decimal",
+                  marginBottom: "1em",
+                  paddingLeft: "2em",
+                }}
+                {...props}
+              />
+            ),
+            li: ({ node, ...props }) => (
+              <li style={{ marginBottom: "0.5em" }} {...props} />
+            ),
+            strong: ({ node, ...props }) => (
+              <strong style={{ fontWeight: "bold" }} {...props} />
+            ),
+            em: ({ node, ...props }) => (
+              <em style={{ fontStyle: "italic" }} {...props} />
+            ),
+            p: ({ node, ...props }) => (
+              <p
+                style={{ marginBottom: "1em", lineHeight: "1.5" }}
+                {...props}
+              />
+            ),
+            blockquote: ({ node, ...props }) => (
+              <blockquote
+                style={{
+                  borderLeft: "4px solid #ccc",
+                  paddingLeft: "1em",
+                  marginLeft: "0",
+                  marginRight: "0",
+                }}
+                {...props}
+              />
+            ),
+            code: ({ node, ...props }) => (
+              <code
+                style={{
+                  backgroundColor: "#f0f0f0",
+                  padding: "0.2em 0.4em",
+                  borderRadius: "3px",
+                }}
+                {...props}
+              />
+            ),
+            pre: ({ node, ...props }) => (
+              <pre
+                style={{
+                  backgroundColor: "#f0f0f0",
+                  padding: "1em",
+                  overflowX: "auto",
+                  borderRadius: "4px",
+                }}
+                {...props}
+              />
+            ),
+            a: ({ node, ...props }) => (
+              <a
+                style={{ fontWeight: "bold", textDecoration: "underline" }}
+                {...props}
+              />
+            ),
           }}
         >
           {content}
         </ReactMarkdown>
       </div>
     );
-  }  
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const fetchCheckoutUrl = async () => {
-      setIsLoading(true);
-      try {
-          const token = localStorage.getItem("accessToken");
-          const response = await axios.post(
-              `https://backend-autolanding-ai.vercel.app/stripe`,
-              {},
-              {
-                  headers: {
-                      Authorization: `Bearer ${token}`,
-                  },
-              }
-          );
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem("accessToken");
+      const response = await axios.post(
+        `https://backend-autolanding-ai.vercel.app/stripe`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-          console.log("Response:", response);
-          window.location.href = response.data.checkoutUrl;
-      } catch (error) {
-          toast.error('There was an error. Please try again.', {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-          });
-          console.error("Error creating Stripe checkout session:", error);
-          setIsLoading(false);
-      }
+      console.log("Response:", response);
+      window.location.href = response.data.checkoutUrl;
+    } catch (error) {
+      toast.error("There was an error. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.error("Error creating Stripe checkout session:", error);
+      setIsLoading(false);
+    }
   };
   if (isLoading) {
     return (
@@ -189,9 +282,16 @@ export default function Chat({ loading }: ChatProps) {
     );
   }
 
+  const len = 5;
+
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">
-      <ShareButton shareUrl={window.location.href} title={"🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"}/>
+      <ShareButton
+        shareUrl={window.location.href}
+        title={
+          "🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"
+        }
+      />
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="justify-center items-center px-4 pt-8 pb-8">
           {path.pathname === "/chatHome" ? (
@@ -208,7 +308,8 @@ export default function Chat({ loading }: ChatProps) {
                   // Adding Freelancer static profiles
                   <>
                     <p className="text-xl font-bold uppercase text-center">
-                      Your Personal AI Agent to get you agencies or freelancers by simply chatting!
+                      Your Personal AI Agent to get you agencies or freelancers
+                      by simply chatting!
                     </p>
                     {/* <p className="text-xl font-bold uppercase text-center">
                       All you need to do is describe your project to our agent.
@@ -232,9 +333,7 @@ export default function Chat({ loading }: ChatProps) {
                       <ul className="flex gap-4 overflow-x-auto w-full">
                         {keyWords.map((data, index) => (
                           <li key={index} className="flex-shrink-0">
-                            <button className="btn p-2 rounded">
-                              {data}
-                            </button>
+                            <button className="btn p-2 rounded">{data}</button>
                           </li>
                         ))}
                       </ul>
@@ -263,7 +362,9 @@ export default function Chat({ loading }: ChatProps) {
                   Description
                 </h2>
                 <p className="text-sm md:text-lg">
-                  <MarkdownRenderer content={project?.description ?? "No description found."} />
+                  <MarkdownRenderer
+                    content={project?.description ?? "No description found."}
+                  />
                 </p>
               </div>
               <div className="flex flex-col w-full h-full space-y-2 mb-4">
@@ -271,22 +372,22 @@ export default function Chat({ loading }: ChatProps) {
                   Status
                 </h2>
                 <p className="text-sm md:text-lg">
-                    {
-                      ProjectStatus[
-                        //@ts-expect-error ignore this error
-                        project?.status ?? "not_started"
-                      ]
-                    }
-                  </p>
+                  {
+                    ProjectStatus[
+                      //@ts-expect-error ignore this error
+                      project?.status ?? "not_started"
+                    ]
+                  }
+                </p>
               </div>
               <div className="flex flex-col w-full h-full space-y-2">
                 <h2 className="text-md lg:text-lg font-semibold tracking-tight first:mt-0">
                   Attachments
                 </h2>
                 <p className="text-sm md:text-lg">
-                    {project?.attachments_link? 
-                      project?.attachments_link
-                      : "None"}
+                  {project?.attachments_link
+                    ? project?.attachments_link
+                    : "None"}
                 </p>
               </div>
 
@@ -294,23 +395,24 @@ export default function Chat({ loading }: ChatProps) {
                 <Logo height="140" width="290" />
                 <div className="scroll-m-20 mt-2 font-semibold text-center w-full px-5">
                   <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
-                      Thank you for using Auto Landing AI.
+                    Thank you for using Auto Landing AI.
                   </h2>
                   <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mb-8 text-center">
-                      Our team will be in touch with you shortly to discuss your project further.
+                    Our team will be in touch with you shortly to discuss your
+                    project further.
                   </h2>
                   <h3 className="tracking-tight first:mt-0 mb-4 text-center">
-                    After that, you can use the link below to pay 50% of the agreed price upfront.
+                    After that, you can use the link below to pay 50% of the
+                    agreed price upfront.
                   </h3>
-                  <button 
-                    onClick={fetchCheckoutUrl} 
+                  <button
+                    onClick={fetchCheckoutUrl}
                     className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
                   >
                     Pay 50% Upfront
                   </button>
                 </div>
               </div>
-
             </motion.div>
           ) : (
             <motion.div
@@ -344,6 +446,10 @@ export default function Chat({ loading }: ChatProps) {
                     </div>
                   </div>
                 ))}
+
+              {search.searchResults && (
+                <TwitterSearch tweetResult={search.searchResults} />
+              )}
             </motion.div>
           )}
         </div>
