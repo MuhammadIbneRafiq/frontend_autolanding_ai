@@ -9,11 +9,10 @@
         ],
         "module": "ESNext",
         "skipLibCheck": true,
-        //shadcn
         "baseUrl": ".",
         "paths": {
             "@/*": [
-                "src/*"
+                "./src/*"
             ]
         },
         /* Bundler mode */
@@ -23,6 +22,8 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
+        "allowJs": true, // Allow JavaScript files
+        "checkJs": false, // Disable type-checking for JavaScript files
         /* Linting */
         "strict": true,
         "noUnusedLocals": true,
@@ -30,7 +31,7 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src"
+        "src/**/*" // Include all files in the src directory, including .js and .jsx
     ],
     "references": [
         {
