@@ -28,7 +28,9 @@ export default function ResultCard(props: ResultCardProps) {
             </div>
             <HeartIcon className="text-blue-500 w-6 h-6" />
           </div>
-          <p className="mt-2 text-sm">{props.tweet}</p>
+          <p className="mt-2 text-sm break-words whitespace-normal overflow-hidden">
+            {props.tweet}
+          </p>
         </div>
       </div>
     </Card>

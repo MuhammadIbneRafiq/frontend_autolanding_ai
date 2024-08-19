@@ -22,6 +22,7 @@ import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
 import { useSearch } from "@/hooks/useSearch";
 import TwitterSearch from "./TwitterSearch";
+import { tweetResult, tweetResultProjects } from "@/constants/test";
 
 interface ChatProps {
   loading: boolean;
@@ -446,6 +447,16 @@ export default function Chat({ loading }: ChatProps) {
                     </div>
                   </div>
                 ))}
+
+              {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
+                chat?.chatHistory?.slice(-2)[0].sender == "user" && (
+                  <TwitterSearch tweetResult={tweetResult} />
+                )}
+
+              {chat?.chatHistory?.slice(-2)[0].content.includes("project") &&
+                chat?.chatHistory?.slice(-2)[0].sender == "user" && (
+                  <TwitterSearch tweetResult={tweetResultProjects} />
+                )}
 
               {search.searchResults && (
                 <TwitterSearch tweetResult={search.searchResults} />
