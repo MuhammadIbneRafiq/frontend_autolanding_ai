@@ -55,8 +55,8 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-black dark:text-white">
-            Tired of fake reviews on fiverr? Hire verified
-            Freelancer by simply chatting
+            Tired of fake reviews on fiverr? Hire verified Freelancer by simply
+            chatting
           </p>
 
           <button onClick={handleButtonClick}>

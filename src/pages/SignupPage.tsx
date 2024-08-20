@@ -48,7 +48,7 @@ export default function SignupPage() {
     defaultValues: {
       email: "",
       password: "",
-      role: 'buyer', // Initialize as buyer
+      role: "buyer", // Initialize as buyer
     },
   });
 
@@ -65,6 +65,7 @@ export default function SignupPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
+      // setCurrentUser(values);
       console.log(values);
       await axios.post(
         "https://backend-autolanding-ai.vercel.app/auth/signup",
@@ -103,7 +104,9 @@ export default function SignupPage() {
     <div className="w-full h-screen flex justify-center items-center space-x-24 dark:bg-black bg-white pt-24 p-4">
       <Card className="max-h-[700px] h-full max-w-[600px] w-full">
         <CardHeader className="space-y-3">
-          <CardTitle className="text-3xl text-center">Create an account</CardTitle>
+          <CardTitle className="text-3xl text-center">
+            Create an account
+          </CardTitle>
           <CardDescription>
             Enter your email below to create your account
           </CardDescription>
@@ -153,17 +156,29 @@ export default function SignupPage() {
                           <div className="flex space-x-4">
                             <Button
                               type="button"
-                              variant={field.value === "buyer" ? "default" : "outline"}
+                              variant={
+                                field.value === "buyer" ? "default" : "outline"
+                              }
                               onClick={() => field.onChange("buyer")}
-                              className={field.value === "buyer" ? "bg-blue-500 text-white" : ""}
+                              className={
+                                field.value === "buyer"
+                                  ? "bg-blue-500 text-white"
+                                  : ""
+                              }
                             >
                               Buyer
                             </Button>
                             <Button
                               type="button"
-                              variant={field.value === "seller" ? "default" : "outline"}
+                              variant={
+                                field.value === "seller" ? "default" : "outline"
+                              }
                               onClick={() => field.onChange("seller")}
-                              className={field.value === "seller" ? "bg-blue-500 text-white " : ""}
+                              className={
+                                field.value === "seller"
+                                  ? "bg-blue-500 text-white "
+                                  : ""
+                              }
                             >
                               Seller
                             </Button>
@@ -190,9 +205,17 @@ export default function SignupPage() {
             </form>
             <ThirdPartyAuth googleMessage={googleMessage}/>
             <div className="text-center mt-2">
-              <h1>Interested in speaking with the CEO?<br /> Schedule a meeting now!</h1>
+              <h1>
+                Interested in speaking with the CEO?
+                <br /> Schedule a meeting now!
+              </h1>
               <Button className="w-full h-12 rounded-xl my-4 bg-green-500 text-black">
-                <a target="_blank" href="https://calendly.com/muhammadibnerafiq/30min">Book appoinment</a>
+                <a
+                  target="_blank"
+                  href="https://calendly.com/muhammadibnerafiq/30min"
+                >
+                  Book appoinment
+                </a>
               </Button>
             </div>
           </Form>
