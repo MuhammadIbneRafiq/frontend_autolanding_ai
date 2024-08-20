@@ -44,7 +44,7 @@ export const useAuth = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:3000/user/role",
+        "https://www.autolanding.ai/user/role",
         {},
         {
           headers: {
