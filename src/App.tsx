@@ -12,7 +12,7 @@ import Pricing from "./pages/Pricing";
 // import ChatInterface from "./components/ChatInterface";
 import LandingPage from "./pages/LandingPage";
 import AuthCallback from "./hooks/AuthCallback";
-import MessageView from "./components/realTimeChat/features/messageArea/MessageView";
+// import MessageView from "./components/realTimeChat/features/messageArea/MessageView";
 import { UiProvider } from "./components/realTimeChat/contexts/UiContext";
 import AllRoutesWrapper from "./components/realTimeChat/components/AllRoutesWrapper";
 

@@ -283,7 +283,7 @@ export default function Chat({ loading }: ChatProps) {
     );
   }
 
-  const len = 5;
+  // const len = 5;
 
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">

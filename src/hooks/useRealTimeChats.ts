@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/components/utils/supabaseClient"; // Ensure this is your Supabase client instance
+import { supabase } from "@/hooks/supaBase"; // Ensure this is your Supabase client instance
 
 type Message = {
     id: string;
@@ -38,7 +38,7 @@ export const useRealTimeChats = (chatId: string) => {
     .on(
       'postgres_changes',
       { event: 'INSERT', schema: 'public', table: 'message_chat', filter: `conversation_id=eq.${chatId}` },
-      (payload) => {
+      (payload: any) => {
         setMessages((prevMessages) => [
           ...prevMessages,
           payload.new as Message, // Type assertion here
