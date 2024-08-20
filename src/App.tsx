@@ -37,9 +37,9 @@ function App() {
                     <Route
                       path="/chat/:id"
                       element={
-                        <ProtectedRoute>
+                        // <ProtectedRoute>
                           <HomePage />
-                        </ProtectedRoute>
+                        // </ProtectedRoute>
                       }
                     />
                     {/* <Route
@@ -53,9 +53,9 @@ function App() {
                     <Route
                       path="/project/:id"
                       element={
-                        <ProtectedRoute>
+                        // <ProtectedRoute>
                           <HomePage />
-                        </ProtectedRoute>
+                        // </ProtectedRoute>
                       }
                     />
                     <Route
