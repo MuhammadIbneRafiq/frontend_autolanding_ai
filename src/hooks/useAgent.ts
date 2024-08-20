@@ -2,10 +2,7 @@ import { Message } from "@/types/Message";
 import axios from "axios";
 
 export const useAgent = () => {
-  async function generateAIResponse(
-    chatId: string
-  ) {
-
+  async function generateAIResponse(chatId: string) {
     const response = await axios.put(
       `https://backend-autolanding-ai.vercel.app/chats/${chatId}`,
       {
@@ -15,7 +12,7 @@ export const useAgent = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        timeout: 30000  // 30 seconds
+        timeout: 30000, // 30 seconds
       }
     );
 

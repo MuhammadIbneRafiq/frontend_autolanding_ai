@@ -12,6 +12,7 @@ import { useAgent } from "@/hooks/useAgent";
 import { useProjects } from "@/hooks/useProjects";
 import { useProjectActions } from "@/hooks/useProjectActions";
 import { useToast } from "./ui/use-toast";
+import { useSearch } from "@/hooks/useSearch";
 
 interface ChatInputProps {
   loading: boolean;
@@ -31,6 +32,7 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     id: chatId,
   });
   const { generateAIResponse } = useAgent();
+  const { search } = useSearch();
   const { refetchChatsList } = useChats();
   const { createChat, sendMessageExistingChat } = useChatActions();
   const { projects, refetchProjectsList } = useProjects();
@@ -73,6 +75,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
         const aiMessage = await generateAIResponse(chatId);
         await refetchChatMessages();
+
+        if (aiMessage.search_needed) {
+          await search("search");
+        }
 
         if (aiMessage.is_final) {
           console.log("Final message received");
