@@ -33,7 +33,7 @@ export const ThirdPartyAuth: React.FC<ThirdPartyInterface> = ({ googleMessage })
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: 'http://localhost:5173/auth/callback',
+                    redirectTo: 'https://backend-autolanding-ai.vercel.app/auth/callback',
                 }
             });
             if (error) {

@@ -10,7 +10,7 @@ const RolePage: React.FC<RolePageProps> = ({ openRoleChange }) => {
   const handleButtonClick = async (name: string) => {
     try {
       await axios.post(
-        `http://localhost:3000/user/setRole/${name}`,
+        `https://backend-autolanding-ai.vercel.app/user/setRole/${name}`,
         {},
         {
           headers: {
