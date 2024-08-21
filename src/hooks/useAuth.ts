@@ -3,9 +3,11 @@ import { UserData } from "@/types/UserData";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
 import useUserSessionStore from "@/services/state/useUserSessionStore";
+import axios from "axios";
 
 export const useAuth = () => {
   const setUser = useUserSessionStore((state) => state.setUser);
+  const setRole = useUserSessionStore((state) => state.setRole);
   // return true or false if user is authenticated
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -23,14 +25,14 @@ export const useAuth = () => {
       setLoading(true);
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
-          
-          console.log("Access Token doesn't exist");
-          handleLogout();
-          setLoading(false);
-          return;
-        }
-        
+
+        console.log("Access Token doesn't exist");
+        handleLogout();
         setLoading(false);
+        return;
+      }
+
+      setLoading(false);
 
       const decoded = jwtDecode(accessToken || "");
 
@@ -40,6 +42,20 @@ export const useAuth = () => {
         setLoading(false);
         return;
       }
+
+      const response = await axios.post(
+        "https://backend-autolanding-ai.vercel.app/user/role",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              "accessToken"
+            )}`,
+          },
+        }
+      );
+      // console.log(response);
+      setRole(response.data as string);
 
       setUser((decoded as any).user_metadata as UserData);
       setIsAuthenticated(true);

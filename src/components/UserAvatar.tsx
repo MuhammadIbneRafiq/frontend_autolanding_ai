@@ -18,6 +18,7 @@ export default function UserAvatar() {
     const { toast } = useToast();
     const setUser = useUserStore((state) => state.setUser);
     const user = useUserStore((state) => state.user);
+    const role = useUserStore((state)=>state.role);
 
     async function logout() {
         try {
@@ -59,6 +60,7 @@ export default function UserAvatar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+                <DropdownMenuLabel>role: {role}</DropdownMenuLabel>
                 <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

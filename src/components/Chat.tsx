@@ -23,6 +23,7 @@ import ShareButton from "./ShareButton";
 import { useSearch } from "@/hooks/useSearch";
 import TwitterSearch from "./TwitterSearch";
 import { tweetResult, tweetResultProjects } from "@/constants/test";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ChatProps {
   loading: boolean;
@@ -40,6 +41,7 @@ export default function Chat({ loading }: ChatProps) {
   const search = useSearch();
 
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
+  const { isAuthenticated } = useAuth();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -287,12 +289,7 @@ export default function Chat({ loading }: ChatProps) {
 
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">
-      <ShareButton
-        shareUrl={window.location.href}
-        title={
-          "🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"
-        }
-      />
+      {isAuthenticated && <ShareButton shareUrl={window.location.href} title={"🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"}/>}
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="justify-center items-center px-4 pt-8 pb-8">
           {path.pathname === "/chatHome" ? (

@@ -79,7 +79,7 @@ const Logos = {
   brainyBots: () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="1000" height="150">
       <text x="-80" y="40" font-family="Arial" font-size="40" fill="#38A169">BrainyBots</text>
-      <path d="M115 30 Q 125 15, 135 30 Q 145 45, 155 30" stroke="#38A169" fill="none" stroke-width="3" />
+      <path d="M115 30 Q 125 15, 135 30 Q 145 45, 155 30" stroke="#38A169" fill="none" strokeWidth="3" />
     </svg>
   )
 };

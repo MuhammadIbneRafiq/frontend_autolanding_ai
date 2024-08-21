@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ThirdPartyAuth from "@/hooks/ThirdPartyAuth";
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -64,7 +65,7 @@ export default function SignupPage() {
     setLoading(true);
     try {
       // setCurrentUser(values);
-      console.log(values);
+      // console.log(values);
       await axios.post(
         "https://backend-autolanding-ai.vercel.app/auth/signup",
         // "http://localhost:3000/auth/signup",
@@ -100,7 +101,7 @@ export default function SignupPage() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center space-x-24 dark:bg-black bg-white pt-24 p-4">
-      <Card className="max-h-[600px] h-full max-w-[600px] w-full">
+      <Card className="max-h-[650px] h-full max-w-[600px] w-full">
         <CardHeader className="space-y-3">
           <CardTitle className="text-3xl text-center">
             Create an account
@@ -201,6 +202,7 @@ export default function SignupPage() {
                 </Button>
               </div>
             </form>
+            <ThirdPartyAuth googleMessage={"Sign up"}/>
             <div className="text-center mt-2">
               <h1>
                 Interested in speaking with the CEO?
