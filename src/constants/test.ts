@@ -1,3 +1,5 @@
+import { supabase } from "@/hooks/supaBase";
+
 export const tweetResult = [
   {
     id: 1,
@@ -163,3 +165,57 @@ export const tweetResultProjects = [
       "https://pbs.twimg.com/profile_images/1624781151809466368/tnuASsdY_400x400.jpg",
   },
 ];
+
+export const getTweetResultProjects = async () => {
+  try {
+    // Query to fetch user data for a specific project_id
+    const { data, error } = await supabase.rpc("fetch_projects_with_users");
+
+    if (error) {
+      throw error;
+    }
+
+    if (data.length > 0) {
+      type KeyMap = { [key: string]: string };
+      const keyMap: KeyMap = {
+        project_id: "id",
+        username: "name",
+        description: "tweet",
+      };
+
+      type AnyObject = { [key: string]: any };
+
+      const renameKeys = <T extends AnyObject>(
+        obj: T,
+        keyMap: KeyMap,
+        newPropertyName: string,
+        newPropertyValue: string
+      ): { [key: string]: any } => {
+        return Object.keys(obj).reduce(
+          (acc, key) => {
+            const newKey = keyMap[key] || key; // Default to the original key if no mapping exists
+            acc[newKey] = obj[key] || ""; // Assign the value to the new key
+            return acc;
+          },
+          {
+            [newPropertyName]: newPropertyValue, // Add the new property to the result
+          } as { [key: string]: any }
+        );
+      };
+
+      const transformedData = Promise.all(
+        data.map((item: any) =>
+          renameKeys(
+            item,
+            keyMap,
+            "profile",
+            "https://pbs.twimg.com/profile_images/1624781151809466368/tnuASsdY_400x400.jpg"
+          )
+        )
+      );
+      return transformedData;
+    }
+  } catch (error) {
+    return [];
+  }
+};

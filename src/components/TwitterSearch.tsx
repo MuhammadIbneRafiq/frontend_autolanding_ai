@@ -7,6 +7,15 @@ interface ResultItemProps {
   profile: string;
 }
 
+const truncateDescription = (description: string) => {
+  const words = description.split(" ");
+  if (words.length > 6) {
+    return words.slice(0, 10).join(" ") + "...";
+  } else {
+    return description;
+  }
+};
+
 const TwitterSearch = ({ tweetResult }: { tweetResult: ResultItemProps[] }) => {
   return (
     <div className="flex gap-2 overflow-x-auto whitespace-nowrap max-w-full">
@@ -15,7 +24,7 @@ const TwitterSearch = ({ tweetResult }: { tweetResult: ResultItemProps[] }) => {
           key={result.id}
           id={result.id}
           name={result.name}
-          tweet={result.tweet}
+          tweet={truncateDescription(result.tweet)}
           profile={result.profile}
         />
       ))}
