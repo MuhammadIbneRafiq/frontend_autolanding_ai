@@ -6,6 +6,7 @@ interface ResultItemProps {
   name: string;
   tweet: string;
   profile: string;
+  url: string;
 }
 
 export const useSearch = () => {
