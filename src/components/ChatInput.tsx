@@ -12,14 +12,22 @@ import { useAgent } from "@/hooks/useAgent";
 import { useProjects } from "@/hooks/useProjects";
 import { useProjectActions } from "@/hooks/useProjectActions";
 import { useToast } from "./ui/use-toast";
-import { useSearch } from "@/hooks/useSearch";
+
+interface ResultItemProps {
+  id: number;
+  name: string;
+  tweet: string;
+  profile: string;
+  url: string;
+}
 
 interface ChatInputProps {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  search: (query: string) => Promise<ResultItemProps[]>;
 }
 
-export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
+export const ChatInput = ({ loading, setLoading, search }: ChatInputProps) => {
   const location = useLocation();
   const chatId = location.pathname.split("/")[2];
 
@@ -32,7 +40,6 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     id: chatId,
   });
   const { generateAIResponse } = useAgent();
-  const { search } = useSearch();
   const { refetchChatsList } = useChats();
   const { createChat, sendMessageExistingChat } = useChatActions();
   const { projects, refetchProjectsList } = useProjects();

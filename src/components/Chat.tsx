@@ -20,13 +20,12 @@ import user5 from "../assets/user5.jpg";
 import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
-import { useSearch } from "@/hooks/useSearch";
 import TwitterSearch from "./TwitterSearch";
-import { tweetResult, tweetResultProjects } from "@/constants/test";
 import { useAuth } from "@/hooks/useAuth";
 
 interface ChatProps {
   loading: boolean;
+  searchResults: ResultItemProps[];
 }
 
 interface CardProps {
@@ -35,10 +34,17 @@ interface CardProps {
   image: string;
 }
 
-export default function Chat({ loading }: ChatProps) {
+interface ResultItemProps {
+  id: number;
+  name: string;
+  tweet: string;
+  profile: string;
+  url: string;
+}
+
+export default function Chat({ loading, searchResults }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
-  const search = useSearch();
 
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
   const { isAuthenticated } = useAuth();
@@ -286,10 +292,19 @@ export default function Chat({ loading }: ChatProps) {
   }
 
   // const len = 5;
+  console.log("yoyoyo");
+  console.log(searchResults);
 
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">
-      {isAuthenticated && <ShareButton shareUrl={window.location.href} title={"🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"}/>}
+      {isAuthenticated && (
+        <ShareButton
+          shareUrl={window.location.href}
+          title={
+            "🚀 Streamline Your Workflow with AI! Click here to join the conversation and explore my latest project on Autolanding:"
+          }
+        />
+      )}
       <ScrollShadow orientation="vertical" className="h-full" ref={scrollRef}>
         <div className="justify-center items-center px-4 pt-8 pb-8">
           {path.pathname === "/chatHome" ? (
@@ -445,7 +460,7 @@ export default function Chat({ loading }: ChatProps) {
                   </div>
                 ))}
 
-              {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
+              {/* {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
                 chat?.chatHistory?.slice(-2)[0].sender == "user" && (
                   <TwitterSearch tweetResult={tweetResult} />
                 )}
@@ -453,10 +468,10 @@ export default function Chat({ loading }: ChatProps) {
               {chat?.chatHistory?.slice(-2)[0].content.includes("project") &&
                 chat?.chatHistory?.slice(-2)[0].sender == "user" && (
                   <TwitterSearch tweetResult={tweetResultProjects} />
-                )}
+                )} */}
 
-              {search.searchResults && (
-                <TwitterSearch tweetResult={search.searchResults} />
+              {searchResults.length > 0 && (
+                <TwitterSearch tweetResult={searchResults} />
               )}
             </motion.div>
           )}
