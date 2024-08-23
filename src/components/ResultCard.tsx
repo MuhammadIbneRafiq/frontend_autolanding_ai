@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { SVGProps } from "react";
 import { JSX } from "react/jsx-runtime";
+import { useNavigate } from "react-router-dom";
 
 interface ResultCardProps {
   id: number;
@@ -11,9 +12,13 @@ interface ResultCardProps {
 }
 
 export default function ResultCard(props: ResultCardProps) {
+  const navigate = useNavigate();
   return (
     <Card className="bg-[#1a1a2e] text-white p-4 rounded-lg min-w-80 max-w-md">
-      <button className="flex items-start">
+      <button
+        onClick={() => navigate(`/project/${props.id}`)}
+        className="flex items-start"
+      >
         <Avatar className="mr-4">
           <AvatarImage src={props.profile} alt="User Avatar" />
           <AvatarFallback>U</AvatarFallback>

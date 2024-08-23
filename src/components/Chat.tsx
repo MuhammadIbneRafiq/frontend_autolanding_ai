@@ -74,10 +74,6 @@ export default function Chat({ loading }: ChatProps) {
     }
   }, [chat.chatHistory, path?.pathname]); // Trigger whenever chat history or path changes
 
-  console.log("TT", tweetResultProjects);
-
-  // setTweetResultProjects(transformedData);
-
   const truncateDescription = (description: string) => {
     const words = description.split(" ");
     if (words.length > 6) {

@@ -181,37 +181,27 @@ export const getTweetResultProjects = async () => {
         project_id: "id",
         username: "name",
         description: "tweet",
+        avatar_url: "profile",
       };
 
       type AnyObject = { [key: string]: any };
 
       const renameKeys = <T extends AnyObject>(
         obj: T,
-        keyMap: KeyMap,
-        newPropertyName: string,
-        newPropertyValue: string
+        keyMap: KeyMap
       ): { [key: string]: any } => {
         return Object.keys(obj).reduce(
           (acc, key) => {
             const newKey = keyMap[key] || key; // Default to the original key if no mapping exists
-            acc[newKey] = obj[key] || ""; // Assign the value to the new key
+            acc[newKey] = obj[key]; // Assign the value to the new key
             return acc;
           },
-          {
-            [newPropertyName]: newPropertyValue, // Add the new property to the result
-          } as { [key: string]: any }
+          {} as { [key: string]: any }
         );
       };
 
       const transformedData = Promise.all(
-        data.map((item: any) =>
-          renameKeys(
-            item,
-            keyMap,
-            "profile",
-            "https://pbs.twimg.com/profile_images/1624781151809466368/tnuASsdY_400x400.jpg"
-          )
-        )
+        data.map((item: any) => renameKeys(item, keyMap))
       );
       return transformedData;
     }
