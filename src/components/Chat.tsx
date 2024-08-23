@@ -36,18 +36,30 @@ interface CardProps {
 }
 
 // let tweetResultProjects: any = [];
+interface Project {
+  id: string | number;
+  name: string;
+  tweet: string; // This might be different in your actual type
+  profile: string; // This might be different in your actual type
+}
+
+
+// This function converts Project[] to ResultItemProps[]
+const convertProjectsToResultItems = (projects: Project[]) => {
+  return projects.map((project) => ({
+    id: typeof project.id === 'string' ? parseInt(project.id, 10) : project.id,
+    name: project.name ?? '',
+    tweet: project.tweet ?? '',
+    profile: project.profile ?? '',
+  }));
+};
+
+
 
 export default function Chat({ loading }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
   const search = useSearch();
-
-  type Project = {
-    id: string | undefined;
-    name: string | undefined;
-    tweet: string | undefined;
-    profile: string | undefined; // Fixed property
-  };
 
   const [tweetResultProjects, setTweetResultProjects] = useState<Project[]>([]);
 
@@ -57,9 +69,11 @@ export default function Chat({ loading }: ChatProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    getTweetResultProjects().then((projects) =>
-      setTweetResultProjects(projects ?? [])
-    );
+    // Assuming getTweetResultProjects fetches an array of Project[]
+    getTweetResultProjects().then((projects) => {
+      const resultItems = convertProjectsToResultItems(projects ?? []);
+      setTweetResultProjects(resultItems);
+    });
   }, []);
 
   useEffect(() => {
@@ -474,10 +488,18 @@ export default function Chat({ loading }: ChatProps) {
                   <TwitterSearch tweetResult={tweetResult} />
                 )}
 
-              {chat?.chatHistory?.slice(-2)[0].content.includes("project") &&
-                chat?.chatHistory?.slice(-2)[0].sender == "user" && (
-                  <TwitterSearch tweetResult={tweetResultProjects} />
-                )}
+                {chat?.chatHistory?.slice(-2)[0]?.content?.includes("project") &&
+                  chat?.chatHistory?.slice(-2)[0]?.sender === "user" && (
+                    <TwitterSearch
+                      tweetResult={tweetResultProjects.map((project) => ({
+                        id: typeof project.id === "string" ? parseInt(project.id, 10) : project.id,
+                        name: project.name,
+                        tweet: project.tweet, // Assuming 'tweet' is a property in Project
+                        profile: project.profile, // Assuming 'profile' is a property in Project
+                      }))}
+                    />
+                  )}
+
 
               {search.searchResults && (
                 <TwitterSearch tweetResult={search.searchResults} />
