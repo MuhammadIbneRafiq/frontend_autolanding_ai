@@ -44,18 +44,15 @@ interface Project {
   profile: string; // This might be different in your actual type
 }
 
-
 // This function converts Project[] to ResultItemProps[]
 const convertProjectsToResultItems = (projects: Project[]) => {
   return projects.map((project) => ({
-    id: typeof project.id === 'string' ? parseInt(project.id, 10) : project.id,
-    name: project.name ?? '',
-    tweet: project.tweet ?? '',
-    profile: project.profile ?? '',
+    id: typeof project.id === "string" ? parseInt(project.id, 10) : project.id,
+    name: project.name ?? "",
+    tweet: project.tweet ?? "",
+    profile: project.profile ?? "",
   }));
 };
-
-
 
 // let tweetResultProjects: any = [];
 interface Project {
@@ -64,11 +61,6 @@ interface Project {
   tweet: string; // This might be different in your actual type
   profile: string; // This might be different in your actual type
 }
-
-
-
-
-
 
 interface ResultItemProps {
   id: number;
@@ -507,7 +499,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                   </div>
                 ))}
 
-              {/* {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
+              {/*  {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
                 chat?.chatHistory?.slice(-2)[0].sender == "user" && (
                   <TwitterSearch tweetResult={tweetResult} />
                 )}
@@ -522,8 +514,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                         profile: project.profile, // Assuming 'profile' is a property in Project
                       }))}
                     />
-                  )}
-
+                  )} */}
 
               {searchResults.length > 0 && (
                 <TwitterSearch tweetResult={searchResults} />
