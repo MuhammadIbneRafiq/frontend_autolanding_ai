@@ -1,3 +1,5 @@
+import { supabase } from "@/hooks/supaBase";
+
 export const tweetResult = [
   {
     id: 1,
@@ -177,3 +179,47 @@ export const tweetResultProjects = [
     url: "",
   },
 ];
+
+export const getTweetResultProjects = async () => {
+  try {
+    // Query to fetch user data for a specific project_id
+    const { data, error } = await supabase.rpc("fetch_projects_with_users");
+
+    if (error) {
+      throw error;
+    }
+
+    if (data.length > 0) {
+      type KeyMap = { [key: string]: string };
+      const keyMap: KeyMap = {
+        project_id: "id",
+        username: "name",
+        description: "tweet",
+        avatar_url: "profile",
+      };
+
+      type AnyObject = { [key: string]: any };
+
+      const renameKeys = <T extends AnyObject>(
+        obj: T,
+        keyMap: KeyMap
+      ): { [key: string]: any } => {
+        return Object.keys(obj).reduce(
+          (acc, key) => {
+            const newKey = keyMap[key] || key; // Default to the original key if no mapping exists
+            acc[newKey] = obj[key]; // Assign the value to the new key
+            return acc;
+          },
+          {} as { [key: string]: any }
+        );
+      };
+
+      const transformedData = Promise.all(
+        data.map((item: any) => renameKeys(item, keyMap))
+      );
+      return transformedData;
+    }
+  } catch (error) {
+    return [];
+  }
+};

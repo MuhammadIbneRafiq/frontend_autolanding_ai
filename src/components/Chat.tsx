@@ -21,7 +21,9 @@ import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
 import TwitterSearch from "./TwitterSearch";
+import { getTweetResultProjects, tweetResult } from "@/constants/test";
 import { useAuth } from "@/hooks/useAuth";
+import { useSearch } from "@/hooks/useSearch";
 
 interface ChatProps {
   loading: boolean;
@@ -34,6 +36,40 @@ interface CardProps {
   image: string;
 }
 
+// let tweetResultProjects: any = [];
+interface Project {
+  id: string | number;
+  name: string;
+  tweet: string; // This might be different in your actual type
+  profile: string; // This might be different in your actual type
+}
+
+
+// This function converts Project[] to ResultItemProps[]
+const convertProjectsToResultItems = (projects: Project[]) => {
+  return projects.map((project) => ({
+    id: typeof project.id === 'string' ? parseInt(project.id, 10) : project.id,
+    name: project.name ?? '',
+    tweet: project.tweet ?? '',
+    profile: project.profile ?? '',
+  }));
+};
+
+
+
+// let tweetResultProjects: any = [];
+interface Project {
+  id: string | number;
+  name: string;
+  tweet: string; // This might be different in your actual type
+  profile: string; // This might be different in your actual type
+}
+
+
+
+
+
+
 interface ResultItemProps {
   id: number;
   name: string;
@@ -45,11 +81,22 @@ interface ResultItemProps {
 export default function Chat({ loading, searchResults }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
+  const search = useSearch();
+
+  const [tweetResultProjects, setTweetResultProjects] = useState<Project[]>([]);
 
   const { project } = useProject({ id: path?.pathname.split("/")[2] });
   const { isAuthenticated } = useAuth();
 
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Assuming getTweetResultProjects fetches an array of Project[]
+    getTweetResultProjects().then((projects) => {
+      const resultItems = convertProjectsToResultItems(projects ?? []);
+      setTweetResultProjects(resultItems);
+    });
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -465,10 +512,18 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                   <TwitterSearch tweetResult={tweetResult} />
                 )}
 
-              {chat?.chatHistory?.slice(-2)[0].content.includes("project") &&
-                chat?.chatHistory?.slice(-2)[0].sender == "user" && (
-                  <TwitterSearch tweetResult={tweetResultProjects} />
-                )} */}
+                {chat?.chatHistory?.slice(-2)[0]?.content?.includes("project") &&
+                  chat?.chatHistory?.slice(-2)[0]?.sender === "user" && (
+                    <TwitterSearch
+                      tweetResult={tweetResultProjects.map((project) => ({
+                        id: typeof project.id === "string" ? parseInt(project.id, 10) : project.id,
+                        name: project.name,
+                        tweet: project.tweet, // Assuming 'tweet' is a property in Project
+                        profile: project.profile, // Assuming 'profile' is a property in Project
+                      }))}
+                    />
+                  )}
+
 
               {searchResults.length > 0 && (
                 <TwitterSearch tweetResult={searchResults} />
