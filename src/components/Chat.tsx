@@ -91,6 +91,22 @@ export default function Chat({ loading, searchResults }: ChatProps) {
   }, []);
 
   useEffect(() => {
+    if (tweetResultProjects.length > 3) {
+      console.log("LOOPP");
+
+      let arr = [];
+      for (
+        let i = tweetResultProjects.length - 1;
+        i > tweetResultProjects.length - 4;
+        i--
+      ) {
+        arr.push(tweetResultProjects[i]);
+      }
+      setTweetResultProjects(arr);
+    }
+  }, [tweetResultProjects]);
+
+  useEffect(() => {
     if (scrollRef.current) {
       if (path?.pathname.includes("/project")) {
         // Scroll to the top
