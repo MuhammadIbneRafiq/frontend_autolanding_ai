@@ -58,7 +58,7 @@ export default function Chat({ loading }: ChatProps) {
 
   useEffect(() => {
     getTweetResultProjects().then((projects) =>
-      setTweetResultProjects(projects)
+      setTweetResultProjects(projects ?? [])
     );
   }, []);
 
