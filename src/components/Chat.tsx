@@ -21,9 +21,9 @@ import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
 import TwitterSearch from "./TwitterSearch";
-import { getTweetResultProjects, tweetResult } from "@/constants/test";
+import { getTweetResultProjects } from "@/constants/test";
 import { useAuth } from "@/hooks/useAuth";
-import { useSearch } from "@/hooks/useSearch";
+// import { useSearch } from "@/hooks/useSearch";
 
 interface ChatProps {
   loading: boolean;
@@ -73,7 +73,7 @@ interface ResultItemProps {
 export default function Chat({ loading, searchResults }: ChatProps) {
   const path = useLocation();
   const chat = useChat({ id: path?.pathname.split("/")[2] });
-  const search = useSearch();
+  // const search = useSearch();
 
   const [tweetResultProjects, setTweetResultProjects] = useState<Project[]>([]);
 
