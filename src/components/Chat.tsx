@@ -320,7 +320,6 @@ export default function Chat({ loading, searchResults }: ChatProps) {
         }
       );
 
-      console.log("Response:", response);
       window.location.href = response.data.checkoutUrl;
     } catch (error) {
       toast.error("There was an error. Please try again.", {
@@ -347,7 +346,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
   }
 
   // const len = 5;
-  console.log("yoyoyo");
+  // console.log("yoyoyo");
   console.log(searchResults);
 
   return (

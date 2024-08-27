@@ -33,7 +33,8 @@ export const ThirdPartyAuth: React.FC<ThirdPartyInterface> = ({ googleMessage })
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: 'https://autolanding.ai/auth/callback',
+                    redirectTo: 'https://www.autolanding.ai/chatHome', 
+                    // redirectTo: "https://www.autolanding.ai/auth/callback",
                 }
             });
             if (error) {

@@ -24,6 +24,8 @@ export const useAuth = () => {
     async function fetchUser() {
       setLoading(true);
       const accessToken = localStorage.getItem("accessToken");
+
+      console.log('this is at', accessToken)
       if (!accessToken) {
 
         console.log("Access Token doesn't exist");
