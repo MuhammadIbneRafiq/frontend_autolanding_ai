@@ -16,9 +16,11 @@ function AuthCallback() {
                     // After storing the token, navigate to the chatHome page
                     navigate('/chatHome');
                 }
+                console.log('succes at auth callback')
             } catch (error) {
                 console.error('Error during authentication callback:', error);
                 // Optionally, navigate to an error page or show a message
+                console.log('no success at authcallback page')
             }
         };
 

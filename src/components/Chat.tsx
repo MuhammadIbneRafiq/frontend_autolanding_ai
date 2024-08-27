@@ -92,7 +92,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
 
   useEffect(() => {
     if (tweetResultProjects.length > 3) {
-      console.log("LOOPP");
+      // console.log("LOOPP");
 
       let arr = [];
       for (
@@ -347,7 +347,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
 
   // const len = 5;
   // console.log("yoyoyo");
-  console.log(searchResults);
+  // console.log(searchResults);
 
   return (
     <div className="flex flex-col h-full w-full gap-2 py-4">
