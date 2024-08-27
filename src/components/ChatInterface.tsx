@@ -11,7 +11,6 @@ import { useSearch } from "@/hooks/useSearch";
 
 export default function ChatInterface() {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
   const { search, searchResults } = useSearch();
 

@@ -20,10 +20,12 @@ import user5 from "../assets/user5.jpg";
 import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
-import TwitterSearch from "./TwitterSearch";
-import { getTweetResultProjects } from "@/constants/test";
 import { useAuth } from "@/hooks/useAuth";
 // import { useSearch } from "@/hooks/useSearch";
+
+// display cards
+import TwitterSearch from "./TwitterSearch";
+import { getTweetResultProjects } from "@/constants/test";
 
 interface ChatProps {
   loading: boolean;
@@ -514,12 +516,14 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                   </div>
                 ))}
 
-              {/*  {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") &&
+
+              
+                {chat?.chatHistory?.slice(-2)[0].content.includes("freelancer") && // if the message from user contains the word freelancer then the search results from the backend will be displayed
                 chat?.chatHistory?.slice(-2)[0].sender == "user" && (
-                  <TwitterSearch tweetResult={tweetResult} />
+                  <TwitterSearch tweetResult={searchResults} />
                 )}
 
-                {chat?.chatHistory?.slice(-2)[0]?.content?.includes("project") &&
+                {chat?.chatHistory?.slice(-2)[0]?.content?.includes("project") && // if the message from user contains the word project then all the projects will be displayed
                   chat?.chatHistory?.slice(-2)[0]?.sender === "user" && (
                     <TwitterSearch
                       tweetResult={tweetResultProjects.map((project) => ({
@@ -529,12 +533,10 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                         profile: project.profile, // Assuming 'profile' is a property in Project
                       }))}
                     />
-                  )} */}
+                )}
 
-              {searchResults.length > 0 && (
-                <TwitterSearch tweetResult={searchResults} />
-              )}
-            </motion.div>
+                
+            </motion.div> // add a toast to tell them to put up a paywall to have them direct client access or some prompting technique or joining the discord server here base on user's (-2)[0] message
           )}
         </div>
       </ScrollShadow>

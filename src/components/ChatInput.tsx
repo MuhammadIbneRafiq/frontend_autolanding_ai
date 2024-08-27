@@ -27,7 +27,7 @@ interface ChatInputProps {
   search: (query: string) => Promise<ResultItemProps[]>;
 }
 
-export const ChatInput = ({ loading, setLoading, search }: ChatInputProps) => {
+export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
   const location = useLocation();
   const chatId = location.pathname.split("/")[2];
 
@@ -66,7 +66,6 @@ export const ChatInput = ({ loading, setLoading, search }: ChatInputProps) => {
       if (location.pathname === "/chatHome") {
         // If this is a new chat, send the message and navigate to the chat
         const response = await createChat(message, "user");
-        console.log("this is new chat", response);
         await generateAIResponse(response.chat_id);
 
         await refetchChatsList();
@@ -83,9 +82,9 @@ export const ChatInput = ({ loading, setLoading, search }: ChatInputProps) => {
         const aiMessage = await generateAIResponse(chatId);
         await refetchChatMessages();
 
-        if (aiMessage.search_needed) {
-          await search("search");
-        }
+    
+        // const ser = await search("search");
+        // console.log('this is aiMessage search', ser)
 
         if (aiMessage.is_final) {
           console.log("Final message received");

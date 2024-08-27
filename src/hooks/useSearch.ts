@@ -13,7 +13,8 @@ export const useSearch = () => {
   const [searchResults, setSearchResults] = useState<ResultItemProps[]>([]);
   const search = async (query: string) => {
     const response = await axios.post(
-      `https://backend-autolanding-ai.vercel.app/search`,
+      // `https://backend-autolanding-ai.vercel.app/search`,
+      `http://localhost:3000/search`,
       {
         sender: "assistant",
         query: query,
@@ -27,6 +28,7 @@ export const useSearch = () => {
     );
 
     const responseMessage = response.data as ResultItemProps[];
+    console.log('Updated searchResults in useSearch:', responseMessage); // Add this log
     setSearchResults(responseMessage);
     return responseMessage;
   };

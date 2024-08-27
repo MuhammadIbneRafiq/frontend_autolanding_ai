@@ -21,7 +21,7 @@ export default function ResultCard(props: ResultCardProps) {
       >
         <Avatar className="mr-4">
           <AvatarImage src={props.profile} alt="User Avatar" />
-          <AvatarFallback>U</AvatarFallback>
+          <AvatarFallback>AI</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <div className="flex justify-between items-center">
