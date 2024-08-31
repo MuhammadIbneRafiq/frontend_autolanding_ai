@@ -18,15 +18,20 @@ export const useProject = ({ id }: ProjectProps) => {
   } = useQuery({
     queryKey: ["project", id],
     queryFn: async () => {
-      const token = localStorage.getItem("accessToken");
+      // const token = localStorage.getItem("accessToken");
 
       const response = await axios.get(
         `https://backend-autolanding-ai.vercel.app/projects/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
       );
 
       // console.log("Response Project: ", response.data);

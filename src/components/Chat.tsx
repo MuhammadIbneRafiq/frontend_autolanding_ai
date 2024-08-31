@@ -5,7 +5,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Loader } from "lucide-react";
 import { Logo } from "./Logo";
-import { ProjectStatus } from "@/types/Project";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { useChat } from "@/hooks/useChat";
@@ -21,6 +20,8 @@ import user6 from "../assets/user1.jpg";
 import user7 from "../assets/alshahabRezvi.jpg";
 import ShareButton from "./ShareButton";
 import { useAuth } from "@/hooks/useAuth";
+import Project from "./Project"; // Import the refactored Project component
+
 // import { useSearch } from "@/hooks/useSearch";
 
 // display cards
@@ -412,77 +413,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
               </div>
             </motion.div>
           ) : path.pathname.split("/")[1] === "project" && project ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
-              className="flex flex-col gap-4 h-full"
-            >
-              <div className="flex flex-col items-start justify-center space-y-2 mb-4">
-                <h1 className="text-xl font-extrabold lg:text-5xl text-left">
-                  {project?.title ?? "Untitled"}
-                </h1>
-                <h2 className="pb-2 text-xl tracking-tight text-left">
-                  {new Date(project?.created_at ?? "").toDateString()}
-                </h2>
-              </div>
-              <div className="flex flex-col w-full h-full space-y-2 mb-4">
-                <h2 className="text-md lg:text-lg font-semibold tracking-tight first:mt-0">
-                  Description
-                </h2>
-                <p className="text-sm md:text-lg">
-                  <MarkdownRenderer
-                    content={project?.description ?? "No description found."}
-                  />
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full space-y-2 mb-4">
-                <h2 className="text-md lg:text-lg font-semibold tracking-tight first:mt-0">
-                  Status
-                </h2>
-                <p className="text-sm md:text-lg">
-                  {
-                    ProjectStatus[
-                      //@ts-expect-error ignore this error
-                      project?.status ?? "not_started"
-                    ]
-                  }
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full space-y-2">
-                <h2 className="text-md lg:text-lg font-semibold tracking-tight first:mt-0">
-                  Attachments
-                </h2>
-                <p className="text-sm md:text-lg">
-                  {project?.attachments_link
-                    ? project?.attachments_link
-                    : "None"}
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center pb-8">
-                <Logo height="140" width="290" />
-                <div className="scroll-m-20 mt-2 font-semibold text-center w-full px-5">
-                  <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 text-center">
-                    Thank you for using Auto Landing AI.
-                  </h2>
-                  <h2 className="scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mb-8 text-center">
-                    Our team will be in touch with you shortly to discuss your
-                    project further.
-                  </h2>
-                  <h3 className="tracking-tight first:mt-0 mb-4 text-center">
-                    After that, you can use the link below to pay 50% of the
-                    agreed price upfront.
-                  </h3>
-                  <button
-                    onClick={fetchCheckoutUrl}
-                    className="text-black bg-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-gray-200 active:bg-gray-300 shadow-lg"
-                  >
-                    Pay 50% Upfront
-                  </button>
-                </div>
-              </div>
-            </motion.div>
+              <Project project={project} fetchCheckoutUrl={fetchCheckoutUrl} />  // Use the Project component here
           ) : (
             <motion.div
               className="flex flex-col gap-4"
@@ -497,7 +428,7 @@ export default function Chat({ loading, searchResults }: ChatProps) {
                       {message.sender === "user" ? (
                         <Avatar className="h-[32px] w-[32px]">
                           <AvatarImage
-                            src="https://github.com/shadcn.png"
+                            src="https://github.com/shadcn.png" // get from User_data from google or this
                             alt="@shadcn"
                           />
                         </Avatar>

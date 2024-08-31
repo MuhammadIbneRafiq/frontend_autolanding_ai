@@ -1,56 +1,55 @@
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Pricing = () => {
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [billingCycle, setBillingCycle] = useState('annually'); // 'annually' or 'monthly'
+    const [isLoading, setIsLoading] = useState(false);
+    const [billingCycle, setBillingCycle] = useState('annually'); // 'annually' or 'monthly'
 
-    // const fetchCheckoutUrl = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //         const token = localStorage.getItem("accessToken");
-    //         const response = await axios.post(
-    //             `https://backend-autolanding-ai.vercel.app/stripe`,
-    //             {},
-    //             {
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`,
-    //                 },
-    //             }
-    //         );
+    const fetchCheckoutUrl = async () => {
+        setIsLoading(true);
+        try {
+            const token = localStorage.getItem("accessToken");
+            const response = await axios.post(
+                `https://backend-autolanding-ai.vercel.app/stripe`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Response:", response);
+            window.location.href = response.data.checkoutUrl;
+        } catch (error) {
+            toast.error('There was an error. Please try again.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            console.error("Error creating Stripe checkout session:", error);
+            setIsLoading(false);
+        }
+    };
 
-    //         console.log("Response:", response);
-    //         window.location.href = response.data.checkoutUrl;
-    //     } catch (error) {
-    //         toast.error('There was an error. Please try again.', {
-    //             position: "top-right",
-    //             autoClose: 3000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //         });
-    //         console.error("Error creating Stripe checkout session:", error);
-    //         setIsLoading(false);
-    //     }
-    // };
+    const toggleBillingCycle = () => {
+        setBillingCycle(prevCycle => (prevCycle === 'annually' ? 'monthly' : 'annually'));
+    };
 
-    // const toggleBillingCycle = () => {
-    //     setBillingCycle(prevCycle => (prevCycle === 'annually' ? 'monthly' : 'annually'));
-    // };
-
-    // if (isLoading) {
-    //     return <div>Redirecting to payment...</div>;
-    // }
+    if (isLoading) {
+        return <div>Redirecting to payment...</div>;
+    }
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center py-12 text-black dark:text-white">
-            <h1 className="text-4xl font-bold text-center">Great news,</h1>
+            {/* <h1 className="text-4xl font-bold text-center">Great news,</h1>
             <h1 className="text-4xl font-bold text-center mb-10">You can start hiring for free!</h1>
-            <p className="font-bold text-center mb-6">We only charge for our freelancing service. To get started, sing up and start chatting with our agent.</p>
-            {/* <div className="flex justify-center mb-8">
+            <p className="font-bold text-center mb-6">We only charge for our freelancing service. To get started, sing up and start chatting with our agent.</p> */}
+            <div className="flex justify-center mb-8">
                 <div className="flex items-center bg-gray-800 rounded-full p-1">
                     <button 
                         onClick={toggleBillingCycle}
@@ -68,8 +67,8 @@ const Pricing = () => {
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center gap-6">
                 <div className="bg-gray-800 rounded-lg shadow-lg p-6 text-center w-full max-w-xs">
-                    <h2 className="text-2xl font-bold mb-2">Plus</h2>
-                    <p className="text-3xl font-bold mb-1">$1</p>
+                    <h2 className="text-2xl font-bold mb-2">FREE</h2>
+                    <p className="text-3xl font-bold mb-1">$0</p>
                     <p className="text-sm mb-4">for first 14 days, then billed {billingCycle}</p>
                     <button 
                         onClick={fetchCheckoutUrl} 
@@ -88,7 +87,7 @@ const Pricing = () => {
                         <span className="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">Recommended</span>
                     </div>
                     <h2 className="text-2xl font-bold mb-2">Pro</h2>
-                    <p className="text-3xl font-bold mb-1">$187</p>
+                    <p className="text-3xl font-bold mb-1">$87</p>
                     <p className="text-sm mb-4">for first 14 days, then annually</p>
                     <button 
                         onClick={fetchCheckoutUrl} 
@@ -97,6 +96,7 @@ const Pricing = () => {
                         Start trial
                     </button>
                     <ul className="text-left text-sm">
+                        <li className="mb-2">✔ DIRECT ACCESS TO CLIENTS IN OUR DATABASE MATCHING YOUR REQ</li>
                         <li className="mb-2">✔ Everything in Plus</li>
                         <li className="mb-2">✔ only 5% commission for orders above $400</li>
                     </ul>
@@ -117,7 +117,7 @@ const Pricing = () => {
                         <li className="mb-2">✔ 0% discount taken</li>
                     </ul>
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };

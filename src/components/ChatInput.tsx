@@ -82,10 +82,6 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
         const aiMessage = await generateAIResponse(chatId);
         await refetchChatMessages();
 
-    
-        // const ser = await search("search");
-        // console.log('this is aiMessage search', ser)
-
         if (aiMessage.is_final) {
           console.log("Final message received");
           toast({
@@ -121,10 +117,10 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
           !isAuthenticated
             ? "Sign up or log in to start chatting."
             : projectExistsForChat
-            ? "We already created a project for this chat and is now read-only."
+            ? "We created a profile for you based on your chat, go and share this to your clients!"
             : isOnProjectPage
-            ? "We will soon allow you to edit the project. In the meantime, reach out to us via email if you have any questions."
-            : "Describe the project you want to get done. E.g. 'I need a web developer for a portfolio site'."
+            ? "Share and start outreach! If you want to edit the project, go and keep chatting."
+            : "Describe your client needs to get matched with the right one. E.g. 'I am a web developer for AI automation agency'."
         }
         value={message}
         className={`${
@@ -137,7 +133,8 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
           }
         }}
         onClick={isAuthenticated ? undefined : () => navigate("/register")}
-        disabled={projectExistsForChat || isOnProjectPage}
+        // disabled={projectExistsForChat || isOnProjectPage}
+        disabled={ isOnProjectPage }
       />
       <Button
         variant="secondary"
