@@ -1,5 +1,5 @@
-import { Loader, SendHorizontal, Paperclip } from "lucide-react";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Loader, SendHorizontal } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "./ui/button";
@@ -12,7 +12,7 @@ import { useAgent } from "@/hooks/useAgent";
 import { useProjects } from "@/hooks/useProjects";
 import { useProjectActions } from "@/hooks/useProjectActions";
 import { useToast } from "./ui/use-toast";
-import { usePdfUpload } from "@/hooks/usePdfUpload"; // New hook for PDF upload
+// import { usePdfUpload } from "@/hooks/usePdfUpload"; // Comment this out if not needed
 
 interface ResultItemProps {
   id: number;
@@ -49,15 +49,15 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
   const isOnProjectPage = location.pathname.split("/")[1] === "project";
 
   // Logic for PDF upload
-  const [pdfFile, setPdfFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { uploadPdf, pdfUploadLoading } = usePdfUpload();
+  // const [pdfFile, setPdfFile] = useState<File | null>(null); // Comment this out
+  // const fileInputRef = useRef<HTMLInputElement>(null); // Comment this out
+  // const { uploadPdf, pdfUploadLoading } = usePdfUpload(); // Comment this out
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setPdfFile(event.target.files[0]);
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => { // Comment this out
+  //   if (event.target.files && event.target.files[0]) { // Comment this out
+  //     setPdfFile(event.target.files[0]); // Comment this out
+  //   } // Comment this out
+  // }; // Comment this out
 
   // Clear the chat input when the user navigates to a different page
   useEffect(() => {
@@ -85,56 +85,30 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
 
         navigate(`/chat/${response.chat_id}`);
       } else {
-        // Existing chat: handle PDF upload or normal message
+        // Existing chat: handle normal message
         setMessage("");
         const chatId = location.pathname.split("/")[2];
 
-        if (pdfFile) {
-          // PDF upload logic
-          const formData = new FormData();
-          formData.append('pdf', pdfFile);
-          formData.append('chatId', chatId);
-          
-          const response = await uploadPdf(formData);
-          await sendMessageExistingChat(
-            `PDF "${pdfFile.name}" has been uploaded and processed. ${response.chunks} sections were extracted and are ready for querying.`,
-            chatId,
-            "user"
-          );
-          
-          if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-          }
-          setPdfFile(null);
-          
+        // Normal chat message logic
+        await sendMessageExistingChat(message, chatId, "user");
+        await refetchChatMessages();
+
+        const aiMessage = await generateAIResponse(chatId);
+        await refetchChatMessages();
+
+        if (aiMessage.is_final) {
+          console.log("Final message received");
           toast({
-            title: "PDF processed successfully",
-            description: `${response.chunks} sections were extracted and are ready for querying.`,
+            title: "New project requested",
+            description: "Our agent is creating the new project for you. You should see it in a few seconds.",
             variant: "success",
           });
-        } else {
-          // Normal chat message logic
-          await sendMessageExistingChat(message, chatId, "user");
-          await refetchChatMessages();
 
-          const aiMessage = await generateAIResponse(chatId);
-          await refetchChatMessages();
-
-          if (aiMessage.is_final) {
-            console.log("Final message received");
-            toast({
-              title: "New project requested",
-              description: "Our agent is creating the new project for you. You should see it in a few seconds.",
-              variant: "success",
-            });
-
-            const response = await createProject(chatId);
-            await refetchProjectsList();
-            navigate(`/project/${response.project_id}`);
-          }
+          const response = await createProject(chatId);
+          await refetchProjectsList();
+          navigate(`/project/${response.project_id}`);
         }
       }
-      setMessage("");
     } catch (error) {
       console.error("Failed to send message:", error);
       toast({
@@ -150,15 +124,13 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
     <div className="flex items-end w-full justify-between items-center gap-2">
       <Input
         placeholder={
-          pdfFile 
-            ? `Upload "${pdfFile.name}" to chat`
-            : !isAuthenticated
-              ? "Sign up or log in to start chatting."
-              : projectExistsForChat
-                ? "We created a profile for you based on your chat, go and share this to your clients!"
-                : isOnProjectPage
-                  ? "Share and start outreach! If you want to edit the project, go and keep chatting."
-                  : "Describe your client needs to get matched with the right one. E.g. 'I am a web developer for AI automation agency'."
+          !isAuthenticated
+            ? "Sign up or log in to start chatting."
+            : projectExistsForChat
+              ? "We created a profile for you based on your chat, go and share this to your clients!"
+              : isOnProjectPage
+                ? "Share and start outreach! If you want to edit the project, go and keep chatting."
+                : "Describe your client needs to get matched with the right one. E.g. 'I am a web developer for AI automation agency'."
         }
         value={message}
         className={`${
@@ -172,41 +144,28 @@ export const ChatInput = ({ loading, setLoading }: ChatInputProps) => {
         }}
         onClick={isAuthenticated ? undefined : () => navigate("/register")}
         // Disable input based on project existence or page context
-        disabled={ isOnProjectPage }
+        disabled={isOnProjectPage}
       />
-      <Input
+      {/* Removed the file input for PDF upload */}
+      {/* <Input
         type="file"
         accept=".pdf"
         onChange={handleFileChange}
         className="hidden"
         ref={fileInputRef}
-      />
-      <Button
-        variant="outline"
-        onClick={() => fileInputRef.current?.click()}
-        disabled={loading || pdfUploadLoading || !chatId}
-        className="relative"
-      >
-        <Paperclip className="w-4 h-4" />
-        {pdfFile && (
-          <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-500 rounded-full" />
-        )}
-      </Button>
+      /> */}
       <Button
         variant="secondary"
-        onClick={pdfFile ? onSendMessage : onSendMessage}
+        onClick={onSendMessage}
         disabled={
           loading || 
-          pdfUploadLoading || 
           isOnProjectPage || 
-          (!message && !pdfFile) ||
+          !message || 
           !chatId
         }
       >
-        {loading || pdfUploadLoading ? (
+        {loading ? (
           <Loader className="animate-spin" />
-        ) : pdfFile ? (
-          "Upload PDF"
         ) : (
           <SendHorizontal />
         )}
