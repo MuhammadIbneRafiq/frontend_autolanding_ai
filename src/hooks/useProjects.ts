@@ -17,6 +17,7 @@ export const useProjects = () => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.get(
+        // "http://localhost:3000/projects",
         "https://backend-autolanding-ai.vercel.app/projects",
         {
           headers: {

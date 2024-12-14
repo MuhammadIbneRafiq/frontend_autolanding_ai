@@ -15,10 +15,12 @@ export const usePdfUpload = () => {
     try {
       const token = localStorage.getItem('accessToken');
       console.log('📤 Sending request to /api/upload-pdf...');
-      const response = await axios.post('http://localhost:3000/api/upload-pdf', formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        }
+      const response = await axios.post(
+        'https://backend-autolanding-ai.vercel.app/api/upload-pdf', 
+        formData, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
       });
 
 
